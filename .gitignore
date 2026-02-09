@@ -1,3 +1,4 @@
+
 # Dependencies
 node_modules/
 
@@ -23,3 +24,7 @@ npm-debug.log*
 
 # Cache
 .cache/
+
+# Large binaries / generated intermediate files
+public/products/pdf_images/
+*.pdf

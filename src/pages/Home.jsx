@@ -56,7 +56,7 @@ function Home() {
                         </p>
                     </div>
                     <div className="products-grid">
-                        {products.map((product, index) => (
+                        {products.filter(p => p.featured).slice(0, 8).map((product, index) => (
                             <ProductCard key={product.id} product={product} index={index} />
                         ))}
                     </div>
@@ -131,10 +131,10 @@ function Home() {
                     <div className="about-grid">
                         <div className="about-images">
                             <div className="about-image main">
-                                <img src="/products/antiskid-tandur-stones.jpeg" alt="Antiskid Tandur Stones" />
+                                <img src="/products/cropped/tandur-stones.jpg" alt="Antiskid Tandur Stones" />
                             </div>
                             <div className="about-image secondary">
-                                <img src="/products/black-exporting-quality.jpeg" alt="Black Cobblestones" />
+                                <img src="/products/cropped/cobblestones.jpg" alt="Black Cobblestones" />
                             </div>
                             <div className="experience-badge">
                                 <span className="exp-number">15+</span>
