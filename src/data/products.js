@@ -37,7 +37,7 @@ export const categories = [
     {
         id: 'pebble-stones',
         name: 'Pebble Stones',
-        description: 'Kalstone river pebbles & decorative pebble collections',
+        description: 'Choice river pebbles & decorative pebble collections',
         icon: 'Circle',
         image: '/products/category-pebbles.jpg',
         productCount: 7
@@ -198,13 +198,13 @@ export const products = [
     { id: 'grass-50-green', name: '50mm Green', category: 'artificial-grass', description: '50mm luxury artificial green grass for premium outdoor spaces.', images: img('grass-50-green') },
 
     // ============ PEBBLE STONES ============
-    { id: 'kalstone-river-pebble-mix', name: 'Kalstone River Pebble Mix', category: 'pebble-stones', description: 'Mixed river pebbles by Kalstone for vibrant landscape accents.', images: ['/products/pebble-img1.jpg', '/products/pebble-img5.jpg', '/products/pebble-img1.jpg', '/products/pebble-img5.jpg'] },
+    { id: 'kalstone-river-pebble-mix', name: 'Choice River Pebble Mix', category: 'pebble-stones', description: 'Mixed river pebbles by Choice for vibrant landscape accents.', images: ['/products/pebble-img1.jpg', '/products/pebble-img5.jpg', '/products/pebble-img1.jpg', '/products/pebble-img5.jpg'] },
     { id: 'kalstone-river-white', name: 'River White', category: 'pebble-stones', description: 'Pure white river pebbles for clean, serene garden designs.', images: ['/products/pebble-img8.jpg', '/products/pebble-img11.jpg', '/products/pebble-img8.jpg', '/products/pebble-img11.jpg'] },
     { id: 'kalstone-river-black', name: 'River Black', category: 'pebble-stones', description: 'Deep black river pebbles for bold landscape contrast.', images: ['/products/pebble-img14.jpg', '/products/pebble-img17.jpg', '/products/pebble-img14.jpg', '/products/pebble-img17.jpg'] },
-    { id: 'kalstone-zebra', name: 'Zebra Kalstone', category: 'pebble-stones', description: 'Striped zebra pebbles with unique black and white patterns.', images: ['/products/pebble-img20.jpg', '/products/pebble-img23.jpg', '/products/pebble-img20.jpg', '/products/pebble-img23.jpg'] },
-    { id: 'kalstone-teak-wood', name: 'Teak Wood Kalstone', category: 'pebble-stones', description: 'Warm teak wood-toned pebbles for natural garden accents.', images: ['/products/pebble-img26.jpg', '/products/pebble-img29.jpg', '/products/pebble-img26.jpg', '/products/pebble-img29.jpg'] },
-    { id: 'kalstone-himalayan-river', name: 'Kalstone Himalayan River Pebble', category: 'pebble-stones', description: 'Himalayan river pebbles with unique mountain-origin character.', images: ['/products/pebble-img32.jpg', '/products/pebble-img36.jpg', '/products/pebble-img32.jpg', '/products/pebble-img36.jpg'] },
-    { id: 'kalstone-deep-purple', name: 'Kalstone Deep Purple', category: 'pebble-stones', description: 'Rich deep purple pebbles for luxurious landscape accents.', images: ['/products/pebble-img39.jpg', '/products/pebble-img42.jpg', '/products/pebble-img39.jpg', '/products/pebble-img42.jpg'] },
+    { id: 'kalstone-zebra', name: 'Zebra Choice', category: 'pebble-stones', description: 'Striped zebra pebbles with unique black and white patterns.', images: ['/products/pebble-img20.jpg', '/products/pebble-img23.jpg', '/products/pebble-img20.jpg', '/products/pebble-img23.jpg'] },
+    { id: 'kalstone-teak-wood', name: 'Teak Wood Choice', category: 'pebble-stones', description: 'Warm teak wood-toned pebbles for natural garden accents.', images: ['/products/pebble-img26.jpg', '/products/pebble-img29.jpg', '/products/pebble-img26.jpg', '/products/pebble-img29.jpg'] },
+    { id: 'kalstone-himalayan-river', name: 'Choice Himalayan River Pebble', category: 'pebble-stones', description: 'Himalayan river pebbles with unique mountain-origin character.', images: ['/products/pebble-img32.jpg', '/products/pebble-img36.jpg', '/products/pebble-img32.jpg', '/products/pebble-img36.jpg'] },
+    { id: 'kalstone-deep-purple', name: 'Choice Deep Purple', category: 'pebble-stones', description: 'Rich deep purple pebbles for luxurious landscape accents.', images: ['/products/pebble-img39.jpg', '/products/pebble-img42.jpg', '/products/pebble-img39.jpg', '/products/pebble-img42.jpg'] },
 ];
 
 export const testimonials = [

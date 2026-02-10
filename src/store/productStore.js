@@ -68,7 +68,7 @@ const useProductStore = create((set, get) => ({
         {
             id: 'pebble-stones',
             name: 'Pebble Stones',
-            description: 'Kalstone river pebbles & decorative pebble collections',
+            description: 'Choice river pebbles & decorative pebble collections',
             icon: 'Circle',
             image: '/products/category-pebbles.jpg',
             productCount: 7
