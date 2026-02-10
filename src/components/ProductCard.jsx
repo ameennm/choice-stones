@@ -8,12 +8,12 @@ function ProductCard({ product, index = 0 }) {
 
     return (
         <Link
-            to={`/products/${product.id}`}
+            to={`/products/${product.$id || product.id}`}
             className="product-card"
             style={{ animationDelay: `${index * 60}ms` }}
         >
             <div className="product-image-container">
-                {!imgError ? (
+                {!imgError && product.images && product.images.length > 0 ? (
                     <img
                         src={product.images[0]}
                         alt={product.name}
@@ -27,7 +27,7 @@ function ProductCard({ product, index = 0 }) {
                     </div>
                 )}
                 {product.size && (
-                    <span className="product-badge">{product.size}</span>
+                    <span className="product-badge">{Array.isArray(product.size) ? product.size[0] : product.size}</span>
                 )}
                 <div className="product-overlay">
                     <button className="view-btn">
@@ -37,8 +37,8 @@ function ProductCard({ product, index = 0 }) {
             </div>
 
             <div className="product-content">
-                {product.subcategory && (
-                    <span className="product-category">{product.subcategory}</span>
+                {(product.subtitle || product.subcategory) && (
+                    <span className="product-category">{product.subtitle || product.subcategory}</span>
                 )}
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-subtitle">{product.description?.substring(0, 80)}...</p>

@@ -1,19 +1,33 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { Search, Filter, X, Grid3X3, List, ChevronRight } from 'lucide-react'
-import { products, categories } from '../data/products'
+import { Search, Filter, X, Grid3X3, List, ChevronRight, Loader } from 'lucide-react'
+import useProductStore from '../store/productStore'
 import ProductCard from '../components/ProductCard'
 import './Products.css'
 
 function Products() {
+    const { products, loading, fetchProducts, categories } = useProductStore()
     const [searchParams, setSearchParams] = useSearchParams()
-    const [filteredProducts, setFilteredProducts] = useState(products)
+    const [filteredProducts, setFilteredProducts] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all')
     const [showFilters, setShowFilters] = useState(false)
     const [viewMode, setViewMode] = useState('grid')
 
     useEffect(() => {
+        fetchProducts()
+    }, [fetchProducts])
+
+    useEffect(() => {
+        const category = searchParams.get('category')
+        if (category) {
+            setSelectedCategory(category)
+        }
+    }, [searchParams])
+
+    useEffect(() => {
+        if (loading) return
+
         let result = [...products]
 
         if (selectedCategory !== 'all') {
@@ -24,21 +38,14 @@ function Products() {
             const term = searchTerm.toLowerCase()
             result = result.filter(p =>
                 p.name.toLowerCase().includes(term) ||
-                p.description.toLowerCase().includes(term) ||
-                (p.subcategory && p.subcategory.toLowerCase().includes(term)) ||
-                p.category.toLowerCase().includes(term)
+                (p.description && p.description.toLowerCase().includes(term)) ||
+                (p.subtitle && p.subtitle.toLowerCase().includes(term)) ||
+                (p.category && p.category.toLowerCase().includes(term))
             )
         }
 
         setFilteredProducts(result)
-    }, [searchTerm, selectedCategory])
-
-    useEffect(() => {
-        const category = searchParams.get('category')
-        if (category) {
-            setSelectedCategory(category)
-        }
-    }, [searchParams])
+    }, [searchTerm, selectedCategory, products, loading])
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category)
@@ -56,9 +63,9 @@ function Products() {
         setSearchParams({})
     }
 
-    // Group products by subcategory
+    // Group products by subcategory (stored in subtitle)
     const groupedProducts = filteredProducts.reduce((groups, product) => {
-        const key = product.subcategory || 'Products'
+        const key = product.subtitle || 'Products'
         if (!groups[key]) groups[key] = []
         groups[key].push(product)
         return groups
@@ -67,6 +74,10 @@ function Products() {
     const currentCategoryName = selectedCategory !== 'all'
         ? categories.find(c => c.id === selectedCategory)?.name
         : 'All Products'
+
+    if (loading && products.length === 0) {
+        return <div className="loading-container"><Loader className="spin" /> Loading products...</div>
+    }
 
     return (
         <div className="products-page">
@@ -182,7 +193,7 @@ function Products() {
                                     )}
                                     <div className={`products-grid ${viewMode}`}>
                                         {prods.map((product, index) => (
-                                            <ProductCard key={product.id} product={product} index={index} />
+                                            <ProductCard key={product.$id || product.id} product={product} index={index} />
                                         ))}
                                     </div>
                                 </div>

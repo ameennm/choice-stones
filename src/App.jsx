@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -8,10 +9,18 @@ import ProductDetail from './pages/ProductDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import AdminApp from './admin/AdminApp'
+import { client } from './lib/appwrite'
 
 function App() {
     const location = useLocation()
     const isAdminRoute = location.pathname.startsWith('/admin')
+
+    // Ping Appwrite on app startup to verify the connection
+    useEffect(() => {
+        client.ping()
+            .then(() => console.log('✅ Appwrite connected successfully'))
+            .catch((error) => console.error('❌ Appwrite connection failed:', error))
+    }, [])
 
     return (
         <div className="app">

@@ -1,23 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import {
     Truck, Shield, Award, Phone,
     ChevronRight, Heart, Share2,
-    ChevronLeft, ImageOff, ShoppingCart, Plus, Minus
+    ChevronLeft, ImageOff, ShoppingCart, Plus, Minus, Loader
 } from 'lucide-react'
-import { products, categories } from '../data/products'
-import ProductCard from '../components/ProductCard'
+import useProductStore from '../store/productStore'
 import useCartStore from '../store/cartStore'
+import ProductCard from '../components/ProductCard'
 import './ProductDetail.css'
 
 function ProductDetail() {
     const { id } = useParams()
-    const product = products.find(p => p.id === id)
+    const { getProduct, products, fetchProducts, loading } = useProductStore()
+    const product = getProduct(id)
+
     const [selectedImage, setSelectedImage] = useState(0)
     const [imgErrors, setImgErrors] = useState({})
     const [quantity, setQuantity] = useState(1)
     const [addedToCart, setAddedToCart] = useState(false)
     const { addItem } = useCartStore()
+
+    useEffect(() => {
+        fetchProducts()
+    }, [fetchProducts])
+
+    // Reset selected image when product changes
+    useEffect(() => {
+        setSelectedImage(0)
+        setImgErrors({})
+    }, [id])
+
+    if (loading && !product) {
+        return <div className="loading-container"><Loader className="spin" /> Loading product details...</div>
+    }
 
     if (!product) {
         return (
@@ -33,16 +49,21 @@ function ProductDetail() {
     }
 
     const relatedProducts = products
-        .filter(p => p.category === product.category && p.id !== product.id)
+        .filter(p => p.category === product.category && p.$id !== product.$id)
         .slice(0, 4)
 
+    // Helper to facilitate category name lookup from store categories would be better, 
+    // but for now we iterate over the store's categories
+    const { categories } = useProductStore.getState()
     const categoryName = categories.find(c => c.id === product.category)?.name || product.category
 
     const nextImage = () => {
+        if (!product.images || product.images.length === 0) return
         setSelectedImage((prev) => (prev + 1) % product.images.length)
     }
 
     const prevImage = () => {
+        if (!product.images || product.images.length === 0) return
         setSelectedImage((prev) => (prev - 1 + product.images.length) % product.images.length)
     }
 
@@ -50,7 +71,8 @@ function ProductDetail() {
         setImgErrors(prev => ({ ...prev, [index]: true }))
     }
 
-    const imageLabels = ['Front View', 'Side View', 'In Project', 'Close-up']
+    // Adapt legacy labels if needed, or just use generic
+    const imageLabels = ['Front View', 'Side View', 'In Project', 'Close-up', 'Detail', 'Texture']
 
     return (
         <div className="product-detail">
@@ -69,23 +91,22 @@ function ProductDetail() {
             <section className="product-info section">
                 <div className="container">
                     <div className="product-grid">
-                        {/* Image Gallery - 4 slots */}
+                        {/* Image Gallery */}
                         <div className="product-gallery">
                             <div className="main-image">
-                                {!imgErrors[selectedImage] ? (
+                                {product.images && product.images.length > 0 && !imgErrors[selectedImage] ? (
                                     <img
                                         src={product.images[selectedImage]}
-                                        alt={`${product.name} - ${imageLabels[selectedImage]}`}
+                                        alt={`${product.name} - View ${selectedImage + 1}`}
                                         onError={() => handleImgError(selectedImage)}
                                     />
                                 ) : (
                                     <div className="image-placeholder-large">
                                         <ImageOff size={60} />
                                         <p>Image Coming Soon</p>
-                                        <span>{imageLabels[selectedImage]}</span>
                                     </div>
                                 )}
-                                {product.images.length > 1 && (
+                                {product.images && product.images.length > 1 && (
                                     <>
                                         <button className="gallery-nav prev" onClick={prevImage}>
                                             <ChevronLeft size={24} />
@@ -96,29 +117,31 @@ function ProductDetail() {
                                     </>
                                 )}
                             </div>
-                            {/* 4 Thumbnail Slots */}
-                            <div className="thumbnail-gallery">
-                                {product.images.map((img, index) => (
-                                    <button
-                                        key={index}
-                                        className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
-                                        onClick={() => setSelectedImage(index)}
-                                    >
-                                        {!imgErrors[index] ? (
-                                            <img
-                                                src={img}
-                                                alt={`${product.name} - ${imageLabels[index]}`}
-                                                onError={() => handleImgError(index)}
-                                            />
-                                        ) : (
-                                            <div className="thumb-placeholder">
-                                                <ImageOff size={18} />
-                                            </div>
-                                        )}
-                                        <span className="thumb-label">{imageLabels[index]}</span>
-                                    </button>
-                                ))}
-                            </div>
+
+                            {/* Thumbnail Gallery - Only show if images exist */}
+                            {product.images && product.images.length > 1 && (
+                                <div className="thumbnail-gallery">
+                                    {product.images.map((img, index) => (
+                                        <button
+                                            key={index}
+                                            className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                                            onClick={() => setSelectedImage(index)}
+                                        >
+                                            {!imgErrors[index] ? (
+                                                <img
+                                                    src={img}
+                                                    alt={`${product.name} - Thumb ${index + 1}`}
+                                                    onError={() => handleImgError(index)}
+                                                />
+                                            ) : (
+                                                <div className="thumb-placeholder">
+                                                    <ImageOff size={18} />
+                                                </div>
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {/* Product Details */}
@@ -126,19 +149,23 @@ function ProductDetail() {
                             <span className="product-category-tag">
                                 {categoryName}
                             </span>
-                            {product.subcategory && (
+                            {(product.subtitle || product.subcategory) && (
                                 <span className="product-subcategory-tag">
-                                    {product.subcategory}
+                                    {product.subtitle || product.subcategory}
                                 </span>
                             )}
                             <h1 className="product-title">{product.name}</h1>
 
-                            {product.size && (
+                            {/* Sizes - Handle both legacy array or string */}
+                            {(product.sizes || product.size) && (
                                 <div className="product-size-info">
-                                    <strong>Available Size:</strong> {product.size}
+                                    <strong>Available Size:</strong> {
+                                        Array.isArray(product.sizes) && product.sizes.length > 0
+                                            ? product.sizes.join(', ')
+                                            : (product.size || '')
+                                    }
                                 </div>
                             )}
-
 
                             <div className="product-description-block">
                                 <p>{product.description}</p>
@@ -224,7 +251,7 @@ function ProductDetail() {
                         </div>
                         <div className="products-grid">
                             {relatedProducts.map((rp, index) => (
-                                <ProductCard key={rp.id} product={rp} index={index} />
+                                <ProductCard key={rp.$id || rp.id} product={rp} index={index} />
                             ))}
                         </div>
                     </div>

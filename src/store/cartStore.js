@@ -8,19 +8,21 @@ const useCartStore = create(
 
             addItem: (product, quantity = 1) => {
                 const items = get().items
-                const existingItem = items.find(item => item.id === product.id)
+                // Handle both Appwrite ($id) and potential legacy (id) IDs
+                const productId = product.id || product.$id
+                const existingItem = items.find(item => item.id === productId)
 
                 if (existingItem) {
                     set({
                         items: items.map(item =>
-                            item.id === product.id
+                            item.id === productId
                                 ? { ...item, quantity: item.quantity + quantity }
                                 : item
                         )
                     })
                 } else {
                     set({
-                        items: [...items, { ...product, quantity }]
+                        items: [...items, { ...product, id: productId, quantity }]
                     })
                 }
             },

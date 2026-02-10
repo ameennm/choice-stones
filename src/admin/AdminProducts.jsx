@@ -1,15 +1,37 @@
-import { useState } from 'react'
-import { Plus, Search, Edit, Trash2, Image, X, Upload, Save } from 'lucide-react'
-import { products as initialProducts, categories } from '../data/products'
+import { useState, useEffect } from 'react'
+import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
+import { databases, storage, DATABASE_ID, COLLECTION_ID, BUCKET_ID, ID } from '../lib/appwrite'
+import { categories } from '../data/products'
 
 function AdminProducts() {
-    const [products, setProducts] = useState(initialProducts)
+    const [products, setProducts] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('all')
     const [showModal, setShowModal] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null)
     const [showImageModal, setShowImageModal] = useState(false)
     const [selectedProductForImages, setSelectedProductForImages] = useState(null)
+    const [uploading, setUploading] = useState(false)
+
+    // Fetch products from Appwrite
+    const fetchProducts = async () => {
+        try {
+            const response = await databases.listDocuments(
+                DATABASE_ID,
+                COLLECTION_ID
+            )
+            setProducts(response.documents)
+        } catch (error) {
+            console.error('Error fetching products:', error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
 
     const filteredProducts = products.filter(product => {
         const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -17,9 +39,15 @@ function AdminProducts() {
         return matchesSearch && matchesCategory
     })
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this product?')) {
-            setProducts(products.filter(p => p.id !== id))
+            try {
+                await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, id)
+                setProducts(products.filter(p => p.$id !== id))
+            } catch (error) {
+                console.error('Error deleting product:', error)
+                alert('Failed to delete product')
+            }
         }
     }
 
@@ -30,17 +58,16 @@ function AdminProducts() {
 
     const handleAddNew = () => {
         setEditingProduct({
-            id: `product-${Date.now()}`,
             name: '',
             subtitle: '',
             description: '',
-            category: categories[0]?.id || '',
+            category: categories[0]?.id || 'paving-stones',
             price: 0,
             unit: 'sq.ft',
             minOrder: 100,
-            sizes: ['2x2 ft'],
-            finish: ['Polished'],
-            thickness: ['25mm'],
+            sizes: [], // Handled as array of strings
+            finish: [],
+            thickness: [],
             features: [],
             applications: [],
             images: [],
@@ -52,20 +79,120 @@ function AdminProducts() {
         setShowModal(true)
     }
 
-    const handleSave = () => {
-        if (products.find(p => p.id === editingProduct.id)) {
-            setProducts(products.map(p => p.id === editingProduct.id ? editingProduct : p))
-        } else {
-            setProducts([...products, editingProduct])
+    const handleSave = async () => {
+        const payload = {
+            name: editingProduct.name,
+            subtitle: editingProduct.subtitle,
+            description: editingProduct.description,
+            category: editingProduct.category,
+            price: parseFloat(editingProduct.price) || 0,
+            unit: editingProduct.unit,
+            minOrder: parseInt(editingProduct.minOrder) || 0,
+            inStock: editingProduct.inStock,
+            featured: editingProduct.featured,
+            images: editingProduct.images
         }
-        setShowModal(false)
-        setEditingProduct(null)
+
+        try {
+            if (editingProduct.$id) {
+                // Update
+                const response = await databases.updateDocument(
+                    DATABASE_ID,
+                    COLLECTION_ID,
+                    editingProduct.$id,
+                    payload
+                )
+                setProducts(products.map(p => p.$id === editingProduct.$id ? response : p))
+            } else {
+                // Create
+                const response = await databases.createDocument(
+                    DATABASE_ID,
+                    COLLECTION_ID,
+                    ID.unique(),
+                    payload
+                )
+                setProducts([...products, response])
+            }
+            setShowModal(false)
+            setEditingProduct(null)
+        } catch (error) {
+            console.error('Error saving product:', error)
+            alert('Failed to save product: ' + error.message)
+        }
     }
 
     const openImageManager = (product) => {
         setSelectedProductForImages(product)
         setShowImageModal(true)
     }
+
+    const handleImageUpload = async (e) => {
+        const files = Array.from(e.target.files)
+        if (!files.length) return
+
+        if (selectedProductForImages.images.length + files.length > 4) {
+            alert('Maximum 4 images allowed per product')
+            return
+        }
+
+        setUploading(true)
+        try {
+            const uploadedUrls = []
+
+            for (const file of files) {
+                const response = await storage.createFile(
+                    BUCKET_ID,
+                    ID.unique(),
+                    file
+                )
+
+                const fileUrl = storage.getFileView(BUCKET_ID, response.$id).href
+                uploadedUrls.push(fileUrl)
+            }
+
+            const updatedImages = [...(selectedProductForImages.images || []), ...uploadedUrls]
+
+            // Update product directly
+            const updatedProduct = await databases.updateDocument(
+                DATABASE_ID,
+                COLLECTION_ID,
+                selectedProductForImages.$id,
+                { images: updatedImages }
+            )
+
+            // Update local state
+            setSelectedProductForImages(updatedProduct)
+            setProducts(products.map(p => p.$id === updatedProduct.$id ? updatedProduct : p))
+
+        } catch (error) {
+            console.error('Error uploading images:', error)
+            alert('Failed to upload images')
+        } finally {
+            setUploading(false)
+        }
+    }
+
+    const removeImage = async (indexToRemove) => {
+        if (!confirm('Remove this image?')) return
+
+        const updatedImages = selectedProductForImages.images.filter((_, index) => index !== indexToRemove)
+
+        try {
+            const updatedProduct = await databases.updateDocument(
+                DATABASE_ID,
+                COLLECTION_ID,
+                selectedProductForImages.$id,
+                { images: updatedImages }
+            )
+
+            setSelectedProductForImages(updatedProduct)
+            setProducts(products.map(p => p.$id === updatedProduct.$id ? updatedProduct : p))
+        } catch (error) {
+            console.error('Error removing image:', error)
+        }
+    }
+
+    if (isLoading) return <div className="loading-container"><Loader className="spin" /> Loading products...</div>
 
     return (
         <div className="admin-products">
@@ -117,10 +244,15 @@ function AdminProducts() {
                     </thead>
                     <tbody>
                         {filteredProducts.map(product => (
-                            <tr key={product.id}>
+                            <tr key={product.$id}>
                                 <td>
                                     <div className="product-cell">
-                                        <img src={product.images[0] || '/logo.png'} alt={product.name} />
+                                        {/* Show image if exists, else placeholder */}
+                                        <img
+                                            src={product.images && product.images.length > 0 ? product.images[0] : '/logo.png'}
+                                            alt={product.name}
+                                            onError={(e) => e.target.src = '/logo.png'}
+                                        />
                                         <div>
                                             <span className="product-name">{product.name}</span>
                                             <span className="product-subtitle">{product.subtitle}</span>
@@ -162,7 +294,7 @@ function AdminProducts() {
                                         <button
                                             className="action-btn danger"
                                             title="Delete"
-                                            onClick={() => handleDelete(product.id)}
+                                            onClick={() => handleDelete(product.$id)}
                                         >
                                             <Trash2 size={16} />
                                         </button>
@@ -185,7 +317,7 @@ function AdminProducts() {
                 <div className="modal-overlay">
                     <div className="modal">
                         <div className="modal-header">
-                            <h2>{editingProduct.id.startsWith('product-') ? 'Add New Product' : 'Edit Product'}</h2>
+                            <h2>{editingProduct.$id ? 'Edit Product' : 'Add New Product'}</h2>
                             <button className="close-btn" onClick={() => setShowModal(false)}>
                                 <X size={24} />
                             </button>
@@ -226,7 +358,7 @@ function AdminProducts() {
                                     <input
                                         type="number"
                                         value={editingProduct.price}
-                                        onChange={(e) => setEditingProduct({ ...editingProduct, price: parseFloat(e.target.value) })}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -242,7 +374,7 @@ function AdminProducts() {
                                     <input
                                         type="number"
                                         value={editingProduct.minOrder}
-                                        onChange={(e) => setEditingProduct({ ...editingProduct, minOrder: parseInt(e.target.value) })}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, minOrder: e.target.value })}
                                     />
                                 </div>
                                 <div className="form-group full-width">
@@ -302,17 +434,17 @@ function AdminProducts() {
                         <div className="modal-body">
                             <div className="image-manager">
                                 <div className="current-images">
-                                    <h4>Current Images</h4>
+                                    <h4>Current Images ({selectedProductForImages.images?.length || 0}/4)</h4>
                                     <div className="images-grid">
-                                        {selectedProductForImages.images.map((img, index) => (
+                                        {selectedProductForImages.images?.map((img, index) => (
                                             <div key={index} className="image-item">
                                                 <img src={img} alt={`Product ${index + 1}`} />
-                                                <button className="remove-image">
+                                                <button className="remove-image" onClick={() => removeImage(index)}>
                                                     <X size={16} />
                                                 </button>
                                             </div>
                                         ))}
-                                        {selectedProductForImages.images.length === 0 && (
+                                        {(!selectedProductForImages.images || selectedProductForImages.images.length === 0) && (
                                             <p className="no-images">No images uploaded</p>
                                         )}
                                     </div>
@@ -320,12 +452,26 @@ function AdminProducts() {
                                 <div className="upload-section">
                                     <h4>Upload New Images</h4>
                                     <div className="upload-area">
-                                        <Upload size={32} />
-                                        <p>Drag and drop images here or click to browse</p>
-                                        <input type="file" accept="image/*" multiple />
+                                        {uploading ? (
+                                            <div className="upload-loading">
+                                                <Loader className="spin" /> Uploading to Appwrite Storage...
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <Upload size={32} />
+                                                <p>Click to browse images</p>
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    multiple
+                                                    onChange={handleImageUpload}
+                                                    disabled={selectedProductForImages.images?.length >= 4}
+                                                />
+                                            </>
+                                        )}
                                     </div>
                                     <p className="upload-note">
-                                        Note: In production, this will connect to Appwrite storage for image uploads.
+                                        Images are securely stored in Appwrite Storage.
                                     </p>
                                 </div>
                             </div>
@@ -333,10 +479,6 @@ function AdminProducts() {
                         <div className="modal-footer">
                             <button className="btn btn-secondary" onClick={() => setShowImageModal(false)}>
                                 Close
-                            </button>
-                            <button className="btn btn-primary">
-                                <Save size={18} />
-                                Save Changes
                             </button>
                         </div>
                     </div>

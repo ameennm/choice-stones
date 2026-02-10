@@ -1,39 +1,32 @@
 import { useState } from 'react'
-import { Eye, EyeOff, Lock, User } from 'lucide-react'
+import { Eye, EyeOff, Lock } from 'lucide-react'
+import { account } from '../lib/appwrite'
 
 function AdminLogin({ onLogin }) {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
+    const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-    // Demo credentials
-    const DEMO_CREDENTIALS = {
-        username: 'admin',
-        password: 'admin123'
-    }
+    // Hardcoded admin email for password-only login experience
+    const ADMIN_EMAIL = 'admin@choicestones.com'
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError('')
         setIsLoading(true)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000))
-
-        if (
-            formData.username === DEMO_CREDENTIALS.username &&
-            formData.password === DEMO_CREDENTIALS.password
-        ) {
+        try {
+            // Login with hardcoded email
+            await account.createEmailPasswordSession(ADMIN_EMAIL, password)
             onLogin()
-        } else {
-            setError('Invalid username or password')
+        } catch (err) {
+            console.error(err)
+            // Show genetic error or specific if needed
+            setError('Invalid password. Please try again.')
+        } finally {
+            setIsLoading(false)
         }
-
-        setIsLoading(false)
     }
 
     return (
@@ -42,8 +35,8 @@ function AdminLogin({ onLogin }) {
                 <div className="login-card">
                     <div className="login-header">
                         <img src="/logo.png" alt="Choice Stones" className="login-logo" />
-                        <h1>Admin Panel</h1>
-                        <p>Sign in to manage your store</p>
+                        <h1>Admin Access</h1>
+                        <p>Enter password to manage store</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="login-form">
@@ -54,31 +47,17 @@ function AdminLogin({ onLogin }) {
                         )}
 
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
-                            <div className="input-wrapper">
-                                <User size={18} />
-                                <input
-                                    type="text"
-                                    id="username"
-                                    value={formData.username}
-                                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                                    placeholder="Enter username"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <div className="input-wrapper">
                                 <Lock size={18} />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     id="password"
-                                    value={formData.password}
-                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                    placeholder="Enter password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Enter admin password"
                                     required
+                                    autoFocus
                                 />
                                 <button
                                     type="button"
@@ -95,14 +74,9 @@ function AdminLogin({ onLogin }) {
                             className="btn btn-primary login-btn"
                             disabled={isLoading}
                         >
-                            {isLoading ? 'Signing in...' : 'Sign In'}
+                            {isLoading ? 'Verifying...' : 'Access Dashboard'}
                         </button>
                     </form>
-
-                    <div className="demo-credentials">
-                        <p><strong>Demo Credentials:</strong></p>
-                        <p>Username: admin | Password: admin123</p>
-                    </div>
                 </div>
             </div>
         </div>
