@@ -438,7 +438,11 @@ function AdminProducts() {
                                     <div className="images-grid">
                                         {selectedProductForImages.images?.map((img, index) => (
                                             <div key={index} className="image-item">
-                                                <img src={img} alt={`Product ${index + 1}`} />
+                                                <img
+                                                    src={img}
+                                                    alt={`Product ${index + 1}`}
+                                                    onError={(e) => e.target.src = '/logo.png'}
+                                                />
                                                 <button className="remove-image" onClick={() => removeImage(index)}>
                                                     <X size={16} />
                                                 </button>
