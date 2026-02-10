@@ -1,7 +1,8 @@
 .floating-whatsapp-btn {
     position: fixed;
     bottom: 30px;
-    left: 30px;
+    right: 30px;
+    left: auto;
     width: 70px;
     height: 70px;
     background: #25D366;
@@ -25,7 +26,8 @@
 
 .whatsapp-tooltip {
     position: absolute;
-    left: 85px;
+    left: auto;
+    right: 85px;
     background: #333;
     color: white;
     padding: 8px 14px;
@@ -45,12 +47,13 @@
 .whatsapp-tooltip::before {
     content: '';
     position: absolute;
-    left: -6px;
+    left: auto;
+    right: -6px;
     top: 50%;
     transform: translateY(-50%);
-    border-width: 6px 6px 6px 0;
+    border-width: 6px 0 6px 6px;
     border-style: solid;
-    border-color: transparent #333 transparent transparent;
+    border-color: transparent transparent transparent #333;
 }
 
 .floating-whatsapp-btn:hover .whatsapp-tooltip {
@@ -62,7 +65,8 @@
 @media (max-width: 480px) {
     .floating-whatsapp-btn {
         bottom: 20px;
-        left: 20px;
+        right: 20px;
+        left: auto;
         width: 50px;
         height: 50px;
     }
