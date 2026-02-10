@@ -1,23 +1,23 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import {
-    Star, ShoppingBag, Truck, Shield, Award, Phone,
-    ChevronRight, Minus, Plus, Heart, Share2, Check,
-    ChevronLeft
+    Truck, Shield, Award, Phone,
+    ChevronRight, Heart, Share2,
+    ChevronLeft, ImageOff, ShoppingCart, Plus, Minus
 } from 'lucide-react'
-import { products } from '../data/products'
+import { products, categories } from '../data/products'
 import ProductCard from '../components/ProductCard'
+import useCartStore from '../store/cartStore'
 import './ProductDetail.css'
 
 function ProductDetail() {
     const { id } = useParams()
     const product = products.find(p => p.id === id)
-    const [quantity, setQuantity] = useState(product?.minOrder || 100)
-    const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || '')
-    const [selectedFinish, setSelectedFinish] = useState(product?.finish[0] || '')
-    const [selectedThickness, setSelectedThickness] = useState(product?.thickness[0] || '')
-    const [activeTab, setActiveTab] = useState('description')
     const [selectedImage, setSelectedImage] = useState(0)
+    const [imgErrors, setImgErrors] = useState({})
+    const [quantity, setQuantity] = useState(1)
+    const [addedToCart, setAddedToCart] = useState(false)
+    const { addItem } = useCartStore()
 
     if (!product) {
         return (
@@ -34,9 +34,9 @@ function ProductDetail() {
 
     const relatedProducts = products
         .filter(p => p.category === product.category && p.id !== product.id)
-        .slice(0, 3)
+        .slice(0, 4)
 
-    const totalPrice = quantity * product.price
+    const categoryName = categories.find(c => c.id === product.category)?.name || product.category
 
     const nextImage = () => {
         setSelectedImage((prev) => (prev + 1) % product.images.length)
@@ -46,6 +46,12 @@ function ProductDetail() {
         setSelectedImage((prev) => (prev - 1 + product.images.length) % product.images.length)
     }
 
+    const handleImgError = (index) => {
+        setImgErrors(prev => ({ ...prev, [index]: true }))
+    }
+
+    const imageLabels = ['Front View', 'Side View', 'In Project', 'Close-up']
+
     return (
         <div className="product-detail">
             {/* Breadcrumb */}
@@ -53,7 +59,7 @@ function ProductDetail() {
                 <div className="container">
                     <Link to="/">Home</Link>
                     <ChevronRight size={16} />
-                    <Link to="/products">Products</Link>
+                    <Link to={`/products?category=${product.category}`}>{categoryName}</Link>
                     <ChevronRight size={16} />
                     <span>{product.name}</span>
                 </div>
@@ -63,12 +69,21 @@ function ProductDetail() {
             <section className="product-info section">
                 <div className="container">
                     <div className="product-grid">
-                        {/* Image Gallery */}
+                        {/* Image Gallery - 4 slots */}
                         <div className="product-gallery">
                             <div className="main-image">
-                                <img src={product.images[selectedImage]} alt={product.name} />
-                                {product.featured && (
-                                    <span className="featured-badge">Featured</span>
+                                {!imgErrors[selectedImage] ? (
+                                    <img
+                                        src={product.images[selectedImage]}
+                                        alt={`${product.name} - ${imageLabels[selectedImage]}`}
+                                        onError={() => handleImgError(selectedImage)}
+                                    />
+                                ) : (
+                                    <div className="image-placeholder-large">
+                                        <ImageOff size={60} />
+                                        <p>Image Coming Soon</p>
+                                        <span>{imageLabels[selectedImage]}</span>
+                                    </div>
                                 )}
                                 {product.images.length > 1 && (
                                     <>
@@ -81,136 +96,96 @@ function ProductDetail() {
                                     </>
                                 )}
                             </div>
-                            {product.images.length > 1 && (
-                                <div className="thumbnail-gallery">
-                                    {product.images.map((img, index) => (
-                                        <button
-                                            key={index}
-                                            className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
-                                            onClick={() => setSelectedImage(index)}
-                                        >
-                                            <img src={img} alt={`${product.name} view ${index + 1}`} />
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
+                            {/* 4 Thumbnail Slots */}
+                            <div className="thumbnail-gallery">
+                                {product.images.map((img, index) => (
+                                    <button
+                                        key={index}
+                                        className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                                        onClick={() => setSelectedImage(index)}
+                                    >
+                                        {!imgErrors[index] ? (
+                                            <img
+                                                src={img}
+                                                alt={`${product.name} - ${imageLabels[index]}`}
+                                                onError={() => handleImgError(index)}
+                                            />
+                                        ) : (
+                                            <div className="thumb-placeholder">
+                                                <ImageOff size={18} />
+                                            </div>
+                                        )}
+                                        <span className="thumb-label">{imageLabels[index]}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Product Details */}
                         <div className="product-details">
-                            <span className="product-category">
-                                {product.category.replace('-', ' ')}
+                            <span className="product-category-tag">
+                                {categoryName}
                             </span>
+                            {product.subcategory && (
+                                <span className="product-subcategory-tag">
+                                    {product.subcategory}
+                                </span>
+                            )}
                             <h1 className="product-title">{product.name}</h1>
-                            <p className="product-subtitle">{product.subtitle}</p>
 
-                            {/* Rating */}
-                            <div className="product-rating">
-                                <div className="stars">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            size={18}
-                                            fill={i < Math.floor(product.rating) ? 'var(--color-primary)' : 'transparent'}
-                                            color="var(--color-primary)"
-                                        />
-                                    ))}
+                            {product.size && (
+                                <div className="product-size-info">
+                                    <strong>Available Size:</strong> {product.size}
                                 </div>
-                                <span>{product.rating} ({product.reviews} reviews)</span>
+                            )}
+
+
+                            <div className="product-description-block">
+                                <p>{product.description}</p>
                             </div>
 
-                            {/* Price */}
-                            <div className="product-pricing">
-                                <div className="price-main">
-                                    <span className="currency">₹</span>
-                                    <span className="amount">{product.price}</span>
-                                    <span className="unit">/{product.unit}</span>
-                                </div>
-                                <p className="min-order">Minimum order: {product.minOrder} {product.unit}</p>
-                            </div>
-
-                            {/* Options */}
-                            <div className="product-options">
-                                {/* Size */}
-                                <div className="option-group">
-                                    <label>Size:</label>
-                                    <div className="option-buttons">
-                                        {product.sizes.map(size => (
-                                            <button
-                                                key={size}
-                                                className={`option-btn ${selectedSize === size ? 'active' : ''}`}
-                                                onClick={() => setSelectedSize(size)}
-                                            >
-                                                {size}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Finish */}
-                                <div className="option-group">
-                                    <label>Finish:</label>
-                                    <div className="option-buttons">
-                                        {product.finish.map(finish => (
-                                            <button
-                                                key={finish}
-                                                className={`option-btn ${selectedFinish === finish ? 'active' : ''}`}
-                                                onClick={() => setSelectedFinish(finish)}
-                                            >
-                                                {finish}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Thickness */}
-                                <div className="option-group">
-                                    <label>Thickness:</label>
-                                    <div className="option-buttons">
-                                        {product.thickness.map(thick => (
-                                            <button
-                                                key={thick}
-                                                className={`option-btn ${selectedThickness === thick ? 'active' : ''}`}
-                                                onClick={() => setSelectedThickness(thick)}
-                                            >
-                                                {thick}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Quantity */}
-                            <div className="quantity-section">
-                                <label>Quantity ({product.unit}):</label>
-                                <div className="quantity-control">
+                            {/* Quantity Selector */}
+                            <div className="quantity-selector-section">
+                                <label>Quantity:</label>
+                                <div className="quantity-selector">
                                     <button
-                                        onClick={() => setQuantity(Math.max(product.minOrder, quantity - 10))}
-                                        disabled={quantity <= product.minOrder}
+                                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                                        disabled={quantity <= 1}
                                     >
                                         <Minus size={18} />
                                     </button>
                                     <input
                                         type="number"
                                         value={quantity}
-                                        onChange={(e) => setQuantity(Math.max(product.minOrder, parseInt(e.target.value) || product.minOrder))}
-                                        min={product.minOrder}
+                                        onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                                        min="1"
                                     />
-                                    <button onClick={() => setQuantity(quantity + 10)}>
+                                    <button onClick={() => setQuantity(quantity + 1)}>
                                         <Plus size={18} />
                                     </button>
-                                </div>
-                                <div className="total-price">
-                                    <span>Total:</span>
-                                    <span className="total-amount">₹{totalPrice.toLocaleString()}</span>
                                 </div>
                             </div>
 
                             {/* Actions */}
                             <div className="product-actions">
-                                <Link to="/contact" className="btn btn-primary btn-lg">
-                                    <Phone size={20} /> Get Quote
-                                </Link>
+                                <button
+                                    className={`btn btn-primary btn-lg ${addedToCart ? 'added' : ''}`}
+                                    onClick={() => {
+                                        addItem(product, quantity)
+                                        setAddedToCart(true)
+                                        setTimeout(() => setAddedToCart(false), 2000)
+                                    }}
+                                >
+                                    <ShoppingCart size={20} />
+                                    {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
+                                </button>
+                                <a
+                                    href="tel:+916238165933"
+                                    className="btn btn-secondary btn-icon-text"
+                                    title="Call us"
+                                >
+                                    <Phone size={20} />
+                                </a>
                                 <button className="btn-icon">
                                     <Heart size={22} />
                                 </button>
@@ -239,66 +214,6 @@ function ProductDetail() {
                 </div>
             </section>
 
-            {/* Product Tabs */}
-            <section className="product-tabs section">
-                <div className="container">
-                    <div className="tabs-header">
-                        <button
-                            className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('description')}
-                        >
-                            Description
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === 'features' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('features')}
-                        >
-                            Features
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === 'applications' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('applications')}
-                        >
-                            Applications
-                        </button>
-                    </div>
-
-                    <div className="tabs-content">
-                        {activeTab === 'description' && (
-                            <div className="tab-panel">
-                                <p>{product.description}</p>
-                            </div>
-                        )}
-
-                        {activeTab === 'features' && (
-                            <div className="tab-panel">
-                                <ul className="features-list">
-                                    {product.features.map((feature, index) => (
-                                        <li key={index}>
-                                            <Check size={18} />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-
-                        {activeTab === 'applications' && (
-                            <div className="tab-panel">
-                                <div className="applications-grid">
-                                    {product.applications.map((app, index) => (
-                                        <div key={index} className="application-item">
-                                            <ShoppingBag size={24} />
-                                            <span>{app}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </section>
-
             {/* Related Products */}
             {relatedProducts.length > 0 && (
                 <section className="related-products section">
@@ -308,8 +223,8 @@ function ProductDetail() {
                             <h2 className="section-title">Related Products</h2>
                         </div>
                         <div className="products-grid">
-                            {relatedProducts.map((product, index) => (
-                                <ProductCard key={product.id} product={product} index={index} />
+                            {relatedProducts.map((rp, index) => (
+                                <ProductCard key={rp.id} product={rp} index={index} />
                             ))}
                         </div>
                     </div>

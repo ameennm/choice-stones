@@ -1,22 +1,33 @@
 import { Link } from 'react-router-dom'
-import { Star, ArrowRight, ShoppingBag } from 'lucide-react'
+import { ArrowRight, ImageOff } from 'lucide-react'
+import { useState } from 'react'
 import './ProductCard.css'
 
 function ProductCard({ product, index = 0 }) {
+    const [imgError, setImgError] = useState(false)
+
     return (
         <Link
             to={`/products/${product.id}`}
             className="product-card"
-            style={{ animationDelay: `${index * 100}ms` }}
+            style={{ animationDelay: `${index * 60}ms` }}
         >
             <div className="product-image-container">
-                <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="product-image"
-                />
-                {product.featured && (
-                    <span className="product-badge">Featured</span>
+                {!imgError ? (
+                    <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="product-image"
+                        onError={() => setImgError(true)}
+                    />
+                ) : (
+                    <div className="product-image-placeholder">
+                        <ImageOff size={40} />
+                        <span>Image Coming Soon</span>
+                    </div>
+                )}
+                {product.size && (
+                    <span className="product-badge">{product.size}</span>
                 )}
                 <div className="product-overlay">
                     <button className="view-btn">
@@ -26,41 +37,15 @@ function ProductCard({ product, index = 0 }) {
             </div>
 
             <div className="product-content">
-                <span className="product-category">{product.category.replace('-', ' ')}</span>
+                {product.subcategory && (
+                    <span className="product-category">{product.subcategory}</span>
+                )}
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-subtitle">{product.subtitle}</p>
-
-                <div className="product-rating">
-                    <div className="stars">
-                        {[...Array(5)].map((_, i) => (
-                            <Star
-                                key={i}
-                                size={14}
-                                fill={i < Math.floor(product.rating) ? 'var(--color-primary)' : 'transparent'}
-                                color="var(--color-primary)"
-                            />
-                        ))}
-                    </div>
-                    <span className="rating-text">
-                        {product.rating} ({product.reviews} reviews)
-                    </span>
-                </div>
-
+                <p className="product-subtitle">{product.description?.substring(0, 80)}...</p>
                 <div className="product-footer">
-                    <div className="product-price">
-                        <span className="price-currency">₹</span>
-                        <span className="price-value">{product.price}</span>
-                        <span className="price-unit">/{product.unit}</span>
-                    </div>
-                    <div className="product-stock">
-                        {product.inStock ? (
-                            <span className="in-stock">
-                                <ShoppingBag size={14} /> In Stock
-                            </span>
-                        ) : (
-                            <span className="out-stock">Out of Stock</span>
-                        )}
-                    </div>
+                    <span className="view-details-link">
+                        View Details <ArrowRight size={14} />
+                    </span>
                 </div>
             </div>
         </Link>

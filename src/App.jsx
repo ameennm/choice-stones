@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import FloatingCart from './components/FloatingCart'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/admin/*" element={<AdminApp />} />
                 </Routes>
             </main>
+            {!isAdminRoute && <FloatingCart />}
             {!isAdminRoute && <Footer />}
         </div>
     )

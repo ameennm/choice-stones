@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Truck, Shield, Award, Star, ChevronLeft, ChevronRight, Phone } from 'lucide-react'
-import { products, categories, testimonials, stats, companyInfo } from '../data/products'
-import ProductCard from '../components/ProductCard'
+import { ArrowRight, CheckCircle, Truck, Shield, Award, Star, ChevronLeft, ChevronRight, Phone, Layers, LayoutGrid, Landmark, Sprout, Circle } from 'lucide-react'
+import { categories, testimonials, stats, companyInfo } from '../data/products'
 import { useState } from 'react'
 import './Home.css'
+
+const iconMap = {
+    Layers: Layers,
+    LayoutGrid: LayoutGrid,
+    Landmark: Landmark,
+    Sprout: Sprout,
+    Circle: Circle,
+}
 
 function Home() {
     const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -18,7 +25,7 @@ function Home() {
 
     return (
         <div className="home">
-            {/* Compact Branding Banner */}
+            {/* Hero Banner */}
             <section className="branding-banner">
                 <div className="container">
                     <div className="branding-content">
@@ -45,53 +52,46 @@ function Home() {
                 </div>
             </section>
 
-            {/* All Products Section - First */}
-            <section className="all-products section">
-                <div className="container">
-                    <div className="section-header">
-                        <span className="section-subtitle">Our Collection</span>
-                        <h2 className="section-title">Browse Our Products</h2>
-                        <p className="section-description">
-                            Premium quality natural stones, tiles and blocks for all your construction needs
-                        </p>
-                    </div>
-                    <div className="products-grid">
-                        {products.map((product, index) => (
-                            <ProductCard key={product.id} product={product} index={index} />
-                        ))}
-                    </div>
-                    <div className="products-cta">
-                        <Link to="/products" className="btn btn-secondary btn-lg">
-                            View All Products <ArrowRight size={20} />
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* Categories Section */}
+            {/* Categories Section - Main Focus */}
             <section className="categories section">
                 <div className="container">
                     <div className="section-header">
-                        <span className="section-subtitle">Categories</span>
-                        <h2 className="section-title">Shop by Category</h2>
+                        <span className="section-subtitle">Our Collection</span>
+                        <h2 className="section-title">Browse Our Categories</h2>
+                        <p className="section-description">
+                            Explore our wide range of premium natural stones, cladding, pebbles and more
+                        </p>
                     </div>
                     <div className="categories-grid">
-                        {categories.map((category, index) => (
-                            <Link
-                                key={category.id}
-                                to={`/products?category=${category.id}`}
-                                className="category-card"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="category-content">
-                                    <h3>{category.name}</h3>
-                                    <p>{category.description}</p>
-                                    <span className="category-link">
-                                        View Products <ArrowRight size={16} />
-                                    </span>
-                                </div>
-                            </Link>
-                        ))}
+                        {categories.map((category, index) => {
+                            const IconComponent = iconMap[category.icon] || Layers
+                            return (
+                                <Link
+                                    key={category.id}
+                                    to={`/products?category=${category.id}`}
+                                    className="category-card"
+                                    style={{
+                                        animationDelay: `${index * 100}ms`,
+                                        backgroundImage: `url(${category.image})`
+                                    }}
+                                >
+                                    <div className="category-overlay"></div>
+                                    <div className="category-icon-wrap">
+                                        <IconComponent size={36} />
+                                    </div>
+                                    <div className="category-content">
+                                        <h3>{category.name}</h3>
+                                        <p>{category.description}</p>
+                                        <div className="category-meta">
+                                            <span className="product-count">{category.productCount}+ Products</span>
+                                            <span className="category-link">
+                                                Explore <ArrowRight size={16} />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            )
+                        })}
                     </div>
                 </div>
             </section>
@@ -128,40 +128,26 @@ function Home() {
             {/* About Preview */}
             <section className="about-preview section">
                 <div className="container">
-                    <div className="about-grid">
-                        <div className="about-images">
-                            <div className="about-image main">
-                                <img src="/products/antiskid-tandur-stones.jpeg" alt="Antiskid Tandur Stones" />
-                            </div>
-                            <div className="about-image secondary">
-                                <img src="/products/black-exporting-quality.jpeg" alt="Black Cobblestones" />
-                            </div>
-                            <div className="experience-badge">
-                                <span className="exp-number">15+</span>
-                                <span className="exp-text">Years of Excellence</span>
-                            </div>
-                        </div>
-                        <div className="about-content">
-                            <span className="section-subtitle">About Choice Stones</span>
-                            <h2 className="section-title" style={{ textAlign: 'left' }}>
-                                Your Trusted Partner in Premium Natural Stones
-                            </h2>
-                            <p>
-                                Since 2010, Choice Stones has been at the forefront of providing high-quality
-                                natural stones to architects, builders, and homeowners across India. Our commitment
-                                to quality and customer satisfaction has made us a preferred choice for premium
-                                stone solutions.
-                            </p>
-                            <ul className="about-features">
-                                <li><CheckCircle size={20} /> Direct sourcing from renowned quarries</li>
-                                <li><CheckCircle size={20} /> Strict quality control measures</li>
-                                <li><CheckCircle size={20} /> Expert consultation services</li>
-                                <li><CheckCircle size={20} /> Competitive wholesale pricing</li>
-                            </ul>
-                            <Link to="/about" className="btn btn-primary">
-                                Learn More <ArrowRight size={18} />
-                            </Link>
-                        </div>
+                    <div className="about-content-centered">
+                        <span className="section-subtitle">About Choice Stones</span>
+                        <h2 className="section-title">
+                            Your Trusted Partner in Premium Natural Stones
+                        </h2>
+                        <p>
+                            Since 2010, Choice Stones has been at the forefront of providing high-quality
+                            natural stones to architects, builders, and homeowners across India. Our commitment
+                            to quality and customer satisfaction has made us a preferred choice for premium
+                            stone solutions.
+                        </p>
+                        <ul className="about-features">
+                            <li><CheckCircle size={20} /> Direct sourcing from renowned quarries</li>
+                            <li><CheckCircle size={20} /> Strict quality control measures</li>
+                            <li><CheckCircle size={20} /> Expert consultation services</li>
+                            <li><CheckCircle size={20} /> Competitive wholesale pricing</li>
+                        </ul>
+                        <Link to="/about" className="btn btn-primary">
+                            Learn More <ArrowRight size={18} />
+                        </Link>
                     </div>
                 </div>
             </section>

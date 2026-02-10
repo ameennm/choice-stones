@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { Search, Filter, X, Grid3X3, List } from 'lucide-react'
+import { useSearchParams, Link } from 'react-router-dom'
+import { Search, Filter, X, Grid3X3, List, ChevronRight } from 'lucide-react'
 import { products, categories } from '../data/products'
 import ProductCard from '../components/ProductCard'
 import './Products.css'
@@ -10,46 +10,28 @@ function Products() {
     const [filteredProducts, setFilteredProducts] = useState(products)
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all')
-    const [sortBy, setSortBy] = useState('featured')
     const [showFilters, setShowFilters] = useState(false)
     const [viewMode, setViewMode] = useState('grid')
 
     useEffect(() => {
         let result = [...products]
 
-        // Filter by category
         if (selectedCategory !== 'all') {
             result = result.filter(p => p.category === selectedCategory)
         }
 
-        // Filter by search term
         if (searchTerm) {
             const term = searchTerm.toLowerCase()
             result = result.filter(p =>
                 p.name.toLowerCase().includes(term) ||
                 p.description.toLowerCase().includes(term) ||
+                (p.subcategory && p.subcategory.toLowerCase().includes(term)) ||
                 p.category.toLowerCase().includes(term)
             )
         }
 
-        // Sort
-        switch (sortBy) {
-            case 'price-low':
-                result.sort((a, b) => a.price - b.price)
-                break
-            case 'price-high':
-                result.sort((a, b) => b.price - a.price)
-                break
-            case 'rating':
-                result.sort((a, b) => b.rating - a.rating)
-                break
-            case 'featured':
-            default:
-                result.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-        }
-
         setFilteredProducts(result)
-    }, [searchTerm, selectedCategory, sortBy])
+    }, [searchTerm, selectedCategory])
 
     useEffect(() => {
         const category = searchParams.get('category')
@@ -71,16 +53,32 @@ function Products() {
     const clearFilters = () => {
         setSearchTerm('')
         setSelectedCategory('all')
-        setSortBy('featured')
         setSearchParams({})
     }
+
+    // Group products by subcategory
+    const groupedProducts = filteredProducts.reduce((groups, product) => {
+        const key = product.subcategory || 'Products'
+        if (!groups[key]) groups[key] = []
+        groups[key].push(product)
+        return groups
+    }, {})
+
+    const currentCategoryName = selectedCategory !== 'all'
+        ? categories.find(c => c.id === selectedCategory)?.name
+        : 'All Products'
 
     return (
         <div className="products-page">
             {/* Page Header */}
             <section className="page-header">
                 <div className="container">
-                    <h1>Our Products</h1>
+                    <div className="page-breadcrumb">
+                        <Link to="/">Home</Link>
+                        <ChevronRight size={14} />
+                        <span>{currentCategoryName}</span>
+                    </div>
+                    <h1>{currentCategoryName}</h1>
                     <p>Discover our premium collection of natural stones and tiles</p>
                 </div>
             </section>
@@ -113,17 +111,6 @@ function Products() {
                                 <Filter size={18} />
                                 Filters
                             </button>
-
-                            <select
-                                className="sort-select"
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value)}
-                            >
-                                <option value="featured">Featured</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Top Rated</option>
-                            </select>
 
                             <div className="view-toggle">
                                 <button
@@ -174,10 +161,10 @@ function Products() {
 
                     {/* Results Info */}
                     <div className="results-info">
-                        <span>Showing {filteredProducts.length} of {products.length} products</span>
+                        <span>Showing {filteredProducts.length} products</span>
                         {selectedCategory !== 'all' && (
                             <span className="active-filter">
-                                Category: {categories.find(c => c.id === selectedCategory)?.name}
+                                {currentCategoryName}
                                 <button onClick={() => handleCategoryChange('all')}>
                                     <X size={14} />
                                 </button>
@@ -185,11 +172,20 @@ function Products() {
                         )}
                     </div>
 
-                    {/* Products Grid */}
+                    {/* Products - Grouped by Subcategory */}
                     {filteredProducts.length > 0 ? (
-                        <div className={`products-grid ${viewMode}`}>
-                            {filteredProducts.map((product, index) => (
-                                <ProductCard key={product.id} product={product} index={index} />
+                        <div className="products-grouped">
+                            {Object.entries(groupedProducts).map(([subcategory, prods]) => (
+                                <div key={subcategory} className="product-group">
+                                    {selectedCategory !== 'all' && Object.keys(groupedProducts).length > 1 && (
+                                        <h3 className="subcategory-title">{subcategory}</h3>
+                                    )}
+                                    <div className={`products-grid ${viewMode}`}>
+                                        {prods.map((product, index) => (
+                                            <ProductCard key={product.id} product={product} index={index} />
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     ) : (

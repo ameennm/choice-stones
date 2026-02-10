@@ -33,9 +33,9 @@ function Navbar() {
             <div className="top-bar">
                 <div className="container top-bar-content">
                     <div className="top-bar-left">
-                        <a href="tel:+919876543210" className="top-bar-item">
+                        <a href="tel:+916238165933" className="top-bar-item">
                             <Phone size={14} />
-                            <span>+91 98765 43210</span>
+                            <span>+91 62381 65933</span>
                         </a>
                         <a href="mailto:info@choicestones.com" className="top-bar-item">
                             <Mail size={14} />
