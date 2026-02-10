@@ -121,8 +121,12 @@
     padding: var(--spacing-sm);
     color: var(--color-white);
     background: transparent;
+    border: none;
     border-radius: var(--radius-md);
     transition: background var(--transition-fast);
+    z-index: 1100;
+    position: relative;
+    cursor: pointer;
 }
 
 .mobile-menu-btn:hover {
@@ -138,43 +142,56 @@
     bottom: 0;
     background: rgba(13, 13, 13, 0.98);
     backdrop-filter: blur(20px);
-    z-index: var(--z-modal);
-    transform: translateX(100%);
-    transition: transform var(--transition-slow);
-    padding-top: 100px;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
 .mobile-menu.open {
-    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .mobile-menu-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-2xl);
+    justify-content: center;
+    gap: 8px;
+    padding: 40px 24px;
+    height: 100%;
 }
 
 .mobile-nav-link {
     font-family: var(--font-heading);
-    font-size: var(--text-2xl);
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--color-gray-300);
-    padding: var(--spacing-md);
-    transition: all var(--transition-base);
+    padding: 16px 32px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
     color: var(--color-primary);
-    transform: scale(1.05);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: scale(1.02);
 }
 
 .mobile-cta {
-    margin-top: var(--spacing-xl);
+    margin-top: 16px;
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
+    text-align: center;
 }
 
 /* Responsive */
@@ -215,5 +232,10 @@
 @media (max-width: 480px) {
     .top-bar {
         display: none;
+    }
+
+    .mobile-nav-link {
+        font-size: 1.2rem;
+        padding: 14px 24px;
     }
 }
