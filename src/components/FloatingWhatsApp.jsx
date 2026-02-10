@@ -14,7 +14,7 @@ function FloatingWhatsApp() {
             className="floating-whatsapp-btn"
             aria-label="Chat on WhatsApp"
         >
-            <MessageCircle size={32} />
+            <MessageCircle size={40} />
             <span className="whatsapp-tooltip">Chat with No.1 Stone Company</span>
         </a>
     )

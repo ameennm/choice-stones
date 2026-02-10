@@ -2,15 +2,15 @@
     position: fixed;
     bottom: 30px;
     left: 30px;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     background: #25D366;
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 999;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
@@ -25,7 +25,7 @@
 
 .whatsapp-tooltip {
     position: absolute;
-    left: 70px;
+    left: 85px;
     background: #333;
     color: white;
     padding: 8px 14px;
@@ -38,7 +38,7 @@
     transition: all 0.3s ease;
     transform: translateX(-10px);
     pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Arrow for tooltip */
@@ -66,7 +66,7 @@
         width: 50px;
         height: 50px;
     }
-    
+
     .whatsapp-tooltip {
         display: none;
     }
