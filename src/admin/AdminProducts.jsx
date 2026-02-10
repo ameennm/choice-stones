@@ -197,6 +197,59 @@ function AdminProducts() {
         }
     }
 
+    const handlePebbleUpdate = async () => {
+        if (!confirm('This will rename "Kalstone" to "Choice" in Pebble Stones category and add 4 new pebble products. Continue?')) return;
+        setIsLoading(true);
+        try {
+            // 1. Rename existing
+            let updateCount = 0;
+            const updates = products.filter(p =>
+                p.category === 'pebble-stones' && (
+                    (p.name && p.name.toLowerCase().includes('kalstone')) ||
+                    (p.description && p.description.toLowerCase().includes('kalstone'))
+                )
+            );
+
+            for (const p of updates) {
+                const newName = p.name ? p.name.replace(/Kalstone/gi, 'Choice') : p.name;
+                const newDesc = p.description ? p.description.replace(/Kalstone/gi, 'Choice') : p.description;
+
+                await databases.updateDocument(DATABASE_ID, COLLECTION_ID, p.$id, {
+                    name: newName,
+                    description: newDesc
+                });
+                updateCount++;
+            }
+
+            // 2. Add New Products
+            const newItems = [
+                { name: "White Polished Pebble", category: "pebble-stones", description: "Premium white polished pebbles for garden and landscaping.", price: 0, unit: "kg", inStock: true, featured: false, images: [] },
+                { name: "White Unpolished Pebble", category: "pebble-stones", description: "Natural white unpolished pebbles for rustic garden designs.", price: 0, unit: "kg", inStock: true, featured: false, images: [] },
+                { name: "Black Polished Pebble", category: "pebble-stones", description: "Elegant black polished pebbles for sophisticated landscaping.", price: 0, unit: "kg", inStock: true, featured: false, images: [] },
+                { name: "Black Unpolished Pebble", category: "pebble-stones", description: "Natural black unpolished pebbles for textured ground cover.", price: 0, unit: "kg", inStock: true, featured: false, images: [] }
+            ];
+
+            let addCount = 0;
+            for (const item of newItems) {
+                // Check if exists (case insensitive)
+                const exists = products.some(p => p.name.toLowerCase() === item.name.toLowerCase());
+                if (!exists) {
+                    await databases.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), item);
+                    addCount++;
+                }
+            }
+
+            alert(`Success! Updated ${updateCount} products. Added ${addCount} new products.`);
+            fetchProducts();
+
+        } catch (error) {
+            console.error('Update Pebbles Error:', error);
+            alert('Error updating pebbles: ' + error.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     if (isLoading) return <div className="loading-container"><Loader className="spin" /> Loading products...</div>
 
     return (
@@ -206,6 +259,10 @@ function AdminProducts() {
                     <h1>Products</h1>
                     <p>Manage your product catalog</p>
                 </div>
+                <button className="btn btn-secondary" onClick={handlePebbleUpdate} style={{ marginRight: '10px' }}>
+                    <Save size={20} />
+                    Update Pebbles
+                </button>
                 <button className="btn btn-primary" onClick={handleAddNew}>
                     <Plus size={20} />
                     Add Product
