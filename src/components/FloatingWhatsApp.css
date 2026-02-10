@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    z-index: 10000;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     cursor: pointer;
@@ -64,7 +64,7 @@
 
 @media (max-width: 480px) {
     .floating-whatsapp-btn {
-        bottom: 20px;
+        bottom: 30px;
         right: 20px;
         left: auto;
         width: 50px;
