@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
 import { databases, storage, DATABASE_ID, COLLECTION_ID, BUCKET_ID, ID } from '../lib/appwrite'
+import { Query } from 'appwrite'
 import { categories } from '../data/products'
 
 function AdminProducts() {
@@ -19,7 +20,11 @@ function AdminProducts() {
         try {
             const response = await databases.listDocuments(
                 DATABASE_ID,
-                COLLECTION_ID
+                COLLECTION_ID,
+                [
+                    Query.orderDesc('$createdAt'),
+                    Query.limit(1000)
+                ]
             )
             setProducts(response.documents)
         } catch (error) {
