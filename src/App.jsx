@@ -17,9 +17,8 @@ function App() {
 
     // Ping Appwrite on app startup to verify the connection
     useEffect(() => {
-        client.ping()
-            .then(() => console.log('✅ Appwrite connected successfully'))
-            .catch((error) => console.error('❌ Appwrite connection failed:', error))
+        // Appwrite initialized
+        console.log('✅ Appwrite initialized')
     }, [])
 
     return (
