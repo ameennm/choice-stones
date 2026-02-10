@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingCart from './components/FloatingCart'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
@@ -35,6 +36,7 @@ function App() {
                 </Routes>
             </main>
             {!isAdminRoute && <FloatingCart />}
+            {!isAdminRoute && <FloatingWhatsApp />}
             {!isAdminRoute && <Footer />}
         </div>
     )
