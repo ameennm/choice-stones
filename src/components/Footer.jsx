@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, MessageCircle } from 'lucide-react'
 import { companyInfo, categories } from '../data/products'
 import './Footer.css'
+import { useSettings } from '../hooks/useSettings'
 
 function Footer() {
     const currentYear = new Date().getFullYear()
+    const { settings } = useSettings()
 
     return (
         <footer className="footer">
@@ -44,7 +46,7 @@ function Footer() {
                                     <Youtube size={20} />
                                 </a>
                                 <a
-                                    href={`https://wa.me/${companyInfo.social.whatsapp}`}
+                                    href={`https://wa.me/${settings.whatsapp}`}
                                     className="social-link whatsapp"
                                     aria-label="WhatsApp"
                                 >
@@ -82,15 +84,15 @@ function Footer() {
                             <ul className="contact-list">
                                 <li>
                                     <MapPin size={18} />
-                                    <span>{companyInfo.address}</span>
+                                    <span>{settings.address}</span>
                                 </li>
                                 <li>
                                     <Phone size={18} />
-                                    <a href={`tel:${companyInfo.phone}`}>{companyInfo.phone}</a>
+                                    <a href={`tel:${settings.phone.replace(/\s+/g, '')}`}>{settings.phone}</a>
                                 </li>
                                 <li>
                                     <Mail size={18} />
-                                    <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+                                    <a href={`mailto:${settings.email}`}>{settings.email}</a>
                                 </li>
                                 <li>
                                     <Clock size={18} />

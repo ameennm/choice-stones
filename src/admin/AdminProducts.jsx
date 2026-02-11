@@ -250,6 +250,60 @@ function AdminProducts() {
         }
     }
 
+    const handleCladdingUpdate = async () => {
+        if (!confirm(`This will attempt to add  missing cladding products. Continue?`)) return;
+        setIsLoading(true);
+        try {
+            // Fetch latest to be sure
+            const response = await databases.listDocuments(
+                DATABASE_ID,
+                COLLECTION_ID,
+                [Query.limit(1000)]
+            );
+            const currentProducts = response.documents;
+            const currentNames = new Set(currentProducts.map(p => p.name.toLowerCase().trim()));
+
+            let addedCount = 0;
+            let skippedCount = 0;
+            // Import dynamically to avoid top-level issues if file missing, though we just created it.
+            const { claddingProductsToAdd } = await import('../data/claddingProducts');
+
+            for (const item of claddingProductsToAdd) {
+                const normalizedName = item.name.toLowerCase().trim();
+
+                // Duplicate check REMOVED to force add 142 items as requested by user
+                // if (currentNames.has(normalizedName)) {
+                //     skippedCount++;
+                //     continue;
+                // }
+
+                const payload = {
+                    name: item.name,
+                    category: 'cladding-stones',
+                    sizes: item.sizes || [],
+                    description: item.description || `Premium ${item.name} product for cladding.`,
+                    price: 0,
+                    unit: 'sq.ft',
+                    inStock: true,
+                    featured: false,
+                    images: []
+                };
+
+                await databases.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), payload);
+                currentNames.add(normalizedName);
+                addedCount++;
+            }
+
+            alert(`Success! Added ${addedCount} products. Skipped ${skippedCount} existing.`);
+            fetchProducts();
+        } catch (error) {
+            console.error('Update Cladding Error:', error);
+            alert('Error updating cladding: ' + error.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     if (isLoading) return <div className="loading-container"><Loader className="spin" /> Loading products...</div>
 
     return (
@@ -262,6 +316,10 @@ function AdminProducts() {
                 <button className="btn btn-secondary" onClick={handlePebbleUpdate} style={{ marginRight: '10px' }}>
                     <Save size={20} />
                     Update Pebbles
+                </button>
+                <button className="btn btn-secondary" onClick={handleCladdingUpdate} style={{ marginRight: '10px' }}>
+                    <Upload size={20} />
+                    Import Cladding
                 </button>
                 <button className="btn btn-primary" onClick={handleAddNew}>
                     <Plus size={20} />

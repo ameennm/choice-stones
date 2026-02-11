@@ -16,7 +16,7 @@ export const categories = [
         description: 'Natural stone cladding, tiles, mosaics & terracotta for walls & facades',
         icon: 'LayoutGrid',
         image: '/products/category-cladding.jpg',
-        productCount: 60
+        productCount: 130
     },
     {
         id: 'stone-products',

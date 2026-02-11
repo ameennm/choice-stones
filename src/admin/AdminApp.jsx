@@ -4,7 +4,9 @@ import { account } from '../lib/appwrite'
 import AdminLogin from './AdminLogin'
 import AdminDashboard from './AdminDashboard'
 import AdminProducts from './AdminProducts'
+import AdminWholesale from './AdminWholesale'
 import AdminCategories from './AdminCategories'
+import AdminSettings from './AdminSettings'
 import AdminLayout from './AdminLayout'
 import './Admin.css'
 
@@ -53,7 +55,9 @@ function AdminApp() {
             <Routes>
                 <Route path="/" element={<AdminDashboard />} />
                 <Route path="/products" element={<AdminProducts />} />
+                <Route path="/wholesale" element={<AdminWholesale />} />
                 <Route path="/categories" element={<AdminCategories />} />
+                <Route path="/settings" element={<AdminSettings />} />
                 <Route path="*" element={<Navigate to="/admin" replace />} />
             </Routes>
         </AdminLayout>

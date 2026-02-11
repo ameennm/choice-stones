@@ -37,9 +37,10 @@ function FloatingCart() {
         // clearCart()
     }
 
-    if (itemCount === 0 && !isOpen) {
-        return null
-    }
+    // Always show cart button, even if empty, per user request
+    // if (itemCount === 0 && !isOpen) {
+    //     return null
+    // }
 
     return (
         <>

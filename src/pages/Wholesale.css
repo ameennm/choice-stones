@@ -1,0 +1,59 @@
+/* Wholesale Page Styles */
+.wholesale-page {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #121212, #1E1E1E);
+}
+
+.wholesale-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl);
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wholesale-form .form-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.wholesale-form label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-gray-300);
+    font-weight: 500;
+}
+
+.wholesale-form select,
+.wholesale-form input {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    transition: all 0.3s ease;
+}
+
+.wholesale-form select:focus,
+.wholesale-form input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(201, 169, 98, 0.2);
+}
+
+.wholesale-form button {
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    /* WhatsApp Green */
+    color: white;
+}
+
+.wholesale-form button:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}

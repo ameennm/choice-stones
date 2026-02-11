@@ -12,7 +12,9 @@ function AdminLayout({ children, onLogout }) {
     const navItems = [
         { path: '/admin', icon: <LayoutDashboard size={20} />, label: 'Dashboard' },
         { path: '/admin/products', icon: <Package size={20} />, label: 'Products' },
-        { path: '/admin/categories', icon: <Tags size={20} />, label: 'Categories' }
+        { path: '/admin/wholesale', icon: <Package size={20} />, label: 'Wholesale' },
+        { path: '/admin/categories', icon: <Tags size={20} />, label: 'Categories' },
+        { path: '/admin/settings', icon: <Menu size={20} />, label: 'Settings' }
     ]
 
     const isActive = (path) => {

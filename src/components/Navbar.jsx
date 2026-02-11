@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, Mail } from 'lucide-react'
 import './Navbar.css'
+import { useSettings } from '../hooks/useSettings'
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const location = useLocation()
+    const { settings } = useSettings()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,6 +25,7 @@ function Navbar() {
     const navLinks = [
         { path: '/', label: 'Home' },
         { path: '/products', label: 'Products' },
+        { path: '/wholesale', label: 'Wholesale' },
         { path: '/about', label: 'About Us' },
         { path: '/contact', label: 'Contact' }
     ]
@@ -33,13 +36,13 @@ function Navbar() {
             <div className="top-bar">
                 <div className="container top-bar-content">
                     <div className="top-bar-left">
-                        <a href="tel:+916238165933" className="top-bar-item">
+                        <a href={`tel:${settings.phone.replace(/\s+/g, '')}`} className="top-bar-item">
                             <Phone size={14} />
-                            <span>+91 62381 65933</span>
+                            <span>{settings.phone}</span>
                         </a>
-                        <a href="mailto:info@choicestones.com" className="top-bar-item">
+                        <a href={`mailto:${settings.email}`} className="top-bar-item">
                             <Mail size={14} />
-                            <span>info@choicestones.com</span>
+                            <span>{settings.email}</span>
                         </a>
                     </div>
                     <div className="top-bar-right">
