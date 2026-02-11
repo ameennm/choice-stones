@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { databases, DATABASE_ID, COLLECTION_ID } from '../lib/appwrite';
 import { Query } from 'appwrite';
 import { Loader } from 'lucide-react';
+import { useSettings } from '../hooks/useSettings';
 import './Wholesale.css';
 
 function Wholesale() {
@@ -10,6 +11,7 @@ function Wholesale() {
     const [selectedProduct, setSelectedProduct] = useState('');
     const [quantity, setQuantity] = useState('');
     const [unit, setUnit] = useState('sq.ft');
+    const { settings } = useSettings();
 
     useEffect(() => {
         const fetchWholesaleProducts = async () => {
@@ -60,7 +62,7 @@ function Wholesale() {
         const product = products.find(p => p.name === selectedProduct);
         const productUnit = product ? product.unit : unit;
 
-        const phoneNumber = '918880999097';
+        const phoneNumber = settings.wholesale || '918880999097';
         const message = `Hello, I would like to place a *Wholesale Order*.\n\n` +
             `Product: *${selectedProduct}*\n` +
             `Quantity: *${quantity} ${productUnit}*\n\n` +

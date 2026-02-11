@@ -7,6 +7,7 @@ function AdminSettings() {
     const [settings, setSettings] = useState({
         phone: companyInfo.phone,
         whatsapp: companyInfo.social.whatsapp,
+        wholesale: '918880999097', // Default wholesale
         email: companyInfo.email,
         address: companyInfo.address
     })
@@ -36,7 +37,8 @@ function AdminSettings() {
                     const doc = await databases.getDocument(DATABASE_ID, COLLECTION_ID, 'settings_document');
                     if (doc) {
                         const data = JSON.parse(doc.description);
-                        setSettings(data);
+                        // Merge defaults to ensure new fields like wholesale exist if not in old doc
+                        setSettings(prev => ({ ...prev, ...data }));
                         setDocId(doc.$id);
                     }
                 } catch (e) {
@@ -108,11 +110,19 @@ function AdminSettings() {
                     />
                 </div>
                 <div className="form-group">
-                    <label>WhatsApp Number (Numeric, no +)</label>
+                    <label>Retail WhatsApp (Numeric, no +)</label>
                     <input
                         type="text"
                         value={settings.whatsapp}
                         onChange={(e) => setSettings({ ...settings, whatsapp: e.target.value })}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Wholesale WhatsApp (Numeric, no +)</label>
+                    <input
+                        type="text"
+                        value={settings.wholesale}
+                        onChange={(e) => setSettings({ ...settings, wholesale: e.target.value })}
                     />
                 </div>
                 <div className="form-group">
