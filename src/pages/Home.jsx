@@ -72,7 +72,7 @@ function Home() {
                                     className="category-card"
                                     style={{
                                         animationDelay: `${index * 100}ms`,
-                                        backgroundImage: `url(${category.image})`
+                                        backgroundImage: `url("${category.image}")`
                                     }}
                                 >
                                     <div className="category-overlay"></div>
