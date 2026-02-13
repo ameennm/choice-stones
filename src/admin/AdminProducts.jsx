@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
 import { databases, storage, DATABASE_ID, COLLECTION_ID, BUCKET_ID, ID } from '../lib/appwrite'
 import { Query } from 'appwrite'
-import { categories } from '../data/products'
+import { categories, products as localProducts } from '../data/products'
 
 function AdminProducts() {
     const [products, setProducts] = useState([])
@@ -22,7 +22,7 @@ function AdminProducts() {
                 DATABASE_ID,
                 COLLECTION_ID,
                 [
-                    Query.orderDesc('$createdAt'),
+                    // Query.orderDesc('$createdAt'), // Removed to prevent missing index errors
                     Query.limit(1000)
                 ]
             )
@@ -39,7 +39,13 @@ function AdminProducts() {
     }, [])
 
     const filteredProducts = products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        const term = searchTerm.toLowerCase()
+        const matchesSearch =
+            product.name.toLowerCase().includes(term) ||
+            (product.subtitle && product.subtitle.toLowerCase().includes(term)) ||
+            (product.side_title && product.side_title.toLowerCase().includes(term)) || // Handle case if saved as side_title
+            (product.description && product.description.toLowerCase().includes(term))
+
         const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory
         return matchesSearch && matchesCategory
     })
@@ -250,6 +256,55 @@ function AdminProducts() {
         }
     }
 
+    const handleSyncMissing = async () => {
+        if (!confirm('This will add any products from the local data file path that are missing in the database. Continue?')) return;
+        setIsLoading(true);
+        try {
+            // Fetch latest from DB to be sure
+            const response = await databases.listDocuments(
+                DATABASE_ID,
+                COLLECTION_ID,
+                [Query.limit(1000)]
+            );
+            const dbProducts = response.documents;
+            const dbProductNames = new Set(dbProducts.map(p => p.name.toLowerCase().trim()));
+
+            let addedCount = 0;
+
+            for (const localProd of localProducts) {
+                const normalizedName = localProd.name.toLowerCase().trim();
+
+                if (!dbProductNames.has(normalizedName)) {
+                    // Create missing product
+                    const payload = {
+                        name: localProd.name,
+                        subtitle: localProd.subcategory || '',
+                        description: localProd.description || '',
+                        category: localProd.category,
+                        price: 0,
+                        unit: localProd.unit || 'sq.ft',
+                        minOrder: 0,
+                        inStock: true,
+                        featured: false,
+                        images: [] // We don't upload local images automatically as they are paths, not files
+                    };
+
+                    await databases.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), payload);
+                    addedCount++;
+                }
+            }
+
+            alert(`Sync complete! Added ${addedCount} missing products.`);
+            fetchProducts();
+
+        } catch (error) {
+            console.error('Sync Error:', error);
+            alert('Error syncing products: ' + error.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     const handleCladdingUpdate = async () => {
         if (!confirm(`This will attempt to add  missing cladding products. Continue?`)) return;
         setIsLoading(true);
@@ -313,6 +368,10 @@ function AdminProducts() {
                     <h1>Products</h1>
                     <p>Manage your product catalog</p>
                 </div>
+                <button className="btn btn-secondary" onClick={handleSyncMissing} style={{ marginRight: '10px' }}>
+                    <Upload size={20} />
+                    Sync Missing
+                </button>
                 <button className="btn btn-secondary" onClick={handlePebbleUpdate} style={{ marginRight: '10px' }}>
                     <Save size={20} />
                     Update Pebbles
