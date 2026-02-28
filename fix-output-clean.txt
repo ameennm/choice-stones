@@ -1,0 +1,26 @@
+ Checking collection permissions...
+
+ Collection: products
+   ID: 698b4f32b5e034ac9a19
+   Document Security: false
+   Current Permissions:
+   - read("any")
+   - create("users")
+   - update("users")
+   - delete("users")
+
+ Updating collection permissions...
+ Collection permissions updated!
+
+ Updated Permissions:
+   - read("any")
+   - create("users")
+   - update("users")
+   - delete("users")
+
+ Checking document permissions...
+   Total documents: 129
+    All documents already have correct read permissions.
+
+ Done! Your website should now work correctly.
+   Try refreshing https://choice-stones.vercel.app
