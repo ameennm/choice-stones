@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
-import { databases, storage, DATABASE_ID, COLLECTION_ID, BUCKET_ID, ID } from '../lib/appwrite'
-import { Query } from 'appwrite'
 
 function AdminWholesale() {
     const [products, setProducts] = useState([])
@@ -16,16 +14,10 @@ function AdminWholesale() {
     // Fetch wholesale products
     const fetchProducts = async () => {
         try {
-            const response = await databases.listDocuments(
-                DATABASE_ID,
-                COLLECTION_ID,
-                [
-                    Query.equal('category', 'wholesale'),
-                    Query.orderDesc('$createdAt'),
-                    Query.limit(100)
-                ]
-            )
-            setProducts(response.documents)
+            const response = await fetch('/api/products')
+            const allProducts = await response.json()
+            const wsProducts = allProducts.filter(p => p.category === 'wholesale')
+            setProducts(wsProducts)
         } catch (error) {
             console.error('Error fetching wholesale products:', error)
         } finally {
@@ -43,13 +35,7 @@ function AdminWholesale() {
 
     const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this wholesale product?')) {
-            try {
-                await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, id)
-                setProducts(products.filter(p => p.$id !== id))
-            } catch (error) {
-                console.error('Error deleting product:', error)
-                alert('Failed to delete product')
-            }
+            alert('Delete functionality not yet implemented in Cloudflare proxy.');
         }
     }
 
@@ -76,43 +62,8 @@ function AdminWholesale() {
     }
 
     const handleSave = async () => {
-        const payload = {
-            name: editingProduct.name,
-            subtitle: editingProduct.subtitle || '',
-            description: editingProduct.description || '',
-            category: 'wholesale',
-            price: parseFloat(editingProduct.price) || 0,
-            unit: editingProduct.unit,
-            minOrder: parseInt(editingProduct.minOrder) || 0,
-            inStock: editingProduct.inStock,
-            featured: editingProduct.featured,
-            images: editingProduct.images
-        }
-
-        try {
-            if (editingProduct.$id) {
-                const response = await databases.updateDocument(
-                    DATABASE_ID,
-                    COLLECTION_ID,
-                    editingProduct.$id,
-                    payload
-                )
-                setProducts(products.map(p => p.$id === editingProduct.$id ? response : p))
-            } else {
-                const response = await databases.createDocument(
-                    DATABASE_ID,
-                    COLLECTION_ID,
-                    ID.unique(),
-                    payload
-                )
-                setProducts([...products, response])
-            }
-            setShowModal(false)
-            setEditingProduct(null)
-        } catch (error) {
-            console.error('Error saving product:', error)
-            alert('Failed to save product: ' + error.message)
-        }
+        alert('Wholesale product editing is pending Cloudflare API migration. Use the Master Image Mapping for images.');
+        setShowModal(false);
     }
 
     // Image logic is same as AdminProducts, can be extracted but for speed copying
@@ -208,7 +159,7 @@ function AdminWholesale() {
                     </thead>
                     <tbody>
                         {filteredProducts.map(product => (
-                            <tr key={product.$id}>
+                            <tr key={product.id}>
                                 <td>
                                     <div className="product-cell">
                                         <img
@@ -227,7 +178,7 @@ function AdminWholesale() {
                                     <div className="action-buttons">
                                         <button className="action-btn" onClick={() => openImageManager(product)}><Image size={16} /></button>
                                         <button className="action-btn" onClick={() => handleEdit(product)}><Edit size={16} /></button>
-                                        <button className="action-btn danger" onClick={() => handleDelete(product.$id)}><Trash2 size={16} /></button>
+                                        <button className="action-btn danger" onClick={() => handleDelete(product.id)}><Trash2 size={16} /></button>
                                     </div>
                                 </td>
                             </tr>

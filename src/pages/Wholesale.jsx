@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { databases, DATABASE_ID, COLLECTION_ID } from '../lib/appwrite';
-import { Query } from 'appwrite';
 import { Loader } from 'lucide-react';
 import { useSettings } from '../hooks/useSettings';
 import './Wholesale.css';
@@ -16,36 +14,25 @@ function Wholesale() {
     useEffect(() => {
         const fetchWholesaleProducts = async () => {
             try {
-                // Fetch products with category 'wholesale'
-                // If you haven't added any yet, this will be empty.
-                // We will add an Admin page to add them.
-                const response = await databases.listDocuments(
-                    DATABASE_ID,
-                    COLLECTION_ID,
-                    [
-                        Query.equal('category', 'wholesale'),
-                        Query.limit(100)
-                    ]
-                );
+                const response = await fetch('/api/products');
+                const allProducts = await response.json();
+                const wsProducts = allProducts.filter(p => p.category === 'wholesale');
 
-                // If no products found (initial setup), show the default 3 requested
-                if (response.documents.length === 0) {
-                    // Fallback for demo until admin adds them
+                if (wsProducts.length === 0) {
                     setProducts([
-                        { $id: 'ws1', name: 'Bangalore Stones', unit: 'sq.ft' },
-                        { $id: 'ws2', name: 'Tandure Stone', unit: 'sq.ft' },
-                        { $id: 'ws3', name: 'Kadappa Stone', unit: 'sq.ft' } // Assumed 3rd
+                        { id: 'ws1', name: 'Bangalore Stones', unit: 'sq.ft' },
+                        { id: 'ws2', name: 'Tandure Stone', unit: 'sq.ft' },
+                        { id: 'ws3', name: 'Kadappa Stone', unit: 'sq.ft' }
                     ]);
                 } else {
-                    setProducts(response.documents);
+                    setProducts(wsProducts);
                 }
             } catch (error) {
                 console.error('Error fetching wholesale products:', error);
-                // Fallback
                 setProducts([
-                    { $id: 'ws1', name: 'Bangalore Stones', unit: 'sq.ft' },
-                    { $id: 'ws2', name: 'Tandure Stone', unit: 'sq.ft' },
-                    { $id: 'ws3', name: 'Kadappa Stone', unit: 'sq.ft' }
+                    { id: 'ws1', name: 'Bangalore Stones', unit: 'sq.ft' },
+                    { id: 'ws2', name: 'Tandure Stone', unit: 'sq.ft' },
+                    { id: 'ws3', name: 'Kadappa Stone', unit: 'sq.ft' }
                 ]);
             } finally {
                 setLoading(false);
@@ -99,7 +86,7 @@ function Wholesale() {
                             >
                                 <option value="">-- Choose Stone --</option>
                                 {products.map(p => (
-                                    <option key={p.$id} value={p.name}>{p.name}</option>
+                                    <option key={p.id} value={p.name}>{p.name}</option>
                                 ))}
                             </select>
                         </div>

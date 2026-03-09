@@ -1,0 +1,10 @@
+name = "choice-stones-website"
+pages_build_output_dir = "dist"
+
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "choice-db"
+database_id = "2397509c-1e0a-49b3-bf5e-47a975606734"

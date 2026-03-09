@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { account } from '../lib/appwrite'
 import AdminLogin from './AdminLogin'
 import AdminDashboard from './AdminDashboard'
 import AdminProducts from './AdminProducts'
@@ -16,31 +15,21 @@ function AdminApp() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        checkAuth()
+        const auth = sessionStorage.getItem('admin_auth');
+        if (auth === 'true') {
+            setIsAuthenticated(true);
+        }
+        setLoading(false);
     }, [])
 
-    const checkAuth = async () => {
-        try {
-            await account.get()
-            setIsAuthenticated(true)
-        } catch (error) {
-            setIsAuthenticated(false)
-        } finally {
-            setLoading(false)
-        }
-    }
-
     const handleLogin = () => {
+        sessionStorage.setItem('admin_auth', 'true');
         setIsAuthenticated(true)
     }
 
-    const handleLogout = async () => {
-        try {
-            await account.deleteSession('current')
-            setIsAuthenticated(false)
-        } catch (error) {
-            console.error('Logout failed:', error)
-        }
+    const handleLogout = () => {
+        sessionStorage.removeItem('admin_auth');
+        setIsAuthenticated(false)
     }
 
     if (loading) {

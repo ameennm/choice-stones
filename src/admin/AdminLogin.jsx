@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Eye, EyeOff, Lock } from 'lucide-react'
-import { account } from '../lib/appwrite'
 
 function AdminLogin({ onLogin }) {
     const [password, setPassword] = useState('')
@@ -8,25 +7,21 @@ function AdminLogin({ onLogin }) {
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-    // Hardcoded admin email for password-only login experience
-    const ADMIN_EMAIL = 'admin@choicestones.com'
+    // Hardcoded simple password for Cloudflare migration
+    const ADMIN_PASSWORD = 'admin'
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError('')
         setIsLoading(true)
 
-        try {
-            // Login with hardcoded email
-            await account.createEmailPasswordSession(ADMIN_EMAIL, password)
+        // Simple check for now
+        if (password === ADMIN_PASSWORD) {
             onLogin()
-        } catch (err) {
-            console.error(err)
-            // Show genetic error or specific if needed
+        } else {
             setError('Invalid password. Please try again.')
-        } finally {
-            setIsLoading(false)
         }
+        setIsLoading(false)
     }
 
     return (

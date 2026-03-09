@@ -1,7 +1,13 @@
-import { Package, Tags, TrendingUp, Eye } from 'lucide-react'
-import { products, categories } from '../data/products'
+import { Package, Tags, TrendingUp, Eye, Loader } from 'lucide-react'
+import useProductStore from '../store/productStore'
+import { categories } from '../data/products'
 
 function AdminDashboard() {
+    const { products, loading } = useProductStore()
+
+    if (loading && products.length === 0) {
+        return <div className="loading-container"><Loader className="spin" /> Loading stats...</div>
+    }
     const stats = [
         {
             icon: <Package size={24} />,

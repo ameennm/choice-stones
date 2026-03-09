@@ -10,17 +10,14 @@ import Wholesale from './pages/Wholesale'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import AdminApp from './admin/AdminApp'
-import { client } from './lib/appwrite'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
     const location = useLocation()
     const isAdminRoute = location.pathname.startsWith('/admin')
 
-    // Ping Appwrite on app startup to verify the connection
     useEffect(() => {
-        // Appwrite initialized
-        console.log('✅ Appwrite initialized')
+        console.log('🚀 Choice Stones initialized on Cloudflare')
     }, [])
 
     return (
