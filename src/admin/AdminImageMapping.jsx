@@ -123,6 +123,7 @@ function AdminImageMapping() {
     const [statusMsg, setStatusMsg] = useState('')
     const [filterCategory, setFilterCategory] = useState('all')
     const [showOnlyUnassigned, setShowOnlyUnassigned] = useState(false)
+    const [imgSearch, setImgSearch] = useState('')
 
     const ITEMS_PER_PAGE = 24
 
@@ -299,9 +300,14 @@ function AdminImageMapping() {
         displayFiles = displayFiles.filter(f => {
             const assignedProductId = assignments[f.url]
             if (!assignedProductId) return false
-            const product = products.find(p => p.$id === assignedProductId)
+            const product = products.find(p => (p.id || p.$id) === assignedProductId)
             return product && product.category === filterCategory
         })
+    }
+
+    if (imgSearch) {
+        const term = imgSearch.toLowerCase()
+        displayFiles = displayFiles.filter(f => f.name.toLowerCase().includes(term))
     }
 
     const totalPages = Math.ceil(displayFiles.length / ITEMS_PER_PAGE)
@@ -386,7 +392,10 @@ function AdminImageMapping() {
                         type="text"
                         placeholder="Search image name..."
                         value={imgSearch}
-                        onChange={(e) => setImgSearch(e.target.value)}
+                        onChange={(e) => {
+                            setImgSearch(e.target.value)
+                            setCurrentPage(0)
+                        }}
                         style={{ background: 'none', border: 'none', color: '#fff', width: '100%', outline: 'none', padding: '4px' }}
                     />
                 </div>
