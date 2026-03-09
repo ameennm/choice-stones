@@ -275,6 +275,31 @@ function AdminProducts() {
                                         rows="3"
                                     />
                                 </div>
+
+                                {/* Image Management */}
+                                <div className="form-group full-width">
+                                    <label style={{ display: 'block', marginBottom: '10px' }}>Product Images</label>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+                                        {(Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]')).map((img, idx) => (
+                                            <div key={idx} style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', aspectRatio: '1/1', background: '#0d0d1a', border: '1px solid #2a2a3e' }}>
+                                                <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                <button
+                                                    onClick={() => {
+                                                        const current = Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]');
+                                                        const updated = current.filter((_, i) => i !== idx);
+                                                        setEditingProduct({ ...editingProduct, images: updated });
+                                                    }}
+                                                    style={{ position: 'absolute', top: '4px', right: '4px', background: '#ef4444', color: '#fff', border: 'none', borderRadius: '4px', padding: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                >
+                                                    <X size={14} />
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p style={{ fontSize: '12px', color: '#888', marginTop: '10px' }}>
+                                        Use the <strong>Master Image Mapping</strong> tool to upload and assign new images to this product.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className="modal-footer">

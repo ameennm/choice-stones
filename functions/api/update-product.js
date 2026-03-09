@@ -12,9 +12,11 @@ export async function onRequest(context) {
 
     try {
         const product = await request.json();
-        const { id, name, category, subtitle, description, price, unit, inStock, featured } = product;
+        const { id, name, category, subtitle, description, price, unit, inStock, featured, images } = product;
 
         if (!id) throw new Error("Product ID is required");
+
+        const imagesStr = Array.isArray(images) ? JSON.stringify(images) : (images || '[]');
 
         // Convert boolean to integer for SQLite if necessary, but D1 handles boolean fine
         await db.prepare(`
@@ -27,7 +29,8 @@ export async function onRequest(context) {
         price = ?, 
         unit = ?, 
         inStock = ?, 
-        featured = ? 
+        featured = ?,
+        images = ?
       WHERE id = ?
     `).bind(
             name,
@@ -38,6 +41,7 @@ export async function onRequest(context) {
             unit || 'sq.ft',
             inStock ? 1 : 0,
             featured ? 1 : 0,
+            imagesStr,
             id
         ).run();
 
