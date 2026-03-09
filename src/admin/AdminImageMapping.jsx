@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react'
+import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon, Trash2 } from 'lucide-react'
 
 // Custom Searchable Dropdown Component
 function SearchableSelect({ value, options, onChange, placeholder = "-- Select Product --" }) {
@@ -140,31 +140,51 @@ function AdminImageMapping() {
             }
             setProducts(sortedProducts)
 
-            // Fetch unassigned files locally
+            // Fetch manifest from build
             const unRes = await fetch('/api/unassigned');
-            const unFiles = await unRes.json();
+            const files = await unRes.json();
 
-            const files = unFiles.map(f => ({
-                $id: f,
-                name: f,
-                url: `/products/unassigned/${f}`
-            }));
-
-            // Only unassigned will be seen in this tab because we don't have bucket tracking anymore
             setBucketFiles(files)
 
             // Initialize assignments state using products images array
             const initialAssignments = {}
             for (const product of sortedProducts) {
-                const imagesArray = typeof product.images === 'string' ? JSON.parse(product.images || '[]') : (product.images || []);
+                const imagesArray = Array.isArray(product.images) ? product.images : JSON.parse(product.images || '[]');
                 for (const url of imagesArray) {
-                    initialAssignments[url] = product.$id || product.id
+                    initialAssignments[url] = product.id || product.$id
                 }
             }
             setAssignments(initialAssignments)
         } catch (error) {
             console.error('Error fetching data:', error)
             setStatusMsg('Error loading data')
+        }
+    }
+
+    const handleDeleteImage = async (file) => {
+        if (!confirm(`Are you sure you want to permanently delete ${file.name}?`)) {
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/delete-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: file.url })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Server error');
+            }
+
+            setBucketFiles(prev => prev.filter(f => f.url !== file.url));
+            setStatusMsg(`🗑️ Image "${file.name}" deleted permanently.`);
+        } catch (error) {
+            console.error('Delete error:', error);
+            // Fallback for live site or unexpected error
+            setBucketFiles(prev => prev.filter(f => f.url !== file.url));
+            setStatusMsg(`🗑️ Image "${file.name}" hidden session-wide. (Live delete requires local cleanup & redeploy).`);
         }
     }
 
@@ -370,12 +390,26 @@ function AdminImageMapping() {
                                     {file.name}
                                 </div>
 
-                                <div style={{ marginTop: 'auto' }}>
+                                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px' }}>
                                     <SearchableSelect
                                         value={assignedProductId}
                                         options={productOptions}
                                         onChange={(newId) => handleAssign({ ...file }, newId)}
                                     />
+                                    <button
+                                        onClick={() => handleDeleteImage(file)}
+                                        style={{
+                                            background: '#ef444422',
+                                            border: '1px solid #ef4444',
+                                            color: '#ef4444',
+                                            padding: '8px',
+                                            borderRadius: '6px',
+                                            cursor: 'pointer'
+                                        }}
+                                        title="Delete image"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
                                 </div>
                             </div>
                         </div>

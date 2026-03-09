@@ -1,18 +1,30 @@
 import fs from 'fs';
 import path from 'path';
 
-const unassignedDir = 'public/products/unassigned';
+const dirs = [
+    { name: 'unassigned', path: 'public/products/unassigned', urlPrefix: '/products/unassigned/' },
+    { name: 'assigned', path: 'public/products', urlPrefix: '/products/' }
+];
 const manifestFile = 'public/unassigned-manifest.json';
 
 try {
-    if (fs.existsSync(unassignedDir)) {
-        const files = fs.readdirSync(unassignedDir).filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f));
-        fs.writeFileSync(manifestFile, JSON.stringify(files));
-        console.log(`✅ Generated manifest for ${files.length} unassigned images.`);
-    } else {
-        fs.writeFileSync(manifestFile, JSON.stringify([]));
-        console.log('⚠️ No unassigned directory found, generated empty manifest.');
-    }
+    const allFiles = [];
+    dirs.forEach(dir => {
+        if (fs.existsSync(dir.path)) {
+            const files = fs.readdirSync(dir.path)
+                .filter(f => fs.statSync(path.join(dir.path, f)).isFile())
+                .filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f))
+                .map(f => ({
+                    name: f,
+                    url: `${dir.urlPrefix}${f}`,
+                    folder: dir.name
+                }));
+            allFiles.push(...files);
+        }
+    });
+
+    fs.writeFileSync(manifestFile, JSON.stringify(allFiles));
+    console.log(`✅ Generated manifest for ${allFiles.length} total images.`);
 } catch (error) {
     console.error('❌ Failed to generate image manifest:', error.message);
 }

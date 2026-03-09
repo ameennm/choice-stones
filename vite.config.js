@@ -11,14 +11,26 @@ function LocalAdminApi() {
             server.middlewares.use((req, res, next) => {
                 if (req.url === '/api/unassigned' && req.method === 'GET') {
                     const unassignedDir = path.resolve('public/products/unassigned');
+                    const assignedDir = path.resolve('public/products');
+                    const allFiles = [];
+
                     if (fs.existsSync(unassignedDir)) {
-                        const files = fs.readdirSync(unassignedDir).filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f));
-                        res.setHeader('Content-Type', 'application/json');
-                        res.end(JSON.stringify(files));
-                    } else {
-                        res.setHeader('Content-Type', 'application/json');
-                        res.end(JSON.stringify([]));
+                        const files = fs.readdirSync(unassignedDir)
+                            .filter(f => fs.statSync(path.join(unassignedDir, f)).isFile())
+                            .filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f))
+                            .map(f => ({ name: f, url: `/products/unassigned/${f}`, folder: 'unassigned' }));
+                        allFiles.push(...files);
                     }
+                    if (fs.existsSync(assignedDir)) {
+                        const files = fs.readdirSync(assignedDir)
+                            .filter(f => fs.statSync(path.join(assignedDir, f)).isFile())
+                            .filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f))
+                            .map(f => ({ name: f, url: `/products/${f}`, folder: 'assigned' }));
+                        allFiles.push(...files);
+                    }
+
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(allFiles));
                     return;
                 }
 
@@ -88,6 +100,30 @@ function LocalAdminApi() {
                                 res.end(JSON.stringify({ success: true, newFileName, images: currentImages }));
                             }
                         });
+                    });
+                    return;
+                }
+
+                if (req.url === '/api/delete-image' && req.method === 'POST') {
+                    let body = '';
+                    req.on('data', chunk => { body += chunk.toString() });
+                    req.on('end', () => {
+                        const { url } = JSON.parse(body);
+                        const fullPath = path.resolve('public', url.startsWith('/') ? url.slice(1) : url);
+
+                        try {
+                            if (fs.existsSync(fullPath)) {
+                                fs.unlinkSync(fullPath);
+                                res.setHeader('Content-Type', 'application/json');
+                                res.end(JSON.stringify({ success: true }));
+                            } else {
+                                res.statusCode = 404;
+                                res.end(JSON.stringify({ error: "File not found" }));
+                            }
+                        } catch (e) {
+                            res.statusCode = 500;
+                            res.end(JSON.stringify({ error: e.message }));
+                        }
                     });
                     return;
                 }
