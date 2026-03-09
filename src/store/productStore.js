@@ -1,6 +1,4 @@
 import { create } from 'zustand'
-import { databases, DATABASE_ID, COLLECTION_ID } from '../lib/appwrite'
-import { Query } from 'appwrite'
 
 const useProductStore = create((set, get) => ({
     products: [],
@@ -14,13 +12,13 @@ const useProductStore = create((set, get) => ({
 
         set({ loading: true, error: null })
         try {
-            // Fetch all products (limit 1000 to get all)
-            const response = await databases.listDocuments(
-                DATABASE_ID,
-                COLLECTION_ID,
-                [Query.limit(1000)]
-            )
-            set({ products: response.documents, loading: false, initialized: true })
+            // Fetch from local API which proxies to D1
+            const response = await fetch('/api/products')
+            const data = await response.json()
+
+            if (data.error) throw new Error(data.error)
+
+            set({ products: data, loading: false, initialized: true })
         } catch (error) {
             console.error('Error fetching products:', error)
             set({ error: error.message, loading: false })

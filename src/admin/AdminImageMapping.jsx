@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react'
-import { databases, storage, DATABASE_ID, COLLECTION_ID, BUCKET_ID } from '../lib/appwrite'
-import { Query } from 'appwrite'
-
-const PROJECT_ID = '698b47890022a5343849';
-const ENDPOINT = 'https://sgp.cloud.appwrite.io/v1';
-
-function buildUrl(fileId) {
-    return `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${fileId}/view?project=${PROJECT_ID}`;
-}
 
 // Custom Searchable Dropdown Component
 function SearchableSelect({ value, options, onChange, placeholder = "-- Select Product --" }) {
@@ -137,35 +128,37 @@ function AdminImageMapping() {
 
     const reloadData = async () => {
         try {
-            const prodRes = await databases.listDocuments(
-                DATABASE_ID,
-                COLLECTION_ID,
-                [Query.limit(1000)]
-            )
-            const sortedProducts = prodRes.documents
-                .filter(p => p.name !== 'System Settings')
-                .sort((a, b) => a.name.localeCompare(b.name))
+            // Fetch Products from local API pulling from D1
+            const prodsRes = await fetch('/api/products');
+            const prodsJson = await prodsRes.json();
+
+            let sortedProducts = [];
+            if (Array.isArray(prodsJson)) {
+                sortedProducts = prodsJson
+                    .filter(p => p.name !== 'System Settings')
+                    .sort((a, b) => a.name.localeCompare(b.name));
+            }
             setProducts(sortedProducts)
 
-            let allFiles = []
-            let cursor = null
-            while (true) {
-                const queries = [Query.limit(100)]
-                if (cursor) queries.push(Query.cursorAfter(cursor))
-                const res = await storage.listFiles(BUCKET_ID, queries)
-                allFiles.push(...res.files)
-                if (res.files.length < 100) break
-                cursor = res.files[res.files.length - 1].$id
-            }
+            // Fetch unassigned files locally
+            const unRes = await fetch('/api/unassigned');
+            const unFiles = await unRes.json();
 
-            const files = allFiles.filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f.name))
-            files.sort((a, b) => new Date(b.$createdAt) - new Date(a.$createdAt))
+            const files = unFiles.map(f => ({
+                $id: f,
+                name: f,
+                url: `/products/unassigned/${f}`
+            }));
+
+            // Only unassigned will be seen in this tab because we don't have bucket tracking anymore
             setBucketFiles(files)
 
+            // Initialize assignments state using products images array
             const initialAssignments = {}
             for (const product of sortedProducts) {
-                for (const url of (product.images || [])) {
-                    initialAssignments[url] = product.$id
+                const imagesArray = typeof product.images === 'string' ? JSON.parse(product.images || '[]') : (product.images || []);
+                for (const url of imagesArray) {
+                    initialAssignments[url] = product.$id || product.id
                 }
             }
             setAssignments(initialAssignments)
@@ -184,7 +177,6 @@ function AdminImageMapping() {
     }, [])
 
     const handleAssign = async (file, newProductId) => {
-        // Optimistic UI Update
         const oldProductId = assignments[file.url];
         if (oldProductId === newProductId) return;
 
@@ -201,59 +193,31 @@ function AdminImageMapping() {
         setStatusMsg('Auto-saving...')
 
         try {
-            // Re-calculate the next assignments state to perform backend operations
-            const nextAssignments = { ...assignments }
-            if (!newProductId || newProductId === 'unassigned') {
-                delete nextAssignments[file.url]
-            } else {
-                nextAssignments[file.url] = newProductId
+            const res = await fetch('/api/assign', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    oldFileName: file.name,
+                    productId: newProductId,
+                    products
+                })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Server error');
             }
 
-            // 1. Rename File in Storage
-            let newFileName = file.name;
-            if (newProductId && newProductId !== 'unassigned') {
-                const product = products.find(p => p.$id === newProductId);
-                if (product) {
-                    // Count how many files are currently mapped to this newly assigned product
-                    const mappedToNewProduct = Object.keys(nextAssignments).filter(url => nextAssignments[url] === newProductId);
-                    // Determine index for file (1 to 4)
-                    const existingIndex = mappedToNewProduct.indexOf(file.url);
-                    const indexNumber = existingIndex !== -1 ? existingIndex + 1 : mappedToNewProduct.length || 1;
+            const data = await res.json();
 
-                    const extMatch = file.name.match(/\.[0-9a-z]+$/i);
-                    const ext = extMatch ? extMatch[0] : '.jpg';
-                    const cleanName = product.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
-                    newFileName = `${cleanName}-${indexNumber}${ext}`;
+            setBucketFiles(prev => prev.filter(f => f.name !== file.name));
 
-                    if (newFileName !== file.name) {
-                        await storage.updateFile(BUCKET_ID, file.$id, newFileName);
-                    }
-                }
-            }
+            setStatusMsg(`✅ Saved automatically & assigned!`);
 
-            // 2. Update Database for Affected Products
-            const affectedProducts = new Set();
-            if (oldProductId && oldProductId !== 'unassigned') affectedProducts.add(oldProductId);
-            if (newProductId && newProductId !== 'unassigned') affectedProducts.add(newProductId);
-
-            for (const pId of affectedProducts) {
-                const productUrls = Object.keys(nextAssignments).filter(url => nextAssignments[url] === pId);
-                await databases.updateDocument(DATABASE_ID, COLLECTION_ID, pId, {
-                    images: productUrls
-                });
-            }
-
-            // 3. Update File name in local state
-            setBucketFiles(prev => prev.map(f => f.$id === file.$id ? { ...f, name: newFileName } : f))
-
-            setStatusMsg(`✅ Saved automatically & renamed to: ${newFileName}`)
-
-            // Re-fetch quietly to ensure clean sync
             await reloadData()
         } catch (error) {
             console.error('Auto-save error:', error)
             setStatusMsg('❌ Error saving: ' + error.message)
-            // Revert state on failure
             await reloadData()
         }
     }
@@ -261,7 +225,8 @@ function AdminImageMapping() {
 
     let displayFiles = bucketFiles.map(f => ({
         ...f,
-        url: buildUrl(f.$id)
+        $id: f.name,
+        url: f.url
     }))
 
     if (showOnlyUnassigned) {
@@ -289,7 +254,7 @@ function AdminImageMapping() {
         return <div className="loading-container"><Loader className="spin" /> Loading all images and products...</div>
     }
 
-    const productOptions = products.map(p => ({ value: p.$id, label: `${p.name} (${p.category.split('-')[0]})` }));
+    const productOptions = products.map(p => ({ value: p.id || p.$id, label: `${p.name} (${(p.category || 'unknown').split('-')[0]})` }));
 
     return (
         <div className="admin-image-mapping" style={{ paddingBottom: '90px' }}>
@@ -370,7 +335,7 @@ function AdminImageMapping() {
                     const assignedProductId = assignments[file.url] || 'unassigned'
 
                     return (
-                        <div key={file.$id} style={{
+                        <div key={file.$id || file.name} style={{
                             background: '#1a1a2e',
                             borderRadius: '12px',
                             border: assignedProductId !== 'unassigned' ? '1px solid #3a3a4e' : '1px solid #ef444455',
