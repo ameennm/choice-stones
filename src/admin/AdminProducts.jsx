@@ -299,18 +299,46 @@ function AdminProducts() {
                                     <label style={{ display: 'block', marginBottom: '10px' }}>Product Images</label>
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
                                         {getImagesArray(editingProduct.images).map((img, idx) => (
-                                            <div key={idx} style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', aspectRatio: '1/1', background: '#0d0d1a', border: '1px solid #2a2a3e' }}>
+                                            <div key={idx} style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', aspectRatio: '1/1', background: '#0d0d1a', border: '1px solid #2a2a3e', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
                                                 <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                <button
-                                                    onClick={() => {
-                                                        const current = getImagesArray(editingProduct.images);
-                                                        const updated = current.filter((_, i) => i !== idx);
-                                                        setEditingProduct({ ...editingProduct, images: updated });
-                                                    }}
-                                                    style={{ position: 'absolute', top: '4px', right: '4px', background: '#ef4444', color: '#fff', border: 'none', borderRadius: '4px', padding: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                                >
-                                                    <X size={14} />
-                                                </button>
+                                                <div style={{ position: 'absolute', top: '6px', right: '6px', display: 'flex', gap: '4px' }}>
+                                                    <button
+                                                        onClick={() => {
+                                                            const current = getImagesArray(editingProduct.images);
+                                                            const updated = current.filter((_, i) => i !== idx);
+                                                            setEditingProduct({ ...editingProduct, images: updated });
+                                                        }}
+                                                        style={{ background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '6px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}
+                                                        title="Remove from product"
+                                                    >
+                                                        <X size={14} />
+                                                    </button>
+                                                    <button
+                                                        onClick={async () => {
+                                                            if (confirm('Permanently delete this image file from the server? THIS CANNOT BE UNDONE.')) {
+                                                                try {
+                                                                    const res = await fetch('/api/delete-image', {
+                                                                        method: 'POST',
+                                                                        headers: { 'Content-Type': 'application/json' },
+                                                                        body: JSON.stringify({ url: img })
+                                                                    });
+                                                                    if (!res.ok) throw new Error('Delete failed');
+
+                                                                    const current = getImagesArray(editingProduct.images);
+                                                                    const updated = current.filter((_, i) => i !== idx);
+                                                                    setEditingProduct({ ...editingProduct, images: updated });
+                                                                    setStatusMsg('🗑️ Image deleted permanently');
+                                                                } catch (err) {
+                                                                    alert('Delete failed: ' + err.message);
+                                                                }
+                                                            }
+                                                        }}
+                                                        style={{ background: '#ef4444', color: '#fff', border: 'none', borderRadius: '6px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}
+                                                        title="Delete file permanently"
+                                                    >
+                                                        <Trash2 size={14} />
+                                                    </button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

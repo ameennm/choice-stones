@@ -264,11 +264,44 @@ function AdminWholesale() {
                         <div className="modal-body">
                             <div className="image-manager">
                                 <div className="current-images">
-                                    <div className="images-grid">
+                                    <div className="images-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
                                         {getImagesArray(selectedProductForImages.images).map((img, index) => (
-                                            <div key={index} className="image-item">
-                                                <img src={img} onError={(e) => e.target.src = '/logo.png'} />
-                                                <button className="remove-image" onClick={() => removeImage(index)}><X size={16} /></button>
+                                            <div key={index} className="image-item" style={{ position: 'relative', overflow: 'hidden', borderRadius: '12px', background: '#0d0d1a', border: '1px solid #2a2a3e' }}>
+                                                <img src={img} onError={(e) => e.target.src = '/logo.png'} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
+                                                <div style={{ position: 'absolute', top: '8px', right: '8px', display: 'flex', gap: '5px' }}>
+                                                    <button
+                                                        className="remove-image"
+                                                        onClick={() => removeImage(index)}
+                                                        style={{ background: '#3b82f6', width: '28px', height: '28px', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                        title="Remove from product"
+                                                    >
+                                                        <X size={14} />
+                                                    </button>
+                                                    <button
+                                                        onClick={async () => {
+                                                            if (confirm('Permanently delete this image file? THIS CANNOT BE UNDONE.')) {
+                                                                try {
+                                                                    const res = await fetch('/api/delete-image', {
+                                                                        method: 'POST',
+                                                                        headers: { 'Content-Type': 'application/json' },
+                                                                        body: JSON.stringify({ url: img })
+                                                                    });
+                                                                    if (!res.ok) throw new Error('Delete failed');
+
+                                                                    const updatedImages = getImagesArray(selectedProductForImages.images).filter((_, i) => i !== index);
+                                                                    setSelectedProductForImages({ ...selectedProductForImages, images: updatedImages });
+                                                                    setProducts(products.map(p => p.id === selectedProductForImages.id ? { ...p, images: updatedImages } : p));
+                                                                } catch (err) {
+                                                                    alert('Delete failed: ' + err.message);
+                                                                }
+                                                            }
+                                                        }}
+                                                        style={{ background: '#ef4444', width: '28px', height: '28px', borderRadius: '6px', color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                        title="Permanent Delete"
+                                                    >
+                                                        <Trash2 size={14} />
+                                                    </button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

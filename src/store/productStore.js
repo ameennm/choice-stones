@@ -36,7 +36,6 @@ const useProductStore = create((set, get) => ({
             name: 'Paving Stones',
             description: 'Premium quality paving stones for driveways, pathways & outdoor flooring',
             icon: 'Layers',
-            image: '/products/category-paving.jpg',
             productCount: 22
         },
         {
@@ -44,7 +43,6 @@ const useProductStore = create((set, get) => ({
             name: 'Cladding Stones',
             description: 'Natural stone cladding, tiles, mosaics & terracotta for walls & facades',
             icon: 'LayoutGrid',
-            image: '/products/category-cladding.jpg',
             productCount: 60
         },
         {
@@ -52,7 +50,6 @@ const useProductStore = create((set, get) => ({
             name: 'Stone Products',
             description: 'Garden benches, granite pillars, stone tables & chairs',
             icon: 'Landmark',
-            image: '/products/category-stone-products.jpg',
             productCount: 3
         },
         {
@@ -60,7 +57,6 @@ const useProductStore = create((set, get) => ({
             name: 'Artificial Grass & Imported Grass',
             description: 'High-quality artificial and imported grass for landscaping',
             icon: 'Sprout',
-            image: '/products/category-grass.jpg',
             productCount: 5
         },
         {
@@ -68,7 +64,6 @@ const useProductStore = create((set, get) => ({
             name: 'Pebble Stones',
             description: 'Choice river pebbles & decorative pebble collections',
             icon: 'Circle',
-            image: '/products/category-pebbles.jpg',
             productCount: 7
         }
     ]

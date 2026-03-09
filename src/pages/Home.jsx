@@ -1,7 +1,8 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle, Truck, Shield, Award, Star, ChevronLeft, ChevronRight, Phone, Layers, LayoutGrid, Landmark, Sprout, Circle } from 'lucide-react'
-import { categories, testimonials, stats, companyInfo } from '../data/products'
-import { useState } from 'react'
+import useProductStore from '../store/productStore'
+import { testimonials, stats, companyInfo } from '../data/products'
 import './Home.css'
 
 const iconMap = {
@@ -13,7 +14,12 @@ const iconMap = {
 }
 
 function Home() {
+    const { products, categories, fetchProducts } = useProductStore()
     const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
+    useEffect(() => {
+        fetchProducts()
+    }, [fetchProducts])
 
     const nextTestimonial = () => {
         setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
@@ -21,6 +27,16 @@ function Home() {
 
     const prevTestimonial = () => {
         setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    }
+
+    const getCategoryImage = (catId) => {
+        const productWithImage = products.find(p => p.category === catId && p.images && p.images.length > 0);
+        if (productWithImage) {
+            const imgs = productWithImage.images;
+            if (Array.isArray(imgs)) return imgs[0];
+            try { return JSON.parse(imgs)[0]; } catch (e) { return '/logo.png'; }
+        }
+        return '/logo.png';
     }
 
     return (
@@ -72,7 +88,7 @@ function Home() {
                                     className="category-card"
                                     style={{
                                         animationDelay: `${index * 100}ms`,
-                                        backgroundImage: `url("${category.image}")`
+                                        backgroundImage: `url("${getCategoryImage(category.id)}")`
                                     }}
                                 >
                                     <div className="category-overlay"></div>

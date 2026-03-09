@@ -8,24 +8,29 @@ function LocalAdminApi() {
     return {
         name: 'local-admin-api',
         configureServer(server) {
+            const slugify = (text) => {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w-]+/g, '')       // Remove all non-word chars
+                    .replace(/--+/g, '-')           // Replace multiple - with single -
+                    .replace(/^-+/, '')               // Trim - from start of text
+                    .replace(/-+$/, '');              // Trim - from end of text
+            };
+
             server.middlewares.use((req, res, next) => {
                 if (req.url === '/api/unassigned' && req.method === 'GET') {
                     const unassignedDir = path.resolve('public/products/unassigned');
-                    const assignedDir = path.resolve('public/products');
                     const allFiles = [];
 
                     if (fs.existsSync(unassignedDir)) {
                         const files = fs.readdirSync(unassignedDir)
                             .filter(f => fs.statSync(path.join(unassignedDir, f)).isFile())
                             .filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f))
-                            .map(f => ({ name: f, url: `/products/unassigned/${f}`, folder: 'unassigned' }));
-                        allFiles.push(...files);
-                    }
-                    if (fs.existsSync(assignedDir)) {
-                        const files = fs.readdirSync(assignedDir)
-                            .filter(f => fs.statSync(path.join(assignedDir, f)).isFile())
-                            .filter(f => /\.(jpg|jpeg|png|webp|avif)$/i.test(f))
-                            .map(f => ({ name: f, url: `/products/${f}`, folder: 'assigned' }));
+                            .map(f => ({
+                                name: f,
+                                url: `/products/unassigned/${f}`,
+                                folder: 'unassigned'
+                            }));
                         allFiles.push(...files);
                     }
 
@@ -41,12 +46,7 @@ function LocalAdminApi() {
                         if (err) {
                             console.error('D1 Error:', stderr);
                             // Fallback back to local cache if D1 is slow/fails
-                            if (fs.existsSync('full-products-backup.json')) {
-                                const data = JSON.parse(fs.readFileSync('full-products-backup.json', 'utf8'));
-                                res.end(JSON.stringify(data.map(d => ({ id: d.$id || d.id, name: d.name, category: d.category, images: d.images }))));
-                            } else {
-                                res.end(JSON.stringify({ error: "Failed to fetch from D1" }));
-                            }
+                            res.end(JSON.stringify([]));
                         } else {
                             try {
                                 const result = JSON.parse(stdout);
@@ -70,12 +70,26 @@ function LocalAdminApi() {
                             return res.end(JSON.stringify({ error: "Product not found" }));
                         }
 
-                        let currentImages = typeof product.images === 'string' ? JSON.parse(product.images || "[]") : (product.images || []);
-                        const newIndex = currentImages.length + 1;
+                        let currentImagesArray = [];
+                        try {
+                            if (Array.isArray(product.images)) {
+                                currentImagesArray = product.images;
+                            } else if (typeof product.images === 'string') {
+                                currentImagesArray = JSON.parse(product.images || '[]');
+                            }
+                        } catch (e) {
+                            // Malformed JSON fallback
+                            let raw = product.images || '';
+                            if (raw.startsWith('[') && raw.endsWith(']')) {
+                                raw = raw.slice(1, -1);
+                                if (raw) currentImagesArray = raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+                            }
+                        }
 
                         const ext = path.extname(oldFileName);
-                        const cleanPName = productId;
-                        const newFileName = `${cleanPName}-${Date.now()}${ext}`; // Ensure unique to avoid caching issues
+                        const cleanPName = slugify(product.name || productId);
+                        const imageIndex = currentImagesArray.length + 1;
+                        const newFileName = `${cleanPName}-${imageIndex}-${Date.now()}${ext}`; // timestamp for freshness
 
                         const oldPath = path.resolve('public/products/unassigned', oldFileName);
                         const newPath = path.resolve('public/products', newFileName);
@@ -84,8 +98,8 @@ function LocalAdminApi() {
                             fs.renameSync(oldPath, newPath);
                         }
 
-                        currentImages.push(`/products/${newFileName}`);
-                        const newImagesStr = JSON.stringify(currentImages).replace(/'/g, "''");
+                        currentImagesArray.push(`/products/${newFileName}`);
+                        const newImagesStr = JSON.stringify(currentImagesArray).replace(/'/g, "''");
 
                         // Update D1 database
                         const command = `npx wrangler d1 execute choice-db --command "UPDATE products SET images = '${newImagesStr}' WHERE id = '${productId}'" --remote`;
@@ -97,7 +111,7 @@ function LocalAdminApi() {
                                 res.end(JSON.stringify({ error: "Database update failed" }));
                             } else {
                                 res.setHeader('Content-Type', 'application/json');
-                                res.end(JSON.stringify({ success: true, newFileName, images: currentImages }));
+                                res.end(JSON.stringify({ success: true, newFileName, images: currentImagesArray }));
                             }
                         });
                     });

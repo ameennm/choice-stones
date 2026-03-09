@@ -13,10 +13,26 @@ export async function onRequest(context) {
         const { results } = await db.prepare("SELECT id, name, category, subtitle, description, images, price, unit FROM products WHERE name != 'System Settings'").all();
 
         // Parse images JSON string if necessary
-        const processedResults = results.map(p => ({
-            ...p,
-            images: typeof p.images === 'string' ? JSON.parse(p.images || '[]') : (p.images || [])
-        }));
+        const processedResults = results.map(p => {
+            let imagesArray = [];
+            if (typeof p.images === 'string' && p.images.trim()) {
+                try {
+                    imagesArray = JSON.parse(p.images);
+                } catch (e) {
+                    // Fallback for malformed strings like [/products/...]
+                    let raw = p.images.trim();
+                    if (raw.startsWith('[') && raw.endsWith(']')) {
+                        raw = raw.slice(1, -1);
+                        if (raw) {
+                            imagesArray = raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+                        }
+                    }
+                }
+            } else if (Array.isArray(p.images)) {
+                imagesArray = p.images;
+            }
+            return { ...p, images: imagesArray };
+        });
 
         return new Response(JSON.stringify(processedResults), {
             headers: { "Content-Type": "application/json" }
