@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon, Trash2 } from 'lucide-react'
+import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon, Trash2, Upload } from 'lucide-react'
 
 // Custom Searchable Dropdown Component
 function SearchableSelect({ value, options, onChange, placeholder = "-- Select Product --" }) {
@@ -142,9 +142,12 @@ function AdminImageMapping() {
 
             // Fetch manifest from build
             const unRes = await fetch('/api/unassigned');
-            const files = await unRes.json();
-
-            setBucketFiles(files)
+            if (unRes.ok) {
+                const files = await unRes.json();
+                setBucketFiles(files)
+            } else {
+                setBucketFiles([]);
+            }
 
             // Initialize assignments state using products images array
             const initialAssignments = {}
@@ -158,6 +161,45 @@ function AdminImageMapping() {
         } catch (error) {
             console.error('Error fetching data:', error)
             setStatusMsg('Error loading data')
+        }
+    }
+
+    const [isUploading, setIsUploading] = useState(false);
+
+    const handleUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        setStatusMsg('Uploading image...');
+
+        try {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+                const base64Data = reader.result.split(',')[1];
+                const res = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: file.name, base64Data })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.error || 'Upload failed');
+                }
+
+                setStatusMsg(`✅ Image "${file.name}" uploaded to unassigned!`);
+                await reloadData();
+                setIsUploading(false);
+            };
+        } catch (error) {
+            console.error('Upload error:', error);
+            setStatusMsg('❌ Upload error: ' + error.message);
+            setIsUploading(false);
+            if (!window.location.hostname.includes('localhost')) {
+                alert('Live upload is not supported. Use the local development environment.');
+            }
         }
     }
 
@@ -336,12 +378,36 @@ function AdminImageMapping() {
                         }}
                         style={{ width: '18px', height: '18px' }}
                     />
-                    <label htmlFor="unassignedOnly" style={{ cursor: 'pointer' }}>Show Unassigned Images Only</label>
+                    <label htmlFor="unassignedOnly" style={{ cursor: 'pointer' }}>Show Unassigned Only</label>
                 </div>
 
-                <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-                    <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff' }}>{displayFiles.length}</span>
-                    <span style={{ color: '#888', fontSize: '14px', marginLeft: '6px' }}>Images</span>
+                <div className="search-box" style={{ flex: 1, minWidth: '200px', display: 'flex', alignItems: 'center', background: '#0d0d1a', border: '1px solid #3a3a3e', borderRadius: '6px', padding: '4px 10px', marginTop: '15px' }}>
+                    <input
+                        type="text"
+                        placeholder="Search image name..."
+                        value={imgSearch}
+                        onChange={(e) => setImgSearch(e.target.value)}
+                        style={{ background: 'none', border: 'none', color: '#fff', width: '100%', outline: 'none', padding: '4px' }}
+                    />
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginTop: '15px' }}>
+                    <label className="btn btn-primary" style={{ cursor: isUploading ? 'not-allowed' : 'pointer', opacity: isUploading ? 0.7 : 1, display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '14px' }}>
+                        {isUploading ? <Loader className="spin" size={18} /> : <Upload size={18} />}
+                        {isUploading ? 'Uploading...' : 'Upload Image'}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleUpload}
+                            style={{ display: 'none' }}
+                            disabled={isUploading}
+                        />
+                    </label>
+
+                    <div style={{ textAlign: 'right', minWidth: '80px' }}>
+                        <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff' }}>{displayFiles.length}</span>
+                        <span style={{ color: '#888', fontSize: '12px', marginLeft: '4px' }}>Images</span>
+                    </div>
                 </div>
             </div>
 

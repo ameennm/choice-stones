@@ -909,6 +909,20 @@
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+
+    .admin-content {
+        padding: var(--spacing-lg);
+    }
+
+    .modal {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    /* Fixed header on mobile */
+    .admin-header {
+        padding: var(--spacing-md);
+    }
 }
 
 @media (max-width: 768px) {
@@ -932,6 +946,19 @@
         max-width: 100%;
     }
 
+    /* Table scrolling for small screens */
+    .products-table-container {
+        overflow-x: auto;
+    }
+
+    .products-table th:nth-child(3),
+    .products-table td:nth-child(3),
+    .products-table th:nth-child(4),
+    .products-table td:nth-child(4) {
+        display: none;
+        /* Hide price/stock on very small screens to save space */
+    }
+
     .products-table th:nth-child(4),
     .products-table td:nth-child(4),
     .products-table th:nth-child(5),
@@ -940,6 +967,19 @@
     }
 
     .images-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .page-header div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
     }
 }

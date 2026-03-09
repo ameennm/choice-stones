@@ -128,6 +128,29 @@ function LocalAdminApi() {
                     return;
                 }
 
+                if (req.url === '/api/upload-image' && req.method === 'POST') {
+                    let body = Buffer.alloc(0);
+                    req.on('data', chunk => { body = Buffer.concat([body, chunk]) });
+                    req.on('end', () => {
+                        try {
+                            // Simple hack for file upload in vite middleware without busboy/multer
+                            // We expect a base64 string or raw bytes. Let's assume JSON with { name, base64Data }
+                            const { name, base64Data } = JSON.parse(body.toString());
+                            const buffer = Buffer.from(base64Data, 'base64');
+                            const targetPath = path.resolve('public/products/unassigned', name);
+
+                            fs.writeFileSync(targetPath, buffer);
+
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({ success: true, url: `/products/unassigned/${name}` }));
+                        } catch (e) {
+                            res.statusCode = 500;
+                            res.end(JSON.stringify({ error: e.message }));
+                        }
+                    });
+                    return;
+                }
+
                 next();
             });
         }
