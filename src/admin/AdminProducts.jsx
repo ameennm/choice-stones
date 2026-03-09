@@ -10,6 +10,7 @@ function AdminProducts() {
     const [showModal, setShowModal] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null)
     const [statusMsg, setStatusMsg] = useState('')
+    const [isUploading, setIsUploading] = useState(false)
 
     // Fetch products from local API (proxied to D1)
     const fetchProducts = async () => {
@@ -296,8 +297,46 @@ function AdminProducts() {
                                             </div>
                                         ))}
                                     </div>
-                                    <p style={{ fontSize: '12px', color: '#888', marginTop: '10px' }}>
-                                        Use the <strong>Master Image Mapping</strong> tool to upload and assign new images to this product.
+                                    <div style={{ marginTop: '10px' }}>
+                                        <label className="btn btn-secondary btn-sm" style={{ cursor: isUploading ? 'not-allowed' : 'pointer', opacity: isUploading ? 0.7 : 1, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                                            {isUploading ? <Loader className="spin" size={16} /> : <Upload size={16} />}
+                                            {isUploading ? 'Uploading...' : 'Upload & Add Image'}
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={async (e) => {
+                                                    const file = e.target.files[0];
+                                                    if (!file) return;
+                                                    setIsUploading(true);
+                                                    try {
+                                                        const reader = new FileReader();
+                                                        reader.readAsDataURL(file);
+                                                        reader.onload = async () => {
+                                                            const base64Data = reader.result.split(',')[1];
+                                                            const res = await fetch('/api/upload-image', {
+                                                                method: 'POST',
+                                                                headers: { 'Content-Type': 'application/json' },
+                                                                body: JSON.stringify({ name: file.name, base64Data })
+                                                            });
+                                                            if (!res.ok) throw new Error('Upload failed');
+                                                            const data = await res.json();
+                                                            const current = Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]');
+                                                            setEditingProduct({ ...editingProduct, images: [...current, data.url] });
+                                                            setIsUploading(false);
+                                                        };
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                        alert('Upload failed: ' + err.message);
+                                                        setIsUploading(false);
+                                                    }
+                                                }}
+                                                style={{ display: 'none' }}
+                                                disabled={isUploading}
+                                            />
+                                        </label>
+                                    </div>
+                                    <p style={{ fontSize: '11px', color: '#888', marginTop: '10px' }}>
+                                        Note: New uploads will save to the unassigned folder.
                                     </p>
                                 </div>
                             </div>

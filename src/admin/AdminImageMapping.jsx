@@ -224,10 +224,14 @@ function AdminImageMapping() {
             setBucketFiles(prev => prev.filter(f => f.url !== file.url));
             setStatusMsg(`🗑️ Image "${file.name}" deleted permanently.`);
         } catch (error) {
-            console.error('Delete error:', error);
-            // Fallback for live site or unexpected error
+            // Only log if it's not the intentional 403 live-restriction error
+            if (!error.message.includes('Live image deletion')) {
+                console.error('Delete error:', error);
+            }
+
+            // Fallback for live site: hide it from the UI for the current session
             setBucketFiles(prev => prev.filter(f => f.url !== file.url));
-            setStatusMsg(`🗑️ Image "${file.name}" hidden session-wide. (Live delete requires local cleanup & redeploy).`);
+            setStatusMsg(`📝 Image "${file.name}" hidden. (Permanent deletion requires local cleanup and redeploy).`);
         }
     }
 
