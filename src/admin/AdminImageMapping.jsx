@@ -294,11 +294,14 @@ function AdminImageMapping() {
 
             const data = await res.json();
 
-            setBucketFiles(prev => prev.filter(f => f.name !== file.name));
+            if (newProductId && newProductId !== 'unassigned') {
+                setBucketFiles(prev => prev.filter(f => f.name !== file.name));
+            } else {
+                // If unassigned, just reload state
+                await reloadData();
+            }
 
-            setStatusMsg(`✅ Saved automatically & assigned!`);
-
-            await reloadData()
+            setStatusMsg(data.message || `✅ Saved automatically & assigned!`);
         } catch (error) {
             console.error('Auto-save error:', error)
             setStatusMsg('❌ Error saving: ' + error.message)

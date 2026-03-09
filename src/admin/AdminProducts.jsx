@@ -322,12 +322,13 @@ function AdminProducts() {
                                                                         headers: { 'Content-Type': 'application/json' },
                                                                         body: JSON.stringify({ url: img })
                                                                     });
-                                                                    if (!res.ok) throw new Error('Delete failed');
+                                                                    const data = await res.json();
+                                                                    if (!res.ok) throw new Error(data.message || 'Delete failed');
 
                                                                     const current = getImagesArray(editingProduct.images);
                                                                     const updated = current.filter((_, i) => i !== idx);
                                                                     setEditingProduct({ ...editingProduct, images: updated });
-                                                                    setStatusMsg('🗑️ Image deleted permanently');
+                                                                    setStatusMsg(data.message || '🗑️ Image removed from product');
                                                                 } catch (err) {
                                                                     alert('Delete failed: ' + err.message);
                                                                 }

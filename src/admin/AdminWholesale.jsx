@@ -286,11 +286,13 @@ function AdminWholesale() {
                                                                         headers: { 'Content-Type': 'application/json' },
                                                                         body: JSON.stringify({ url: img })
                                                                     });
-                                                                    if (!res.ok) throw new Error('Delete failed');
+                                                                    const data = await res.json();
+                                                                    if (!res.ok) throw new Error(data.error || 'Delete failed');
 
                                                                     const updatedImages = getImagesArray(selectedProductForImages.images).filter((_, i) => i !== index);
                                                                     setSelectedProductForImages({ ...selectedProductForImages, images: updatedImages });
                                                                     setProducts(products.map(p => p.id === selectedProductForImages.id ? { ...p, images: updatedImages } : p));
+                                                                    alert(data.message || '🗑️ Image removed successfully.');
                                                                 } catch (err) {
                                                                     alert('Delete failed: ' + err.message);
                                                                 }
