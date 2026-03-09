@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { getImagesArray } from '../lib/utils'
 import { Loader, ChevronLeft, ChevronRight, Image as ImageIcon, Trash2, Upload } from 'lucide-react'
 
 // Custom Searchable Dropdown Component
@@ -127,22 +128,6 @@ function AdminImageMapping() {
 
     const ITEMS_PER_PAGE = 24
 
-    const getImagesArray = (images) => {
-        if (Array.isArray(images)) return images;
-        if (!images) return [];
-        try {
-            return JSON.parse(images);
-        } catch (e) {
-            // Fallback for malformed strings like [/products/...]
-            let raw = String(images || '').trim();
-            if (raw.startsWith('[') && raw.endsWith(']')) {
-                raw = raw.slice(1, -1);
-                if (!raw) return [];
-                return raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-            }
-            return [];
-        }
-    }
 
     const reloadData = async () => {
         try {
@@ -450,8 +435,8 @@ function AdminImageMapping() {
             {/* Image Grid */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                gap: '16px'
+                gridTemplateColumns: window.innerWidth < 480 ? 'repeat(2, 1fr)' : 'repeat(auto-fill, minmax(260px, 1fr))',
+                gap: window.innerWidth < 480 ? '8px' : '16px'
             }}>
                 {paginatedFiles.map((file) => {
                     const assignedProductId = assignments[file.url] || 'unassigned'

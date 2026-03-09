@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { getImagesArray } from '../lib/utils'
 import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
 
 function AdminWholesale() {
@@ -11,22 +12,6 @@ function AdminWholesale() {
     const [selectedProductForImages, setSelectedProductForImages] = useState(null)
     const [uploading, setUploading] = useState(false)
 
-    const getImagesArray = (images) => {
-        if (Array.isArray(images)) return images;
-        if (!images) return [];
-        try {
-            return JSON.parse(images);
-        } catch (e) {
-            // Fallback for malformed strings like [/products/...]
-            let raw = String(images).trim();
-            if (raw.startsWith('[') && raw.endsWith(']')) {
-                raw = raw.slice(1, -1);
-                if (!raw) return [];
-                return raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-            }
-            return [];
-        }
-    }
 
     // Fetch wholesale products
     const fetchProducts = async () => {
@@ -47,12 +32,22 @@ function AdminWholesale() {
     }, [])
 
     const filteredProducts = products.filter(product => {
-        return product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        return (product.name || '').toLowerCase().includes(searchTerm.toLowerCase())
     })
 
     const handleDelete = async (id) => {
         if (confirm('Are you sure you want to delete this wholesale product?')) {
-            alert('Delete functionality not yet implemented in Cloudflare proxy.');
+            try {
+                const res = await fetch('/api/delete-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id })
+                });
+                if (!res.ok) throw new Error('Delete failed');
+                fetchProducts();
+            } catch (err) {
+                alert('Delete failed: ' + err.message);
+            }
         }
     }
 
@@ -104,57 +99,71 @@ function AdminWholesale() {
 
     // Image logic is same as AdminProducts, can be extracted but for speed copying
     const openImageManager = (product) => {
-        setSelectedProductForImages(product)
+        setSelectedProductForImages({ ...product })
         setShowImageModal(true)
     }
 
     const handleImageUpload = async (e) => {
-        const files = Array.from(e.target.files)
-        if (!files.length) return
-        if (selectedProductForImages.images.length + files.length > 4) {
-            alert('Maximum 4 images allowed per product')
-            return
-        }
-        setUploading(true)
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setUploading(true);
         try {
-            const uploadedUrls = []
-            for (const file of files) {
-                const response = await storage.createFile(BUCKET_ID, ID.unique(), file)
-                const fileUrl = storage.getFileView(BUCKET_ID, response.$id).href
-                uploadedUrls.push(fileUrl)
-            }
-            const updatedImages = [...(selectedProductForImages.images || []), ...uploadedUrls]
-            const updatedProduct = await databases.updateDocument(
-                DATABASE_ID,
-                COLLECTION_ID,
-                selectedProductForImages.$id,
-                { images: updatedImages }
-            )
-            setSelectedProductForImages(updatedProduct)
-            setProducts(products.map(p => p.$id === updatedProduct.$id ? updatedProduct : p))
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+                const base64Data = reader.result.split(',')[1];
+                const res = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: file.name, base64Data })
+                });
+
+                if (!res.ok) throw new Error('Upload failed');
+                const data = await res.json();
+
+                const currentImages = getImagesArray(selectedProductForImages.images);
+                const updatedImages = [...currentImages, data.url];
+
+                // Update database
+                const updateRes = await fetch('/api/update-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ...selectedProductForImages, images: updatedImages })
+                });
+
+                if (!updateRes.ok) throw new Error('Failed to update product images');
+
+                setSelectedProductForImages({ ...selectedProductForImages, images: updatedImages });
+                fetchProducts();
+                setUploading(false);
+            };
         } catch (error) {
-            console.error('Error uploading images:', error)
-            alert('Failed to upload images')
-        } finally {
-            setUploading(false)
+            console.error('Error uploading images:', error);
+            alert('Failed to upload images: ' + error.message);
+            setUploading(false);
         }
     }
 
     const removeImage = async (indexToRemove) => {
-        if (!confirm('Remove this image?')) return
+        if (!confirm('Remove this image from this product?')) return
         const currentImages = getImagesArray(selectedProductForImages.images);
         const updatedImages = currentImages.filter((_, index) => index !== indexToRemove)
+
         try {
-            const updatedProduct = await databases.updateDocument(
-                DATABASE_ID,
-                COLLECTION_ID,
-                selectedProductForImages.$id,
-                { images: updatedImages }
-            )
-            setSelectedProductForImages(updatedProduct)
-            setProducts(products.map(p => p.$id === updatedProduct.$id ? updatedProduct : p))
+            const res = await fetch('/api/update-product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...selectedProductForImages, images: updatedImages })
+            });
+
+            if (!res.ok) throw new Error('Failed to update');
+
+            setSelectedProductForImages({ ...selectedProductForImages, images: updatedImages });
+            fetchProducts();
         } catch (error) {
             console.error('Error removing image:', error)
+            alert('Failed to remove: ' + error.message);
         }
     }
 
@@ -264,18 +273,17 @@ function AdminWholesale() {
                         <div className="modal-body">
                             <div className="image-manager">
                                 <div className="current-images">
-                                    <div className="images-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
+                                    <div className="admin-image-grid">
                                         {getImagesArray(selectedProductForImages.images).map((img, index) => (
-                                            <div key={index} className="image-item" style={{ position: 'relative', overflow: 'hidden', borderRadius: '12px', background: '#0d0d1a', border: '1px solid #2a2a3e' }}>
+                                            <div key={index} className="admin-image-item">
                                                 <img src={img} onError={(e) => e.target.src = '/logo.png'} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
-                                                <div style={{ position: 'absolute', top: '8px', right: '8px', display: 'flex', gap: '5px' }}>
+                                                <div className="admin-image-actions">
                                                     <button
-                                                        className="remove-image"
                                                         onClick={() => removeImage(index)}
-                                                        style={{ background: '#3b82f6', width: '28px', height: '28px', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                        className="admin-image-btn primary"
                                                         title="Remove from product"
                                                     >
-                                                        <X size={14} />
+                                                        <X size={16} />
                                                     </button>
                                                     <button
                                                         onClick={async () => {
@@ -298,10 +306,10 @@ function AdminWholesale() {
                                                                 }
                                                             }
                                                         }}
-                                                        style={{ background: '#ef4444', width: '28px', height: '28px', borderRadius: '6px', color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                        className="admin-image-btn danger"
                                                         title="Permanent Delete"
                                                     >
-                                                        <Trash2 size={14} />
+                                                        <Trash2 size={16} />
                                                     </button>
                                                 </div>
                                             </div>

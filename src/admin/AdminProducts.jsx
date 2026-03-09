@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { getImagesArray } from '../lib/utils'
 import { Plus, Search, Edit, Trash2, Image, X, Upload, Save, Loader } from 'lucide-react'
 import { categories } from '../data/products'
 
@@ -12,22 +13,6 @@ function AdminProducts() {
     const [isUploading, setIsUploading] = useState(false)
     const [statusMsg, setStatusMsg] = useState('')
 
-    const getImagesArray = (images) => {
-        if (Array.isArray(images)) return images;
-        if (!images) return [];
-        try {
-            return JSON.parse(images);
-        } catch (e) {
-            // Fallback for malformed strings like [/products/...]
-            let raw = String(images).trim();
-            if (raw.startsWith('[') && raw.endsWith(']')) {
-                raw = raw.slice(1, -1);
-                if (!raw) return [];
-                return raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-            }
-            return [];
-        }
-    }
 
     // Fetch products from local API (proxied to D1)
     const fetchProducts = async () => {
@@ -60,10 +45,19 @@ function AdminProducts() {
     })
 
     const handleDelete = async (id) => {
-        if (confirm('Are you sure you want to delete this product? In D1 migration, this will require a manual SQL command or an API update.')) {
-            // Note: Currently we don't have a DELETE endpoint in the local proxy, but we can add one if needed.
-            // For now, let's keep it as an alert.
-            alert('Delete functionality not yet implemented in D1 proxy.');
+        if (confirm('Are you sure you want to delete this product?')) {
+            try {
+                const res = await fetch('/api/delete-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id })
+                });
+                if (!res.ok) throw new Error('Delete failed');
+                setStatusMsg('✅ Product deleted successfully');
+                fetchProducts();
+            } catch (err) {
+                alert('Delete failed: ' + err.message);
+            }
         }
     }
 
@@ -171,7 +165,7 @@ function AdminProducts() {
                     </thead>
                     <tbody>
                         {filteredProducts.map(product => {
-                            const images = typeof product.images === 'string' ? JSON.parse(product.images || '[]') : (product.images || []);
+                            const images = getImagesArray(product.images);
                             return (
                                 <tr key={product.id}>
                                     <td>
@@ -194,7 +188,7 @@ function AdminProducts() {
                                     </td>
                                     <td>₹{product.price}/{product.unit}</td>
                                     <td>
-                                        <span className={`status-badge ${product.inStock ? 'success' : 'danger'}`}>
+                                        <span className={`status - badge ${product.inStock ? 'success' : 'danger'} `}>
                                             {product.inStock ? 'In Stock' : 'Out of Stock'}
                                         </span>
                                     </td>
@@ -229,7 +223,7 @@ function AdminProducts() {
                 )}
             </div>
 
-            {/* Edit/Add Modal (Simplified for now) */}
+            {/* Edit/Add Modal */}
             {showModal && editingProduct && (
                 <div className="modal-overlay">
                     <div className="modal">
@@ -297,21 +291,21 @@ function AdminProducts() {
                                 {/* Image Management */}
                                 <div className="form-group full-width">
                                     <label style={{ display: 'block', marginBottom: '10px' }}>Product Images</label>
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+                                    <div className="admin-image-grid">
                                         {getImagesArray(editingProduct.images).map((img, idx) => (
-                                            <div key={idx} style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', aspectRatio: '1/1', background: '#0d0d1a', border: '1px solid #2a2a3e', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+                                            <div key={idx} className="admin-image-item">
                                                 <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                <div style={{ position: 'absolute', top: '6px', right: '6px', display: 'flex', gap: '4px' }}>
+                                                <div className="admin-image-actions">
                                                     <button
                                                         onClick={() => {
                                                             const current = getImagesArray(editingProduct.images);
                                                             const updated = current.filter((_, i) => i !== idx);
                                                             setEditingProduct({ ...editingProduct, images: updated });
                                                         }}
-                                                        style={{ background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '6px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}
+                                                        className="admin-image-btn primary"
                                                         title="Remove from product"
                                                     >
-                                                        <X size={14} />
+                                                        <X size={16} />
                                                     </button>
                                                     <button
                                                         onClick={async () => {
@@ -334,10 +328,10 @@ function AdminProducts() {
                                                                 }
                                                             }
                                                         }}
-                                                        style={{ background: '#ef4444', color: '#fff', border: 'none', borderRadius: '6px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}
+                                                        className="admin-image-btn danger"
                                                         title="Delete file permanently"
                                                     >
-                                                        <Trash2 size={14} />
+                                                        <Trash2 size={16} />
                                                     </button>
                                                 </div>
                                             </div>

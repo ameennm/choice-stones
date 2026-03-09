@@ -12,24 +12,22 @@ export async function onRequest(context) {
     try {
         const { results } = await db.prepare("SELECT id, name, category, subtitle, description, images, price, unit FROM products WHERE name != 'System Settings'").all();
 
-        // Parse images JSON string if necessary
+        // Robust parsing for production Worker
         const processedResults = results.map(p => {
             let imagesArray = [];
-            if (typeof p.images === 'string' && p.images.trim()) {
+            const raw = (p.images || '').trim();
+            if (raw) {
                 try {
-                    imagesArray = JSON.parse(p.images);
+                    const parsed = JSON.parse(raw);
+                    imagesArray = Array.isArray(parsed) ? parsed : [parsed];
                 } catch (e) {
-                    // Fallback for malformed strings like [/products/...]
-                    let raw = p.images.trim();
                     if (raw.startsWith('[') && raw.endsWith(']')) {
-                        raw = raw.slice(1, -1);
-                        if (raw) {
-                            imagesArray = raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
-                        }
+                        const inner = raw.slice(1, -1).trim();
+                        imagesArray = inner ? inner.split(',').map(s => s.trim().replace(/^["']|["']$/g, '')) : [];
+                    } else {
+                        imagesArray = [raw];
                     }
                 }
-            } else if (Array.isArray(p.images)) {
-                imagesArray = p.images;
             }
             return { ...p, images: imagesArray };
         });

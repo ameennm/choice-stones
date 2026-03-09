@@ -31,12 +31,7 @@ function Home() {
 
     const getCategoryImage = (catId) => {
         const productWithImage = products.find(p => p.category === catId && p.images && p.images.length > 0);
-        if (productWithImage) {
-            const imgs = productWithImage.images;
-            if (Array.isArray(imgs)) return imgs[0];
-            try { return JSON.parse(imgs)[0]; } catch (e) { return '/logo.png'; }
-        }
-        return '/logo.png';
+        return productWithImage ? productWithImage.images[0] : '/logo.png';
     }
 
     return (

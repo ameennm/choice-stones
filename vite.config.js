@@ -41,18 +41,40 @@ function LocalAdminApi() {
 
                 if (req.url === '/api/products' && req.method === 'GET') {
                     // Exec query to D1 for live product mapping
-                    exec('npx wrangler d1 execute choice-db --command "SELECT id, name, category, images FROM products" --json --remote', (err, stdout, stderr) => {
+                    exec('npx wrangler d1 execute choice-db --command "SELECT id, name, category, subtitle, description, images, price, unit, inStock, featured FROM products WHERE name != \'System Settings\'" --json --remote', (err, stdout, stderr) => {
                         res.setHeader('Content-Type', 'application/json');
                         if (err) {
                             console.error('D1 Error:', stderr);
-                            // Fallback back to local cache if D1 is slow/fails
                             res.end(JSON.stringify([]));
                         } else {
                             try {
                                 const result = JSON.parse(stdout);
-                                res.end(JSON.stringify(result[0].results));
+                                const rawProducts = result[0].results;
+
+                                // Robust parsing for local proxy to match production worker
+                                const processed = rawProducts.map(p => {
+                                    let imagesArray = [];
+                                    const raw = (p.images || '').trim();
+                                    if (raw) {
+                                        try {
+                                            const parsed = JSON.parse(raw);
+                                            imagesArray = Array.isArray(parsed) ? parsed : [parsed];
+                                        } catch (e) {
+                                            if (raw.startsWith('[') && raw.endsWith(']')) {
+                                                const inner = raw.slice(1, -1).trim();
+                                                imagesArray = inner ? inner.split(',').map(s => s.trim().replace(/^["']|["']$/g, '')) : [];
+                                            } else {
+                                                imagesArray = [raw];
+                                            }
+                                        }
+                                    }
+                                    return { ...p, images: imagesArray };
+                                });
+
+                                res.end(JSON.stringify(processed));
                             } catch (e) {
-                                res.end(JSON.stringify({ error: "Failed to parse D1 stats" }));
+                                console.error('Parse error:', e);
+                                res.end(JSON.stringify({ error: "Failed to parse D1 output" }));
                             }
                         }
                     });

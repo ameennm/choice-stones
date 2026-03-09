@@ -58,13 +58,15 @@ function ProductDetail() {
     const categoryName = categories.find(c => c.id === product.category)?.name || product.category
 
     const nextImage = () => {
-        if (!product.images || product.images.length === 0) return
-        setSelectedImage((prev) => (prev + 1) % product.images.length)
+        const images = product.images || [];
+        if (images.length === 0) return
+        setSelectedImage((prev) => (prev + 1) % images.length)
     }
 
     const prevImage = () => {
-        if (!product.images || product.images.length === 0) return
-        setSelectedImage((prev) => (prev - 1 + product.images.length) % product.images.length)
+        const images = product.images || [];
+        if (images.length === 0) return
+        setSelectedImage((prev) => (prev - 1 + images.length) % images.length)
     }
 
     const handleImgError = (index) => {

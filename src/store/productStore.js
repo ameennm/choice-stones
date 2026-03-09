@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { getImagesArray } from '../lib/utils'
 
 const useProductStore = create((set, get) => ({
     products: [],
@@ -18,7 +19,13 @@ const useProductStore = create((set, get) => ({
 
             if (data.error) throw new Error(data.error)
 
-            set({ products: data, loading: false, initialized: true })
+            // Ensure images are parsed as arrays for safety
+            const processedProducts = Array.isArray(data) ? data.map(p => ({
+                ...p,
+                images: getImagesArray(p.images)
+            })) : []
+
+            set({ products: processedProducts, loading: false, initialized: true })
         } catch (error) {
             console.error('Error fetching products:', error)
             set({ error: error.message, loading: false })
