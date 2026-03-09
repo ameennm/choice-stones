@@ -62,8 +62,27 @@ function AdminWholesale() {
     }
 
     const handleSave = async () => {
-        alert('Wholesale product editing is pending Cloudflare API migration. Use the Master Image Mapping for images.');
-        setShowModal(false);
+        setIsLoading(true);
+        try {
+            const res = await fetch('/api/update-product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...editingProduct, category: 'wholesale' })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Failed to update');
+            }
+
+            setShowModal(false);
+            fetchProducts();
+        } catch (error) {
+            console.error('Error saving wholesale product:', error);
+            alert('Failed to save: ' + error.message);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     // Image logic is same as AdminProducts, can be extracted but for speed copying

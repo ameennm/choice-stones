@@ -73,14 +73,24 @@ function AdminProducts() {
     const handleSave = async () => {
         setStatusMsg('Saving...')
         try {
-            // Since we don't have a generic "update product" endpoint yet, 
-            // and the user primarily wants to fix IMAGES, let's inform them.
-            // We could add an /api/update-product to vite.config.js
-            alert('General product editing (text/price) is pending migration to D1 API. Use the Image Mapping tool for image assignments.');
+            const res = await fetch('/api/update-product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(editingProduct)
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Failed to update');
+            }
+
+            setStatusMsg('✅ Product updated successfully!');
             setShowModal(false);
+            fetchProducts(); // Refresh list
         } catch (error) {
             console.error('Error saving product:', error)
-            setStatusMsg('Failed to save product')
+            setStatusMsg('❌ Failed to save: ' + error.message)
+            alert('Failed to save: ' + error.message);
         }
     }
 
@@ -212,21 +222,67 @@ function AdminProducts() {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <p>Product editing is currently read-only in this view during migration.</p>
                             <div className="form-grid">
                                 <div className="form-group">
                                     <label>Product Name</label>
-                                    <input type="text" value={editingProduct.name} readOnly />
+                                    <input
+                                        type="text"
+                                        value={editingProduct.name}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Category</label>
-                                    <input type="text" value={editingProduct.category} readOnly />
+                                    <select
+                                        value={editingProduct.category}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                                    >
+                                        {categories.map(cat => (
+                                            <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>Price (₹)</label>
+                                    <input
+                                        type="number"
+                                        value={editingProduct.price}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, price: parseFloat(e.target.value) })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Unit</label>
+                                    <input
+                                        type="text"
+                                        value={editingProduct.unit}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, unit: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group full-width" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <input
+                                        type="checkbox"
+                                        id="inStock"
+                                        checked={editingProduct.inStock}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, inStock: e.target.checked })}
+                                    />
+                                    <label htmlFor="inStock" style={{ margin: 0 }}>In Stock</label>
+                                </div>
+                                <div className="form-group full-width">
+                                    <label>Description</label>
+                                    <textarea
+                                        value={editingProduct.description}
+                                        onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })}
+                                        rows="3"
+                                    />
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-secondary" onClick={() => setShowModal(false)}>
-                                Close
+                                Cancel
+                            </button>
+                            <button className="btn btn-primary" onClick={handleSave}>
+                                <Save size={18} /> Save Changes
                             </button>
                         </div>
                     </div>
