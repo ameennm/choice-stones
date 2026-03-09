@@ -561,6 +561,7 @@
     border-radius: var(--radius-full);
     font-size: var(--text-sm);
     color: var(--color-primary);
+    white-space: nowrap;
 }
 
 .status-badge {
@@ -957,13 +958,6 @@
     .products-table td:nth-child(4) {
         display: none;
         /* Hide price/stock on very small screens to save space */
-    }
-
-    .products-table th:nth-child(4),
-    .products-table td:nth-child(4),
-    .products-table th:nth-child(5),
-    .products-table td:nth-child(5) {
-        display: none;
     }
 
     .images-grid {
