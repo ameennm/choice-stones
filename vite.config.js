@@ -151,6 +151,34 @@ function LocalAdminApi() {
                     return;
                 }
 
+                if (req.url === '/api/update-product' && req.method === 'POST') {
+                    let body = '';
+                    req.on('data', chunk => { body += chunk.toString() });
+                    req.on('end', () => {
+                        const product = JSON.parse(body);
+                        const { id, name, category, subtitle, description, price, unit, inStock, featured, images } = product;
+
+                        const imagesStr = Array.isArray(images) ? JSON.stringify(images) : (images || '[]');
+                        const safeDesc = (description || '').replace(/'/g, "''");
+                        const safeName = (name || '').replace(/'/g, "''");
+                        const safeSub = (subtitle || '').replace(/'/g, "''");
+
+                        const command = `npx wrangler d1 execute choice-db --remote --command "UPDATE products SET name = '${safeName}', category = '${category}', subtitle = '${safeSub}', description = '${safeDesc}', price = ${price || 0}, unit = '${unit || 'sq.ft'}', inStock = ${inStock ? 1 : 0}, featured = ${featured ? 1 : 0}, images = '${imagesStr.replace(/'/g, "''")}' WHERE id = '${id}'"`;
+
+                        exec(command, (err, stdout, stderr) => {
+                            res.setHeader('Content-Type', 'application/json');
+                            if (err) {
+                                console.error('D1 Error:', stderr);
+                                res.statusCode = 500;
+                                res.end(JSON.stringify({ error: "Local D1 Sync Failed" }));
+                            } else {
+                                res.end(JSON.stringify({ success: true }));
+                            }
+                        });
+                    });
+                    return;
+                }
+
                 next();
             });
         }
