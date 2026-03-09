@@ -9,8 +9,25 @@ function AdminProducts() {
     const [selectedCategory, setSelectedCategory] = useState('all')
     const [showModal, setShowModal] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null)
-    const [statusMsg, setStatusMsg] = useState('')
     const [isUploading, setIsUploading] = useState(false)
+    const [statusMsg, setStatusMsg] = useState('')
+
+    const getImagesArray = (images) => {
+        if (Array.isArray(images)) return images;
+        if (!images) return [];
+        try {
+            return JSON.parse(images);
+        } catch (e) {
+            // Fallback for malformed strings like [/products/...]
+            let raw = String(images).trim();
+            if (raw.startsWith('[') && raw.endsWith(']')) {
+                raw = raw.slice(1, -1);
+                if (!raw) return [];
+                return raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+            }
+            return [];
+        }
+    }
 
     // Fetch products from local API (proxied to D1)
     const fetchProducts = async () => {
@@ -281,12 +298,12 @@ function AdminProducts() {
                                 <div className="form-group full-width">
                                     <label style={{ display: 'block', marginBottom: '10px' }}>Product Images</label>
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
-                                        {(Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]')).map((img, idx) => (
+                                        {getImagesArray(editingProduct.images).map((img, idx) => (
                                             <div key={idx} style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', aspectRatio: '1/1', background: '#0d0d1a', border: '1px solid #2a2a3e' }}>
                                                 <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                                 <button
                                                     onClick={() => {
-                                                        const current = Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]');
+                                                        const current = getImagesArray(editingProduct.images);
                                                         const updated = current.filter((_, i) => i !== idx);
                                                         setEditingProduct({ ...editingProduct, images: updated });
                                                     }}
@@ -320,7 +337,7 @@ function AdminProducts() {
                                                             });
                                                             if (!res.ok) throw new Error('Upload failed');
                                                             const data = await res.json();
-                                                            const current = Array.isArray(editingProduct.images) ? editingProduct.images : JSON.parse(editingProduct.images || '[]');
+                                                            const current = getImagesArray(editingProduct.images);
                                                             setEditingProduct({ ...editingProduct, images: [...current, data.url] });
                                                             setIsUploading(false);
                                                         };

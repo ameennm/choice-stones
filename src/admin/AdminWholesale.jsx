@@ -11,6 +11,23 @@ function AdminWholesale() {
     const [selectedProductForImages, setSelectedProductForImages] = useState(null)
     const [uploading, setUploading] = useState(false)
 
+    const getImagesArray = (images) => {
+        if (Array.isArray(images)) return images;
+        if (!images) return [];
+        try {
+            return JSON.parse(images);
+        } catch (e) {
+            // Fallback for malformed strings like [/products/...]
+            let raw = String(images).trim();
+            if (raw.startsWith('[') && raw.endsWith(']')) {
+                raw = raw.slice(1, -1);
+                if (!raw) return [];
+                return raw.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+            }
+            return [];
+        }
+    }
+
     // Fetch wholesale products
     const fetchProducts = async () => {
         try {
@@ -125,7 +142,8 @@ function AdminWholesale() {
 
     const removeImage = async (indexToRemove) => {
         if (!confirm('Remove this image?')) return
-        const updatedImages = selectedProductForImages.images.filter((_, index) => index !== indexToRemove)
+        const currentImages = getImagesArray(selectedProductForImages.images);
+        const updatedImages = currentImages.filter((_, index) => index !== indexToRemove)
         try {
             const updatedProduct = await databases.updateDocument(
                 DATABASE_ID,
@@ -182,7 +200,7 @@ function AdminWholesale() {
                                 <td>
                                     <div className="product-cell">
                                         <img
-                                            src={product.images && product.images.length > 0 ? product.images[0] : '/logo.png'}
+                                            src={getImagesArray(product.images)[0] || '/logo.png'}
                                             alt={product.name}
                                             onError={(e) => e.target.src = '/logo.png'}
                                         />
@@ -247,7 +265,7 @@ function AdminWholesale() {
                             <div className="image-manager">
                                 <div className="current-images">
                                     <div className="images-grid">
-                                        {selectedProductForImages.images?.map((img, index) => (
+                                        {getImagesArray(selectedProductForImages.images).map((img, index) => (
                                             <div key={index} className="image-item">
                                                 <img src={img} onError={(e) => e.target.src = '/logo.png'} />
                                                 <button className="remove-image" onClick={() => removeImage(index)}><X size={16} /></button>
