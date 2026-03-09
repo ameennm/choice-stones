@@ -1,0 +1,143 @@
+=== Fix remaining products from git history ===
+
+Fetching products...
+Products still needing fix: 17
+  - Waterfall Black (cladding-stones): /products/waterfall-black-1.jpg, /products/waterfall-black-2.jpg, /products/waterfall-black-3.jpg, /products/waterfall-black-4.jpg
+  - Waterfall Autumn (cladding-stones): /products/waterfall-autumn-1.jpg, /products/waterfall-autumn-2.jpg, /products/waterfall-autumn-3.jpg, /products/waterfall-autumn-4.jpg
+  - Panel Restik Black (cladding-stones): /products/panel-restik-black-1.jpg, /products/panel-restik-black-2.jpg, /products/panel-restik-black-3.jpg, /products/panel-restik-black-4.jpg
+  - Panel 3D Mix (cladding-stones): /products/panel-3d-mix-1.jpg, /products/panel-3d-mix-2.jpg, /products/panel-3d-mix-3.jpg, /products/panel-3d-mix-4.jpg
+  - Panel Indian Autumn (cladding-stones): /products/panel-indian-autumn-1.jpg, /products/panel-indian-autumn-2.jpg, /products/panel-indian-autumn-3.jpg, /products/panel-indian-autumn-4.jpg
+  - Panel Green Restik (cladding-stones): /products/panel-green-restik-1.jpg, /products/panel-green-restik-2.jpg, /products/panel-green-restik-3.jpg, /products/panel-green-restik-4.jpg
+  - Panel L Black (cladding-stones): /products/panel-l-black-1.jpg, /products/panel-l-black-2.jpg, /products/panel-l-black-3.jpg, /products/panel-l-black-4.jpg
+  - Garden Stone Bench (stone-products): /products/garden-stone-bench-1.jpg, /products/garden-stone-bench-2.jpg, /products/garden-stone-bench-3.jpg, /products/garden-stone-bench-4.jpg
+  - Granite Stone Pillar (stone-products): /products/granite-stone-pillar-1.jpg, /products/granite-stone-pillar-2.jpg, /products/granite-stone-pillar-3.jpg, /products/granite-stone-pillar-4.jpg
+  - Stone Table and Chair (stone-products): /products/stone-table-chair-1.jpg, /products/stone-table-chair-2.jpg, /products/stone-table-chair-3.jpg, /products/stone-table-chair-4.jpg
+  - 25mm Green (artificial-grass): /products/grass-25-green-1.jpg, /products/grass-25-green-2.jpg, /products/grass-25-green-3.jpg, /products/grass-25-green-4.jpg
+  - 35mm Green (artificial-grass): /products/grass-35-green-1.jpg, /products/grass-35-green-2.jpg, /products/grass-35-green-3.jpg, /products/grass-35-green-4.jpg
+  - 40mm Green (artificial-grass): /products/grass-40-green-1.jpg, /products/grass-40-green-2.jpg, /products/grass-40-green-3.jpg, /products/grass-40-green-4.jpg
+  - 40mm Mix (artificial-grass): /products/grass-40-mix-1.jpg, /products/grass-40-mix-2.jpg, /products/grass-40-mix-3.jpg, /products/grass-40-mix-4.jpg
+  - 50mm Green (artificial-grass): /products/grass-50-green-1.jpg, /products/grass-50-green-2.jpg, /products/grass-50-green-3.jpg, /products/grass-50-green-4.jpg
+  - Tandure stone (paving-stones): /products/1000260552.jpg, /products/1000260563.jpg, /products/1000260557.jpg, /products/1000260554.jpg
+  - Geerstone (paving-stones): /products/1000002395.jpg, /products/1000002396.jpg
+
+Processing: Waterfall Black
+  ERROR: waterfall-black-1.jpg: Command failed: git show 161a476:"public/products/waterfall-black-1.jpg" > "temp-images\waterfall-bl
+  ERROR: waterfall-black-2.jpg: Command failed: git show 161a476:"public/products/waterfall-black-2.jpg" > "temp-images\waterfall-bl
+  ERROR: waterfall-black-3.jpg: Command failed: git show 161a476:"public/products/waterfall-black-3.jpg" > "temp-images\waterfall-bl
+  ERROR: waterfall-black-4.jpg: Command failed: git show 161a476:"public/products/waterfall-black-4.jpg" > "temp-images\waterfall-bl
+  SKIPPED (no images found in git)
+
+Processing: Waterfall Autumn
+  ERROR: waterfall-autumn-1.jpg: Command failed: git show 161a476:"public/products/waterfall-autumn-1.jpg" > "temp-images\waterfall-a
+  ERROR: waterfall-autumn-2.jpg: Command failed: git show 161a476:"public/products/waterfall-autumn-2.jpg" > "temp-images\waterfall-a
+  ERROR: waterfall-autumn-3.jpg: Command failed: git show 161a476:"public/products/waterfall-autumn-3.jpg" > "temp-images\waterfall-a
+  ERROR: waterfall-autumn-4.jpg: Command failed: git show 161a476:"public/products/waterfall-autumn-4.jpg" > "temp-images\waterfall-a
+  SKIPPED (no images found in git)
+
+Processing: Panel Restik Black
+  ERROR: panel-restik-black-1.jpg: Command failed: git show 161a476:"public/products/panel-restik-black-1.jpg" > "temp-images\panel-res
+  ERROR: panel-restik-black-2.jpg: Command failed: git show 161a476:"public/products/panel-restik-black-2.jpg" > "temp-images\panel-res
+  ERROR: panel-restik-black-3.jpg: Command failed: git show 161a476:"public/products/panel-restik-black-3.jpg" > "temp-images\panel-res
+  ERROR: panel-restik-black-4.jpg: Command failed: git show 161a476:"public/products/panel-restik-black-4.jpg" > "temp-images\panel-res
+  SKIPPED (no images found in git)
+
+Processing: Panel 3D Mix
+  ERROR: panel-3d-mix-1.jpg: Command failed: git show 161a476:"public/products/panel-3d-mix-1.jpg" > "temp-images\panel-3d-mix-1.
+  ERROR: panel-3d-mix-2.jpg: Command failed: git show 161a476:"public/products/panel-3d-mix-2.jpg" > "temp-images\panel-3d-mix-2.
+  ERROR: panel-3d-mix-3.jpg: Command failed: git show 161a476:"public/products/panel-3d-mix-3.jpg" > "temp-images\panel-3d-mix-3.
+  ERROR: panel-3d-mix-4.jpg: Command failed: git show 161a476:"public/products/panel-3d-mix-4.jpg" > "temp-images\panel-3d-mix-4.
+  SKIPPED (no images found in git)
+
+Processing: Panel Indian Autumn
+  ERROR: panel-indian-autumn-1.jpg: Command failed: git show 161a476:"public/products/panel-indian-autumn-1.jpg" > "temp-images\panel-in
+  ERROR: panel-indian-autumn-2.jpg: Command failed: git show 161a476:"public/products/panel-indian-autumn-2.jpg" > "temp-images\panel-in
+  ERROR: panel-indian-autumn-3.jpg: Command failed: git show 161a476:"public/products/panel-indian-autumn-3.jpg" > "temp-images\panel-in
+  ERROR: panel-indian-autumn-4.jpg: Command failed: git show 161a476:"public/products/panel-indian-autumn-4.jpg" > "temp-images\panel-in
+  SKIPPED (no images found in git)
+
+Processing: Panel Green Restik
+  ERROR: panel-green-restik-1.jpg: Command failed: git show 161a476:"public/products/panel-green-restik-1.jpg" > "temp-images\panel-gre
+  ERROR: panel-green-restik-2.jpg: Command failed: git show 161a476:"public/products/panel-green-restik-2.jpg" > "temp-images\panel-gre
+  ERROR: panel-green-restik-3.jpg: Command failed: git show 161a476:"public/products/panel-green-restik-3.jpg" > "temp-images\panel-gre
+  ERROR: panel-green-restik-4.jpg: Command failed: git show 161a476:"public/products/panel-green-restik-4.jpg" > "temp-images\panel-gre
+  SKIPPED (no images found in git)
+
+Processing: Panel L Black
+  ERROR: panel-l-black-1.jpg: Command failed: git show 161a476:"public/products/panel-l-black-1.jpg" > "temp-images\panel-l-black-
+  ERROR: panel-l-black-2.jpg: Command failed: git show 161a476:"public/products/panel-l-black-2.jpg" > "temp-images\panel-l-black-
+  ERROR: panel-l-black-3.jpg: Command failed: git show 161a476:"public/products/panel-l-black-3.jpg" > "temp-images\panel-l-black-
+  ERROR: panel-l-black-4.jpg: Command failed: git show 161a476:"public/products/panel-l-black-4.jpg" > "temp-images\panel-l-black-
+  SKIPPED (no images found in git)
+
+Processing: Garden Stone Bench
+  ERROR: garden-stone-bench-1.jpg: Command failed: git show 161a476:"public/products/garden-stone-bench-1.jpg" > "temp-images\garden-st
+  ERROR: garden-stone-bench-2.jpg: Command failed: git show 161a476:"public/products/garden-stone-bench-2.jpg" > "temp-images\garden-st
+  ERROR: garden-stone-bench-3.jpg: Command failed: git show 161a476:"public/products/garden-stone-bench-3.jpg" > "temp-images\garden-st
+  ERROR: garden-stone-bench-4.jpg: Command failed: git show 161a476:"public/products/garden-stone-bench-4.jpg" > "temp-images\garden-st
+  SKIPPED (no images found in git)
+
+Processing: Granite Stone Pillar
+  ERROR: granite-stone-pillar-1.jpg: Command failed: git show 161a476:"public/products/granite-stone-pillar-1.jpg" > "temp-images\granite
+  ERROR: granite-stone-pillar-2.jpg: Command failed: git show 161a476:"public/products/granite-stone-pillar-2.jpg" > "temp-images\granite
+  ERROR: granite-stone-pillar-3.jpg: Command failed: git show 161a476:"public/products/granite-stone-pillar-3.jpg" > "temp-images\granite
+  ERROR: granite-stone-pillar-4.jpg: Command failed: git show 161a476:"public/products/granite-stone-pillar-4.jpg" > "temp-images\granite
+  SKIPPED (no images found in git)
+
+Processing: Stone Table and Chair
+  ERROR: stone-table-chair-1.jpg: Command failed: git show 161a476:"public/products/stone-table-chair-1.jpg" > "temp-images\stone-tabl
+  ERROR: stone-table-chair-2.jpg: Command failed: git show 161a476:"public/products/stone-table-chair-2.jpg" > "temp-images\stone-tabl
+  ERROR: stone-table-chair-3.jpg: Command failed: git show 161a476:"public/products/stone-table-chair-3.jpg" > "temp-images\stone-tabl
+  ERROR: stone-table-chair-4.jpg: Command failed: git show 161a476:"public/products/stone-table-chair-4.jpg" > "temp-images\stone-tabl
+  SKIPPED (no images found in git)
+
+Processing: 25mm Green
+  ERROR: grass-25-green-1.jpg: Command failed: git show 161a476:"public/products/grass-25-green-1.jpg" > "temp-images\grass-25-gree
+  ERROR: grass-25-green-2.jpg: Command failed: git show 161a476:"public/products/grass-25-green-2.jpg" > "temp-images\grass-25-gree
+  ERROR: grass-25-green-3.jpg: Command failed: git show 161a476:"public/products/grass-25-green-3.jpg" > "temp-images\grass-25-gree
+  ERROR: grass-25-green-4.jpg: Command failed: git show 161a476:"public/products/grass-25-green-4.jpg" > "temp-images\grass-25-gree
+  SKIPPED (no images found in git)
+
+Processing: 35mm Green
+  ERROR: grass-35-green-1.jpg: Command failed: git show 161a476:"public/products/grass-35-green-1.jpg" > "temp-images\grass-35-gree
+  ERROR: grass-35-green-2.jpg: Command failed: git show 161a476:"public/products/grass-35-green-2.jpg" > "temp-images\grass-35-gree
+  ERROR: grass-35-green-3.jpg: Command failed: git show 161a476:"public/products/grass-35-green-3.jpg" > "temp-images\grass-35-gree
+  ERROR: grass-35-green-4.jpg: Command failed: git show 161a476:"public/products/grass-35-green-4.jpg" > "temp-images\grass-35-gree
+  SKIPPED (no images found in git)
+
+Processing: 40mm Green
+  ERROR: grass-40-green-1.jpg: Command failed: git show 161a476:"public/products/grass-40-green-1.jpg" > "temp-images\grass-40-gree
+  ERROR: grass-40-green-2.jpg: Command failed: git show 161a476:"public/products/grass-40-green-2.jpg" > "temp-images\grass-40-gree
+  ERROR: grass-40-green-3.jpg: Command failed: git show 161a476:"public/products/grass-40-green-3.jpg" > "temp-images\grass-40-gree
+  ERROR: grass-40-green-4.jpg: Command failed: git show 161a476:"public/products/grass-40-green-4.jpg" > "temp-images\grass-40-gree
+  SKIPPED (no images found in git)
+
+Processing: 40mm Mix
+  ERROR: grass-40-mix-1.jpg: Command failed: git show 161a476:"public/products/grass-40-mix-1.jpg" > "temp-images\grass-40-mix-1.
+  ERROR: grass-40-mix-2.jpg: Command failed: git show 161a476:"public/products/grass-40-mix-2.jpg" > "temp-images\grass-40-mix-2.
+  ERROR: grass-40-mix-3.jpg: Command failed: git show 161a476:"public/products/grass-40-mix-3.jpg" > "temp-images\grass-40-mix-3.
+  ERROR: grass-40-mix-4.jpg: Command failed: git show 161a476:"public/products/grass-40-mix-4.jpg" > "temp-images\grass-40-mix-4.
+  SKIPPED (no images found in git)
+
+Processing: 50mm Green
+  ERROR: grass-50-green-1.jpg: Command failed: git show 161a476:"public/products/grass-50-green-1.jpg" > "temp-images\grass-50-gree
+  ERROR: grass-50-green-2.jpg: Command failed: git show 161a476:"public/products/grass-50-green-2.jpg" > "temp-images\grass-50-gree
+  ERROR: grass-50-green-3.jpg: Command failed: git show 161a476:"public/products/grass-50-green-3.jpg" > "temp-images\grass-50-gree
+  ERROR: grass-50-green-4.jpg: Command failed: git show 161a476:"public/products/grass-50-green-4.jpg" > "temp-images\grass-50-gree
+  SKIPPED (no images found in git)
+
+Processing: Tandure stone
+  Uploaded: 1000260552.jpg -> 69a3cfa93b437c2f2aa3
+  Uploaded: 1000260563.jpg -> 69a3cfaa2a86c147623f
+  Uploaded: 1000260557.jpg -> 69a3cfaadd1fddcaf116
+  Uploaded: 1000260554.jpg -> 69a3cfab9522cf007603
+  DB Updated with 4 URLs
+
+Processing: Geerstone
+  Uploaded: 1000002395.jpg -> 69a3cfaca0296803f1eb
+  Uploaded: 1000002396.jpg -> 69a3cfad7988f6f428d5
+  DB Updated with 2 URLs
+
+=== Summary ===
+Updated: 2
+Failed: 15
+Unique files uploaded: 6

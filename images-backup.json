@@ -1,0 +1,1144 @@
+[
+  {
+    "id": "bangalore-stone",
+    "name": "Bangalore Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d228cebb8a2e4eb0/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22ac89890685d62/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22bc3d530db270a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d228cebb8a2e4eb0/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bangalore-stone-halfcut",
+    "name": "Bangalore Stone Halfcut",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22ceeea3980c42e/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22e1bc23b6a4c6f/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22fc23c1fc46ae1/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22ceeea3980c42e/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bangalore-stone-fullcut",
+    "name": "Bangalore Stone Fullcut",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d230b630385dfe79/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d231ea4c44709ac8/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23501d541396f06/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d230b630385dfe79/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bangalore-grey-stone",
+    "name": "Bangalore Grey Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d238b8d9f2211c25/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d238b8d9f2211c25/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2399da583e994c9/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23a944ea3369a14/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "magadi-pink-stone",
+    "name": "Magadi Pink Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23bef96a234a9c8/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23c9329ae718645/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23d91bde3b96b67/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23bef96a234a9c8/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-yellow",
+    "name": "Tandure Yellow Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23ebc0b579732f5/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23f6691451aac13/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d241e6ffd803e294/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d23ebc0b579732f5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-coffee",
+    "name": "Tandure Coffee Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2440527806bb522/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d244c20b2cdb2cb5/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d245b7c04eea8a15/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2440527806bb522/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-grey",
+    "name": "Tandure Grey Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d246b4f80efda8e2/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d247e9221471e4a8/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d248a13c2934b7ca/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d246b4f80efda8e2/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-polishing",
+    "name": "Tandure Polishing Stones",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2499ca509267217/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d24ab72e48f18e84/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d24c61f0875fc469/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2499ca509267217/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-semi-polished",
+    "name": "Tandure Semi Polished",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d24edd4e050c7077/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2504c1f6443f54d/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d251319035a10c0a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d24edd4e050c7077/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kadappa-stone",
+    "name": "Kadappa Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2527af9bd9baff3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25314c59381ebf7/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25411260adceecb/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2527af9bd9baff3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "black-stone",
+    "name": "Black Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2553a1c0f1d0a28/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2553a1c0f1d0a28/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d255eeddaa2a9edc/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2568298bd17e085/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "cobble-stone",
+    "name": "Cobble Stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d257b5b2d5dd8c4d/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25a834036a15fda/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25b5e3dd8efe683/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d257b5b2d5dd8c4d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "pink-cobble",
+    "name": "Pink Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25dea17f06d7fd8/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25ec418446412a1/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25f604d0419fad9/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d25dea17f06d7fd8/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bangalore-white-cobble",
+    "name": "Bangalore White Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2609fdf5bf5ca49/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2609fdf5bf5ca49/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26207351a2436a0/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d262953c17657224/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "natural-cobble",
+    "name": "Natural Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2643495ddba8d3a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d264e14a62ca6256/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2657817b6cb2772/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2643495ddba8d3a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "natural-black-cobble",
+    "name": "Natural Black Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2664de1e5f6a719/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2675ba2e12a8af0/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d268269d2b570a6b/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2664de1e5f6a719/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "block-box-cut-cobble",
+    "name": "Block Box Cut Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d269a2fe5b9d11e4/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26a6dfc9ba953e6/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26cc5f8a1177e31/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d269a2fe5b9d11e4/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "tandure-cobble",
+    "name": "Tandure Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26e32a938ffc493/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26f0c05710b78fb/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27015fbae029f7d/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d26e32a938ffc493/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kadappa-cobble",
+    "name": "Kadappa Cobble",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d271210fd56adecb/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2720e7a588a4b0a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d228cebb8a2e4eb0/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d271210fd56adecb/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "temple-export-quality",
+    "name": "Temple Exporting Quality",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d273042e748d6f45/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d273042e748d6f45/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22ceeea3980c42e/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d22ac89890685d62/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "rainbow-4x24",
+    "name": "Rainbow",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722cc429de598a49/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "teak-sand-blast-6x24",
+    "name": "Teak Sand Blast",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "teak-champered-4x12",
+    "name": "Teak Champered",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722d940b9880656b/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "black-rough-4x12",
+    "name": "Black Rough",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722bece8fa432035/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "natural-clay-3x9",
+    "name": "Natural Clay",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722bece8fa432035/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "multi-gold-1x1",
+    "name": "Multi Gold",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722bece8fa432035/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722d940b9880656b/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "white-rough-4x12",
+    "name": "White Rough",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722cc429de598a49/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "latarate-stone",
+    "name": "Latarate Stone",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722cc429de598a49/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chocolate",
+    "name": "Chocolate",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722e723bd096b731/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724aa900903198f7/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724d36e3f28ab6b5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "n-green",
+    "name": "N Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722e723bd096b731/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723323a4556a027a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "pista-green",
+    "name": "Pista Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722e723bd096b731/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "black-butching",
+    "name": "Black Butching",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722f37c71a95490a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "pink-cladding",
+    "name": "Pink",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722f37c71a95490a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723323a4556a027a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "rustic-black",
+    "name": "Rustic Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722febd2a12382ae/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7230a4c0db99402a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723811b176a020ca/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "c-gold",
+    "name": "C Gold",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722febd2a12382ae/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72316d499f6336e8/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72323dc2e37d9b60/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "automan",
+    "name": "Automan",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722febd2a12382ae/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7230a4c0db99402a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "slate-black",
+    "name": "Slate Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7230a4c0db99402a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72323dc2e37d9b60/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723531d5921cc58a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723811b176a020ca/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "pink-plain",
+    "name": "Pink Plain",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72316d499f6336e8/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "lime-black",
+    "name": "Lime Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72323dc2e37d9b60/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "black-restik",
+    "name": "Black Restik",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723454ed1df7d9ef/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "s-white",
+    "name": "S White",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723454ed1df7d9ef/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "cera",
+    "name": "Cera",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723454ed1df7d9ef/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "t-yellow",
+    "name": "T Yellow",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723531d5921cc58a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "flammed-black",
+    "name": "Flammed Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723611a1523a794e/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "agra-red",
+    "name": "Agra Red",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723611a1523a794e/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "calibration-slab",
+    "name": "Calibration Slab",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723611a1523a794e/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "m-green",
+    "name": "M-Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "automn",
+    "name": "Automn",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "copper",
+    "name": "Copper",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7238a1e6d55f5219/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "d-green",
+    "name": "D-Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7238a1e6d55f5219/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "silver-grey",
+    "name": "Silver Grey",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7238a1e6d55f5219/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "silver-shine",
+    "name": "Silver Shine",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72396ebfacc6a0d6/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "star-gallexy",
+    "name": "Star Gallexy",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72396ebfacc6a0d6/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "jek-black",
+    "name": "Jek Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72396ebfacc6a0d6/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "teak-cladding",
+    "name": "Teak",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "forest-fire",
+    "name": "Forest Fire",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "stacking-2x12",
+    "name": "Stacking",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "waterfall-cgold",
+    "name": "Waterfall C-Gold",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723531d5921cc58a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "waterfall-black",
+    "name": "Waterfall Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d6739001357c6992d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "waterfall-autumn",
+    "name": "Waterfall Autumn",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d690c00122e6583b3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-kk-white",
+    "name": "Panel KK White",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722d940b9880656b/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-restik-black",
+    "name": "Panel Restik Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d6942003d6a00e8bb/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-d-green",
+    "name": "Panel D-Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7238a1e6d55f5219/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-3d-mix",
+    "name": "Panel 3D Mix",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d697e001beb3feec4/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-indian-autumn",
+    "name": "Panel Indian Autumn",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d69b6002bc8839834/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-green-restik",
+    "name": "Panel Green Restik",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d69f90033e862c5d3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-l-black",
+    "name": "Panel L Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698c0397001b022cdc62/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698c039800270c19c170/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-teak-rock",
+    "name": "Panel Teak Rock",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "panel-silver-shine",
+    "name": "Panel Silver Shine",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72396ebfacc6a0d6/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-grey",
+    "name": "Chipout Grey",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723dc74ada4e8bb3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-black",
+    "name": "Chipout Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723dc74ada4e8bb3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-pink",
+    "name": "Chipout Pink",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722f37c71a95490a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723323a4556a027a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-rainbow",
+    "name": "Chipout Rainbow",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722cc429de598a49/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-white",
+    "name": "Chipout White",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722d940b9880656b/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-teak",
+    "name": "Chipout Teak",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "chipout-green",
+    "name": "Chipout Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723dc74ada4e8bb3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "exogen-automn",
+    "name": "Exogen Automn",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7243938495a24ff1/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "exogen-r-black",
+    "name": "Exogen R Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7243938495a24ff1/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "exogen-black",
+    "name": "Exogen Black",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7243938495a24ff1/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "exogen-mosaic-automn",
+    "name": "Exogen Mosaic Automn",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "exogen-mosaic-pink",
+    "name": "Exogen Mosaic Pink",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722f37c71a95490a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723323a4556a027a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723749dc9b9a2b50/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "forest-teak-green",
+    "name": "Forest Teak Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "yellow-teak-mosaic",
+    "name": "Yellow Teak",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grenate-mosaics",
+    "name": "Grenate Mosaics",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72454045dca3aa06/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "mint-roman",
+    "name": "Mint Roman",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72465d6064748f0d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "teak-roman",
+    "name": "Teak Roman",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b723a24d7d5626531/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bidasar-brown",
+    "name": "Bidasar Brown",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72470f81dbc2746f/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "bidasar-green",
+    "name": "Bidasar Green",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7247c90386f77807/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "indian-jaalis",
+    "name": "Indian Jaalis",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724968f32484534c/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-edan",
+    "name": "Terracotta Jaali Edan",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-camp",
+    "name": "Terracotta Jaali Camp",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7249e4529ab2bef0/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-square",
+    "name": "Terracotta Jaali Square",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-ruby",
+    "name": "Terracotta Jaali Ruby",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724a4465fa84e40d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-zebra",
+    "name": "Terracotta Jaali Zebra",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b72490849176e34c3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-petal",
+    "name": "Terracotta Jaali Petal",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b7249e4529ab2bef0/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-pearl",
+    "name": "Terracotta Jaali Pearl",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-oppal",
+    "name": "Terracotta Jaali Oppal",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-jaali-diamond",
+    "name": "Terracotta Jaali Diamond",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724a4465fa84e40d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-wall-cupuccino",
+    "name": "Terracotta Wall Tile Cupuccino",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724aa900903198f7/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-wall-chocolate",
+    "name": "Terracotta Wall Tile Chocolate",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722e723bd096b731/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724aa900903198f7/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724d36e3f28ab6b5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-wall-fireclay",
+    "name": "Terracotta Wall Tile Fireclay",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724aa900903198f7/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724d36e3f28ab6b5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-wall-terracotta",
+    "name": "Terracotta Wall Tile Terracotta",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-chocolate",
+    "name": "Terracotta Floor Tile Chocolate",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b722e723bd096b731/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724aa900903198f7/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724d36e3f28ab6b5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-terracotta",
+    "name": "Terracotta Floor Tile Terracotta",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-cuppuccino",
+    "name": "Terracotta Floor Tile Cuppuccino",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-grey",
+    "name": "Terracotta Floor Tile Grey",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-fireclay",
+    "name": "Terracotta Floor Tile Fire Clay",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "terracotta-floor-burgundy",
+    "name": "Terracotta Floor Tile Burgundy",
+    "category": "cladding-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b724b4e83d4abe157/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "garden-stone-bench",
+    "name": "Garden Stone Bench",
+    "category": "stone-products",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d67e80037c3698d7e/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "granite-stone-pillar",
+    "name": "Granite Stone Pillar",
+    "category": "stone-products",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d6783001678abc98d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "stone-table-chair",
+    "name": "Stone Table and Chair",
+    "category": "stone-products",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698b5c8b001c1bffdfca/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grass-25-green",
+    "name": "25mm Green",
+    "category": "artificial-grass",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d683e0011f74b0c05/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grass-35-green",
+    "name": "35mm Green",
+    "category": "artificial-grass",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d6855001d80e5253a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grass-40-green",
+    "name": "40mm Green",
+    "category": "artificial-grass",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d68710010aff2e4ef/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grass-40-mix",
+    "name": "40mm Mix",
+    "category": "artificial-grass",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d68850005b89622d8/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "grass-50-green",
+    "name": "50mm Green",
+    "category": "artificial-grass",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/698d6899003a254f490a/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-river-pebble-mix",
+    "name": "Choice River Pebble Mix",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d273f0ae1115936a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d274c8e360563d16/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d273f0ae1115936a/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d274c8e360563d16/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-river-white",
+    "name": "River White",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d275e402580230be/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d277027f6f1f4d71/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d275e402580230be/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d277027f6f1f4d71/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-river-black",
+    "name": "River Black",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27830409f686a08/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2794135258767fb/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27830409f686a08/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2794135258767fb/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-zebra",
+    "name": "Zebra choice stone",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27a6880febbadb3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27b0761c8275768/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27a6880febbadb3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27b0761c8275768/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-teak-wood",
+    "name": "Teak Wood choice",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27c12f511390aad/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27c983f4f42c6e3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27c12f511390aad/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27c983f4f42c6e3/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-himalayan-river",
+    "name": "Choice Himalayan River Pebble",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27de3d554e28e40/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27ebffd11ea2a8d/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27de3d554e28e40/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27ebffd11ea2a8d/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "kalstone-deep-purple",
+    "name": "Choice stone Deep Purple",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27fd5a683f70aa2/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2808fc7bb2185a5/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27fd5a683f70aa2/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2808fc7bb2185a5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "698ec8a2002a9c689714",
+    "name": "Zebra Choice",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27a6880febbadb3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27b0761c8275768/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27a6880febbadb3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27b0761c8275768/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "698ec8a3001fd2c9e395",
+    "name": "Choice Deep Purple",
+    "category": "pebble-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27fd5a683f70aa2/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2808fc7bb2185a5/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d27fd5a683f70aa2/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3d2808fc7bb2185a5/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "698ecfb9000ee7a9e3b2",
+    "name": "Tandure stone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfa93b437c2f2aa3/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfaa2a86c147623f/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfaadd1fddcaf116/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfab9522cf007603/view?project=698b47890022a5343849"
+    ]
+  },
+  {
+    "id": "6997bdec002cc8933590",
+    "name": "Geerstone",
+    "category": "paving-stones",
+    "images": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfaca0296803f1eb/view?project=698b47890022a5343849",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/698b48890012634c5cd7/files/69a3cfad7988f6f428d5/view?project=698b47890022a5343849"
+    ]
+  }
+]

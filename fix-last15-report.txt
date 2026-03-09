@@ -1,0 +1,38 @@
+=== Fix last 15 products with bucket file matching ===
+
+Products needing fix: 15
+
+Waterfall Black: Found 1 matching file(s)
+  Updated DB
+Waterfall Autumn: Found 1 matching file(s)
+  Updated DB
+Panel Restik Black: Found 1 matching file(s)
+  Updated DB
+Panel 3D Mix: Found 1 matching file(s)
+  Updated DB
+Panel Indian Autumn: Found 1 matching file(s)
+  Updated DB
+Panel Green Restik: Found 1 matching file(s)
+  Updated DB
+Panel L Black: Found 2 matching file(s)
+  Updated DB
+Garden Stone Bench: Found 1 matching file(s)
+  Updated DB
+Granite Stone Pillar: Found 1 matching file(s)
+  Updated DB
+Stone Table and Chair: Found 1 matching file(s)
+  Updated DB
+25mm Green: Found 1 matching file(s)
+  Updated DB
+35mm Green: Found 1 matching file(s)
+  Updated DB
+40mm Green: Found 1 matching file(s)
+  Updated DB
+40mm Mix: Found 1 matching file(s)
+  Updated DB
+50mm Green: Found 1 matching file(s)
+  Updated DB
+
+=== Summary ===
+Updated with images: 15
+No images available: 0

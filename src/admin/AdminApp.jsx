@@ -8,6 +8,7 @@ import AdminWholesale from './AdminWholesale'
 import AdminCategories from './AdminCategories'
 import AdminSettings from './AdminSettings'
 import AdminLayout from './AdminLayout'
+import AdminImageMapping from './AdminImageMapping'
 import './Admin.css'
 
 function AdminApp() {
@@ -57,6 +58,7 @@ function AdminApp() {
                 <Route path="/products" element={<AdminProducts />} />
                 <Route path="/wholesale" element={<AdminWholesale />} />
                 <Route path="/categories" element={<AdminCategories />} />
+                <Route path="/image-mapping" element={<AdminImageMapping />} />
                 <Route path="/settings" element={<AdminSettings />} />
                 <Route path="*" element={<Navigate to="/admin" replace />} />
             </Routes>

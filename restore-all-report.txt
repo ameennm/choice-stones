@@ -1,0 +1,41 @@
+=== Restore ALL 4 images per product from git ===
+
+Files in git commit: 634
+Products in DB: 129
+
+Bangalore Stone: 4 images
+Bangalore Stone Halfcut: 4 images
+Bangalore Stone Fullcut: 4 images
+Bangalore Grey Stone: 4 images
+Magadi Pink Stone: 4 images
+Tandure Yellow Stone: 4 images
+Tandure Coffee Stone: 4 images
+Tandure Grey Stone: 4 images
+Tandure Polishing Stones: 4 images
+Tandure Semi Polished: 4 images
+Kadappa Stone: 4 images
+Black Stone: 4 images
+Cobble Stone: 4 images
+Pink Cobble: 4 images
+Bangalore White Cobble: 4 images
+Natural Cobble: 4 images
+Natural Black Cobble: 4 images
+Block Box Cut Cobble: 4 images
+Tandure Cobble: 4 images
+Kadappa Cobble: 4 images
+Temple Exporting Quality: 4 images
+Choice River Pebble Mix: 4 images
+River White: 4 images
+River Black: 4 images
+Zebra choice stone: 4 images
+Teak Wood choice: 4 images
+Choice Himalayan River Pebble: 4 images
+Choice stone Deep Purple: 4 images
+Zebra Choice: 4 images
+Choice Deep Purple: 4 images
+
+=== Summary ===
+Updated: 30
+Failed: 0
+Skipped (already good/not in local): 98
+Unique images uploaded: 74

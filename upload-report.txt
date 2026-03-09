@@ -1,0 +1,248 @@
+=== Upload local images to Appwrite & update DB ===
+
+Fetching all products...
+Total: 129
+
+Products with local paths to fix: 47
+
+Processing: Bangalore Stone (paving-stones) - 4 images
+  Uploaded: paving-img1.jpg -> 69a3cdb78e8c2a7af9a6
+  Uploaded: paving-img5.jpg -> 69a3cdb87be6a4e4c24f
+  Uploaded: paving-img8.jpg -> 69a3cdb936070db9d366
+  DB Updated with 3 Appwrite URLs
+Processing: Bangalore Stone Halfcut (paving-stones) - 4 images
+  Uploaded: paving-img11.jpg -> 69a3cdbab15ff876ad78
+  Uploaded: paving-img14.jpg -> 69a3cdbb6d2c96f85c19
+  Uploaded: paving-img17.jpg -> 69a3cdbc3df7acb31938
+  DB Updated with 3 Appwrite URLs
+Processing: Bangalore Stone Fullcut (paving-stones) - 4 images
+  Uploaded: paving-img20.jpg -> 69a3cdbd2e8fb145004d
+  Uploaded: paving-img23.jpg -> 69a3cdbdca2f5f400446
+  Uploaded: paving-img26.jpg -> 69a3cdbe7907e4e87bb8
+  DB Updated with 3 Appwrite URLs
+Processing: Bangalore Grey Stone (paving-stones) - 4 images
+  Uploaded: bangalore-grey-stone.jpeg -> 69a3cdbf49643c681c9b
+  Uploaded: paving-img36.jpg -> 69a3cdc0e1e48f97aabe
+  Uploaded: paving-img29.jpg -> 69a3cdc1a721541d2978
+  DB Updated with 3 Appwrite URLs
+Processing: Magadi Pink Stone (paving-stones) - 4 images
+  Uploaded: paving-img39.jpg -> 69a3cdc28370025035a2
+  Uploaded: paving-img42.jpg -> 69a3cdc34a03a4ae1c76
+  Uploaded: paving-img45.jpg -> 69a3cdc4b6501228b6c6
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Yellow Stone (paving-stones) - 4 images
+  Uploaded: paving-img57.jpg -> 69a3cdc6ca159dc5bfca
+  Uploaded: paving-img60.jpg -> 69a3cdc8b5ca68e1dff5
+  Uploaded: paving-img63.jpg -> 69a3cdcabfa637f9ae41
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Coffee Stone (paving-stones) - 4 images
+  Uploaded: paving-img67.jpg -> 69a3cdce80c5b07bbfb7
+  Uploaded: paving-img70.jpg -> 69a3cdcf829492836278
+  Uploaded: paving-img73.jpg -> 69a3cdd12fc1b90bdd11
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Grey Stone (paving-stones) - 4 images
+  Uploaded: paving-img76.jpg -> 69a3cdd29d0328579b14
+  Uploaded: paving-img79.jpg -> 69a3cdd4678d1ff98a63
+  Uploaded: paving-img82.jpg -> 69a3cdd5878312a55e33
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Polishing Stones (paving-stones) - 4 images
+  Uploaded: paving-img85.jpg -> 69a3cdda8f644e732d01
+  Uploaded: paving-img88.jpg -> 69a3cddc324444e9aab7
+  Uploaded: paving-img91.jpg -> 69a3cddf1d0592fffa49
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Semi Polished (paving-stones) - 4 images
+  Uploaded: paving-img94.jpg -> 69a3cde1a370010442ad
+  Uploaded: paving-img98.jpg -> 69a3cde440d3acce5e83
+  Uploaded: paving-img101.jpg -> 69a3cde56fd9dacf3a96
+  DB Updated with 3 Appwrite URLs
+Processing: Kadappa Stone (paving-stones) - 4 images
+  Uploaded: paving-img104.jpg -> 69a3cde7f39df057dec1
+  Uploaded: paving-img107.jpg -> 69a3cdea543eaa4d3776
+  Uploaded: paving-img110.jpg -> 69a3cdec201c23f1057f
+  DB Updated with 3 Appwrite URLs
+Processing: Black Stone (paving-stones) - 4 images
+  Uploaded: black-exporting-quality.jpeg -> 69a3cdedcdd786f06e1e
+  Uploaded: paving-img119.jpg -> 69a3cdef173e627f1b40
+  Uploaded: paving-img113.jpg -> 69a3cdefe59c76a053a2
+  DB Updated with 3 Appwrite URLs
+Processing: Cobble Stone (paving-stones) - 4 images
+  Uploaded: paving-img122.jpg -> 69a3cdf1f3555e84516f
+  Uploaded: paving-img125.jpg -> 69a3cdf39b39cfed2516
+  Uploaded: paving-img129.jpg -> 69a3cdf598ff7976195f
+  DB Updated with 3 Appwrite URLs
+Processing: Pink Cobble (paving-stones) - 4 images
+  Uploaded: paving-img132.jpg -> 69a3cdf98deb9867d129
+  Uploaded: paving-img135.jpg -> 69a3cdfc900e339f8762
+  Uploaded: paving-img138.jpg -> 69a3cdfd388c02c5dbf5
+  DB Updated with 3 Appwrite URLs
+Processing: Bangalore White Cobble (paving-stones) - 4 images
+  Uploaded: bangalore-white-black-stone.jpeg -> 69a3cdfe492d8aa05ed5
+  Uploaded: paving-img147.jpg -> 69a3cdff686f516aa0b9
+  Uploaded: paving-img141.jpg -> 69a3ce002d77da7f0564
+  DB Updated with 3 Appwrite URLs
+Processing: Natural Cobble (paving-stones) - 4 images
+  Uploaded: paving-img150.jpg -> 69a3ce0137b635296ae6
+  Uploaded: paving-img153.jpg -> 69a3ce01f0ffd78a2460
+  Uploaded: paving-img156.jpg -> 69a3ce02c8938c6381d6
+  DB Updated with 3 Appwrite URLs
+Processing: Natural Black Cobble (paving-stones) - 4 images
+  Uploaded: paving-img160.jpg -> 69a3ce039b3c2f65ff59
+  Uploaded: paving-img163.jpg -> 69a3ce0478d74717ba6d
+  Uploaded: paving-img166.jpg -> 69a3ce052c73fa94c3e8
+  DB Updated with 3 Appwrite URLs
+Processing: Block Box Cut Cobble (paving-stones) - 4 images
+  Uploaded: paving-img169.jpg -> 69a3ce0672d04bd4673a
+  Uploaded: paving-img172.jpg -> 69a3ce072dd74624934d
+  Uploaded: paving-img175.jpg -> 69a3ce0811a440ece7f3
+  DB Updated with 3 Appwrite URLs
+Processing: Tandure Cobble (paving-stones) - 4 images
+  Uploaded: paving-img178.jpg -> 69a3ce092caa72ca8703
+  Uploaded: paving-img181.jpg -> 69a3ce09e9a07d8f3d1e
+  Uploaded: paving-img184.jpg -> 69a3ce0acce49afb4fed
+  DB Updated with 3 Appwrite URLs
+Processing: Kadappa Cobble (paving-stones) - 4 images
+  Uploaded: paving-img187.jpg -> 69a3ce0bd06e3386bf7b
+  Uploaded: paving-img191.jpg -> 69a3ce0c8df689e3e115
+  DB Updated with 3 Appwrite URLs
+Processing: Temple Exporting Quality (paving-stones) - 4 images
+  Uploaded: tumbled-exporting-quality.jpeg -> 69a3ce0dbc35fd49f70d
+  DB Updated with 3 Appwrite URLs
+Processing: Waterfall Black (cladding-stones) - 4 images
+  WARNING: File not found: public\products\waterfall-black-1.jpg
+  WARNING: File not found: public\products\waterfall-black-2.jpg
+  WARNING: File not found: public\products\waterfall-black-3.jpg
+  WARNING: File not found: public\products\waterfall-black-4.jpg
+  SKIPPED (no images to upload)
+Processing: Waterfall Autumn (cladding-stones) - 4 images
+  WARNING: File not found: public\products\waterfall-autumn-1.jpg
+  WARNING: File not found: public\products\waterfall-autumn-2.jpg
+  WARNING: File not found: public\products\waterfall-autumn-3.jpg
+  WARNING: File not found: public\products\waterfall-autumn-4.jpg
+  SKIPPED (no images to upload)
+Processing: Panel Restik Black (cladding-stones) - 4 images
+  WARNING: File not found: public\products\panel-restik-black-1.jpg
+  WARNING: File not found: public\products\panel-restik-black-2.jpg
+  WARNING: File not found: public\products\panel-restik-black-3.jpg
+  WARNING: File not found: public\products\panel-restik-black-4.jpg
+  SKIPPED (no images to upload)
+Processing: Panel 3D Mix (cladding-stones) - 4 images
+  WARNING: File not found: public\products\panel-3d-mix-1.jpg
+  WARNING: File not found: public\products\panel-3d-mix-2.jpg
+  WARNING: File not found: public\products\panel-3d-mix-3.jpg
+  WARNING: File not found: public\products\panel-3d-mix-4.jpg
+  SKIPPED (no images to upload)
+Processing: Panel Indian Autumn (cladding-stones) - 4 images
+  WARNING: File not found: public\products\panel-indian-autumn-1.jpg
+  WARNING: File not found: public\products\panel-indian-autumn-2.jpg
+  WARNING: File not found: public\products\panel-indian-autumn-3.jpg
+  WARNING: File not found: public\products\panel-indian-autumn-4.jpg
+  SKIPPED (no images to upload)
+Processing: Panel Green Restik (cladding-stones) - 4 images
+  WARNING: File not found: public\products\panel-green-restik-1.jpg
+  WARNING: File not found: public\products\panel-green-restik-2.jpg
+  WARNING: File not found: public\products\panel-green-restik-3.jpg
+  WARNING: File not found: public\products\panel-green-restik-4.jpg
+  SKIPPED (no images to upload)
+Processing: Panel L Black (cladding-stones) - 4 images
+  WARNING: File not found: public\products\panel-l-black-1.jpg
+  WARNING: File not found: public\products\panel-l-black-2.jpg
+  WARNING: File not found: public\products\panel-l-black-3.jpg
+  WARNING: File not found: public\products\panel-l-black-4.jpg
+  SKIPPED (no images to upload)
+Processing: Garden Stone Bench (stone-products) - 4 images
+  WARNING: File not found: public\products\garden-stone-bench-1.jpg
+  WARNING: File not found: public\products\garden-stone-bench-2.jpg
+  WARNING: File not found: public\products\garden-stone-bench-3.jpg
+  WARNING: File not found: public\products\garden-stone-bench-4.jpg
+  SKIPPED (no images to upload)
+Processing: Granite Stone Pillar (stone-products) - 4 images
+  WARNING: File not found: public\products\granite-stone-pillar-1.jpg
+  WARNING: File not found: public\products\granite-stone-pillar-2.jpg
+  WARNING: File not found: public\products\granite-stone-pillar-3.jpg
+  WARNING: File not found: public\products\granite-stone-pillar-4.jpg
+  SKIPPED (no images to upload)
+Processing: Stone Table and Chair (stone-products) - 4 images
+  WARNING: File not found: public\products\stone-table-chair-1.jpg
+  WARNING: File not found: public\products\stone-table-chair-2.jpg
+  WARNING: File not found: public\products\stone-table-chair-3.jpg
+  WARNING: File not found: public\products\stone-table-chair-4.jpg
+  SKIPPED (no images to upload)
+Processing: 25mm Green (artificial-grass) - 4 images
+  WARNING: File not found: public\products\grass-25-green-1.jpg
+  WARNING: File not found: public\products\grass-25-green-2.jpg
+  WARNING: File not found: public\products\grass-25-green-3.jpg
+  WARNING: File not found: public\products\grass-25-green-4.jpg
+  SKIPPED (no images to upload)
+Processing: 35mm Green (artificial-grass) - 4 images
+  WARNING: File not found: public\products\grass-35-green-1.jpg
+  WARNING: File not found: public\products\grass-35-green-2.jpg
+  WARNING: File not found: public\products\grass-35-green-3.jpg
+  WARNING: File not found: public\products\grass-35-green-4.jpg
+  SKIPPED (no images to upload)
+Processing: 40mm Green (artificial-grass) - 4 images
+  WARNING: File not found: public\products\grass-40-green-1.jpg
+  WARNING: File not found: public\products\grass-40-green-2.jpg
+  WARNING: File not found: public\products\grass-40-green-3.jpg
+  WARNING: File not found: public\products\grass-40-green-4.jpg
+  SKIPPED (no images to upload)
+Processing: 40mm Mix (artificial-grass) - 4 images
+  WARNING: File not found: public\products\grass-40-mix-1.jpg
+  WARNING: File not found: public\products\grass-40-mix-2.jpg
+  WARNING: File not found: public\products\grass-40-mix-3.jpg
+  WARNING: File not found: public\products\grass-40-mix-4.jpg
+  SKIPPED (no images to upload)
+Processing: 50mm Green (artificial-grass) - 4 images
+  WARNING: File not found: public\products\grass-50-green-1.jpg
+  WARNING: File not found: public\products\grass-50-green-2.jpg
+  WARNING: File not found: public\products\grass-50-green-3.jpg
+  WARNING: File not found: public\products\grass-50-green-4.jpg
+  SKIPPED (no images to upload)
+Processing: Choice River Pebble Mix (pebble-stones) - 4 images
+  Uploaded: pebble-img1.jpg -> 69a3ce0ea95d8b6590dc
+  Uploaded: pebble-img5.jpg -> 69a3ce0f76fce62f4cd7
+  DB Updated with 2 Appwrite URLs
+Processing: River White (pebble-stones) - 4 images
+  Uploaded: pebble-img8.jpg -> 69a3ce1070e159ea6c32
+  Uploaded: pebble-img11.jpg -> 69a3ce114031dabab983
+  DB Updated with 2 Appwrite URLs
+Processing: River Black (pebble-stones) - 4 images
+  Uploaded: pebble-img14.jpg -> 69a3ce125e56174be2e9
+  Uploaded: pebble-img17.jpg -> 69a3ce133ff2ddafc47c
+  DB Updated with 2 Appwrite URLs
+Processing: Zebra choice stone (pebble-stones) - 4 images
+  Uploaded: pebble-img20.jpg -> 69a3ce145f36d21c0ea2
+  Uploaded: pebble-img23.jpg -> 69a3ce152995bf808b4e
+  DB Updated with 2 Appwrite URLs
+Processing: Teak Wood choice (pebble-stones) - 4 images
+  Uploaded: pebble-img26.jpg -> 69a3ce162217cc7c1c36
+  Uploaded: pebble-img29.jpg -> 69a3ce16e8b0410918ff
+  DB Updated with 2 Appwrite URLs
+Processing: Choice Himalayan River Pebble (pebble-stones) - 4 images
+  Uploaded: pebble-img32.jpg -> 69a3ce1830e59714fa9f
+  Uploaded: pebble-img36.jpg -> 69a3ce194e22890d502e
+  DB Updated with 2 Appwrite URLs
+Processing: Choice stone Deep Purple (pebble-stones) - 4 images
+  Uploaded: pebble-img39.jpg -> 69a3ce1a83fd31d0e92f
+  Uploaded: pebble-img42.jpg -> 69a3ce1b5c42685dc046
+  DB Updated with 2 Appwrite URLs
+Processing: Zebra Choice (pebble-stones) - 4 images
+  DB Updated with 2 Appwrite URLs
+Processing: Choice Deep Purple (pebble-stones) - 4 images
+  DB Updated with 2 Appwrite URLs
+Processing: Tandure stone (paving-stones) - 4 images
+  WARNING: File not found: public\products\1000260552.jpg
+  WARNING: File not found: public\products\1000260563.jpg
+  WARNING: File not found: public\products\1000260557.jpg
+  WARNING: File not found: public\products\1000260554.jpg
+  SKIPPED (no images to upload)
+Processing: Geerstone (paving-stones) - 2 images
+  WARNING: File not found: public\products\1000002395.jpg
+  WARNING: File not found: public\products\1000002396.jpg
+  SKIPPED (no images to upload)
+
+=== Summary ===
+Updated: 30
+Failed: 17
+Upload cache (unique files uploaded): 74
+
+Done! All products should now use Appwrite Storage URLs.

@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import {
     LayoutDashboard, Package, Tags, LogOut, Menu, X,
-    ChevronRight
+    ChevronRight, Image as ImageIcon
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -12,6 +12,7 @@ function AdminLayout({ children, onLogout }) {
     const navItems = [
         { path: '/admin', icon: <LayoutDashboard size={20} />, label: 'Dashboard' },
         { path: '/admin/products', icon: <Package size={20} />, label: 'Products' },
+        { path: '/admin/image-mapping', icon: <ImageIcon size={20} />, label: 'Image Mapping' },
         { path: '/admin/wholesale', icon: <Package size={20} />, label: 'Wholesale' },
         { path: '/admin/categories', icon: <Tags size={20} />, label: 'Categories' },
         { path: '/admin/settings', icon: <Menu size={20} />, label: 'Settings' }

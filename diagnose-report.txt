@@ -1,0 +1,142 @@
+Total files in bucket: 672
+
+File patterns:
+  WhatsApp: 3
+  other-image: 625
+  img[N] (cladding): 44
+
+Total products: 129
+  Appwrite URLs: 81
+  Local paths: 47
+  No images: 1
+
+--- ALL PRODUCTS ---
+LOCAL | paving-stones | Bangalore Stone | imgs: 4
+LOCAL | paving-stones | Bangalore Stone Halfcut | imgs: 4
+LOCAL | paving-stones | Bangalore Stone Fullcut | imgs: 4
+LOCAL | paving-stones | Bangalore Grey Stone | imgs: 4
+LOCAL | paving-stones | Magadi Pink Stone | imgs: 4
+LOCAL | paving-stones | Tandure Yellow Stone | imgs: 4
+LOCAL | paving-stones | Tandure Coffee Stone | imgs: 4
+LOCAL | paving-stones | Tandure Grey Stone | imgs: 4
+LOCAL | paving-stones | Tandure Polishing Stones | imgs: 4
+LOCAL | paving-stones | Tandure Semi Polished | imgs: 4
+LOCAL | paving-stones | Kadappa Stone | imgs: 4
+LOCAL | paving-stones | Black Stone | imgs: 4
+LOCAL | paving-stones | Cobble Stone | imgs: 4
+LOCAL | paving-stones | Pink Cobble | imgs: 4
+LOCAL | paving-stones | Bangalore White Cobble | imgs: 4
+LOCAL | paving-stones | Natural Cobble | imgs: 4
+LOCAL | paving-stones | Natural Black Cobble | imgs: 4
+LOCAL | paving-stones | Block Box Cut Cobble | imgs: 4
+LOCAL | paving-stones | Tandure Cobble | imgs: 4
+LOCAL | paving-stones | Kadappa Cobble | imgs: 4
+LOCAL | paving-stones | Temple Exporting Quality | imgs: 4
+APPWRITE | cladding-stones | Rainbow | imgs: 1
+APPWRITE | cladding-stones | Teak Sand Blast | imgs: 1
+APPWRITE | cladding-stones | Teak Champered | imgs: 1
+APPWRITE | cladding-stones | Black Rough | imgs: 1
+APPWRITE | cladding-stones | Natural Clay | imgs: 1
+APPWRITE | cladding-stones | Multi Gold | imgs: 2
+APPWRITE | cladding-stones | White Rough | imgs: 1
+APPWRITE | cladding-stones | Latarate Stone | imgs: 1
+APPWRITE | cladding-stones | Chocolate | imgs: 3
+APPWRITE | cladding-stones | N Green | imgs: 2
+APPWRITE | cladding-stones | Pista Green | imgs: 1
+APPWRITE | cladding-stones | Black Butching | imgs: 1
+APPWRITE | cladding-stones | Pink | imgs: 3
+APPWRITE | cladding-stones | Rustic Black | imgs: 3
+APPWRITE | cladding-stones | C Gold | imgs: 3
+APPWRITE | cladding-stones | Automan | imgs: 2
+APPWRITE | cladding-stones | Slate Black | imgs: 4
+APPWRITE | cladding-stones | Pink Plain | imgs: 1
+APPWRITE | cladding-stones | Lime Black | imgs: 1
+APPWRITE | cladding-stones | Black Restik | imgs: 1
+APPWRITE | cladding-stones | S White | imgs: 1
+APPWRITE | cladding-stones | Cera | imgs: 1
+APPWRITE | cladding-stones | T Yellow | imgs: 1
+APPWRITE | cladding-stones | Flammed Black | imgs: 1
+APPWRITE | cladding-stones | Agra Red | imgs: 1
+APPWRITE | cladding-stones | Calibration Slab | imgs: 1
+APPWRITE | cladding-stones | M-Green | imgs: 1
+APPWRITE | cladding-stones | Automn | imgs: 1
+APPWRITE | cladding-stones | Copper | imgs: 1
+APPWRITE | cladding-stones | D-Green | imgs: 1
+APPWRITE | cladding-stones | Silver Grey | imgs: 1
+APPWRITE | cladding-stones | Silver Shine | imgs: 1
+APPWRITE | cladding-stones | Star Gallexy | imgs: 1
+APPWRITE | cladding-stones | Jek Black | imgs: 1
+APPWRITE | cladding-stones | Teak | imgs: 1
+APPWRITE | cladding-stones | Forest Fire | imgs: 1
+APPWRITE | cladding-stones | Stacking | imgs: 1
+APPWRITE | cladding-stones | Waterfall C-Gold | imgs: 1
+LOCAL | cladding-stones | Waterfall Black | imgs: 4
+LOCAL | cladding-stones | Waterfall Autumn | imgs: 4
+APPWRITE | cladding-stones | Panel KK White | imgs: 1
+LOCAL | cladding-stones | Panel Restik Black | imgs: 4
+APPWRITE | cladding-stones | Panel D-Green | imgs: 1
+LOCAL | cladding-stones | Panel 3D Mix | imgs: 4
+LOCAL | cladding-stones | Panel Indian Autumn | imgs: 4
+LOCAL | cladding-stones | Panel Green Restik | imgs: 4
+LOCAL | cladding-stones | Panel L Black | imgs: 4
+APPWRITE | cladding-stones | Panel Teak Rock | imgs: 1
+APPWRITE | cladding-stones | Panel Silver Shine | imgs: 1
+APPWRITE | cladding-stones | Chipout Grey | imgs: 1
+APPWRITE | cladding-stones | Chipout Black | imgs: 1
+APPWRITE | cladding-stones | Chipout Pink | imgs: 3
+APPWRITE | cladding-stones | Chipout Rainbow | imgs: 1
+APPWRITE | cladding-stones | Chipout White | imgs: 1
+APPWRITE | cladding-stones | Chipout Teak | imgs: 1
+APPWRITE | cladding-stones | Chipout Green | imgs: 1
+APPWRITE | cladding-stones | Exogen Automn | imgs: 1
+APPWRITE | cladding-stones | Exogen R Black | imgs: 1
+APPWRITE | cladding-stones | Exogen Black | imgs: 1
+APPWRITE | cladding-stones | Exogen Mosaic Automn | imgs: 1
+APPWRITE | cladding-stones | Exogen Mosaic Pink | imgs: 3
+APPWRITE | cladding-stones | Forest Teak Green | imgs: 1
+APPWRITE | cladding-stones | Yellow Teak | imgs: 1
+APPWRITE | cladding-stones | Grenate Mosaics | imgs: 1
+APPWRITE | cladding-stones | Mint Roman | imgs: 1
+APPWRITE | cladding-stones | Teak Roman | imgs: 1
+APPWRITE | cladding-stones | Bidasar Brown | imgs: 1
+APPWRITE | cladding-stones | Bidasar Green | imgs: 1
+APPWRITE | cladding-stones | Indian Jaalis | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Edan | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Camp | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Square | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Ruby | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Zebra | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Petal | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Pearl | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Oppal | imgs: 1
+APPWRITE | cladding-stones | Terracotta Jaali Diamond | imgs: 1
+APPWRITE | cladding-stones | Terracotta Wall Tile Cupuccino | imgs: 1
+APPWRITE | cladding-stones | Terracotta Wall Tile Chocolate | imgs: 3
+APPWRITE | cladding-stones | Terracotta Wall Tile Fireclay | imgs: 2
+APPWRITE | cladding-stones | Terracotta Wall Tile Terracotta | imgs: 1
+APPWRITE | cladding-stones | Terracotta Floor Tile Chocolate | imgs: 3
+APPWRITE | cladding-stones | Terracotta Floor Tile Terracotta | imgs: 1
+APPWRITE | cladding-stones | Terracotta Floor Tile Cuppuccino | imgs: 1
+APPWRITE | cladding-stones | Terracotta Floor Tile Grey | imgs: 1
+APPWRITE | cladding-stones | Terracotta Floor Tile Fire Clay | imgs: 1
+APPWRITE | cladding-stones | Terracotta Floor Tile Burgundy | imgs: 1
+LOCAL | stone-products | Garden Stone Bench | imgs: 4
+LOCAL | stone-products | Granite Stone Pillar | imgs: 4
+LOCAL | stone-products | Stone Table and Chair | imgs: 4
+LOCAL | artificial-grass | 25mm Green | imgs: 4
+LOCAL | artificial-grass | 35mm Green | imgs: 4
+LOCAL | artificial-grass | 40mm Green | imgs: 4
+LOCAL | artificial-grass | 40mm Mix | imgs: 4
+LOCAL | artificial-grass | 50mm Green | imgs: 4
+LOCAL | pebble-stones | Choice River Pebble Mix | imgs: 4
+LOCAL | pebble-stones | River White | imgs: 4
+LOCAL | pebble-stones | River Black | imgs: 4
+LOCAL | pebble-stones | Zebra choice stone | imgs: 4
+LOCAL | pebble-stones | Teak Wood choice | imgs: 4
+LOCAL | pebble-stones | Choice Himalayan River Pebble | imgs: 4
+LOCAL | pebble-stones | Choice stone Deep Purple | imgs: 4
+LOCAL | pebble-stones | Zebra Choice | imgs: 4
+LOCAL | pebble-stones | Choice Deep Purple | imgs: 4
+LOCAL | paving-stones | Tandure stone | imgs: 4
+LOCAL | paving-stones | Geerstone | imgs: 2
+EMPTY | system_settings | System Settings | imgs: 0
