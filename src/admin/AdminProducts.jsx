@@ -348,25 +348,38 @@ function AdminProducts() {
                                                     const file = e.target.files[0];
                                                     if (!file) return;
                                                     setIsUploading(true);
+                                                    setStatusMsg('Uploading...');
                                                     try {
                                                         const reader = new FileReader();
                                                         reader.readAsDataURL(file);
                                                         reader.onload = async () => {
-                                                            const base64Data = reader.result.split(',')[1];
-                                                            const res = await fetch('/api/upload-image', {
-                                                                method: 'POST',
-                                                                headers: { 'Content-Type': 'application/json' },
-                                                                body: JSON.stringify({ name: file.name, base64Data })
-                                                            });
-                                                            if (!res.ok) throw new Error('Upload failed');
-                                                            const data = await res.json();
-                                                            const current = getImagesArray(editingProduct.images);
-                                                            setEditingProduct({ ...editingProduct, images: [...current, data.url] });
-                                                            setIsUploading(false);
+                                                            try {
+                                                                const base64Data = reader.result.split(',')[1];
+                                                                const res = await fetch('/api/upload-image', {
+                                                                    method: 'POST',
+                                                                    headers: { 'Content-Type': 'application/json' },
+                                                                    body: JSON.stringify({ name: file.name, base64Data })
+                                                                });
+
+                                                                const data = await res.json();
+                                                                if (!res.ok) {
+                                                                    throw new Error(data.error || 'Upload failed');
+                                                                }
+
+                                                                const current = getImagesArray(editingProduct.images);
+                                                                setEditingProduct({ ...editingProduct, images: [...current, data.url] });
+                                                                setStatusMsg('✅ Image uploaded successfully');
+                                                                setIsUploading(false);
+                                                            } catch (uploadErr) {
+                                                                console.error(uploadErr);
+                                                                alert('Upload failed: ' + uploadErr.message);
+                                                                setStatusMsg('❌ ' + uploadErr.message);
+                                                                setIsUploading(false);
+                                                            }
                                                         };
                                                     } catch (err) {
                                                         console.error(err);
-                                                        alert('Upload failed: ' + err.message);
+                                                        alert('File reading failed: ' + err.message);
                                                         setIsUploading(false);
                                                     }
                                                 }}
