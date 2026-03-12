@@ -389,7 +389,7 @@ function AdminProducts() {
                                         </label>
                                     </div>
                                     <p style={{ fontSize: '11px', color: '#888', marginTop: '10px' }}>
-                                        Note: New uploads will save to the unassigned folder.
+                                        Note: New uploads will be saved directly to the Cloudflare R2 bucket.
                                     </p>
                                 </div>
                             </div>

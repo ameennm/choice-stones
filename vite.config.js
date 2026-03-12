@@ -169,22 +169,48 @@ function LocalAdminApi() {
                     req.on('data', chunk => { body = Buffer.concat([body, chunk]) });
                     req.on('end', () => {
                         try {
-                            // Simple hack for file upload in vite middleware without busboy/multer
-                            // We expect a base64 string or raw bytes. Let's assume JSON with { name, base64Data }
                             const { name, base64Data } = JSON.parse(body.toString());
                             const buffer = Buffer.from(base64Data, 'base64');
-                            const targetPath = path.resolve('public/products/unassigned', name);
-
+                            
+                            // Save safely mapping name to prevent overwrites like production
+                            const safeName = name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                            const uniqueFileName = `${Date.now()}-${safeName}`;
+                            
+                            // Save to a local folder to simulate R2 bucket
+                            const targetDir = path.resolve('public/images_simulated_r2');
+                            if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
+                            
+                            const targetPath = path.resolve(targetDir, uniqueFileName);
                             fs.writeFileSync(targetPath, buffer);
 
                             res.setHeader('Content-Type', 'application/json');
-                            res.end(JSON.stringify({ success: true, url: `/products/unassigned/${name}` }));
+                            res.end(JSON.stringify({ success: true, url: `/images/${uniqueFileName}` }));
                         } catch (e) {
                             res.statusCode = 500;
                             res.end(JSON.stringify({ error: e.message }));
                         }
                     });
                     return;
+                }
+
+                // Simulate the R2 /images/ route serving local files
+                if (req.url.startsWith('/images/') && req.method === 'GET') {
+                    const fileName = req.url.replace('/images/', '');
+                    // Check local simulated folder
+                    const localPath = path.resolve('public/images_simulated_r2', fileName);
+                    
+                    if (fs.existsSync(localPath)) {
+                        const ext = path.extname(fileName).toLowerCase();
+                        let contentType = 'image/jpeg';
+                        if (ext === '.png') contentType = 'image/png';
+                        if (ext === '.webp') contentType = 'image/webp';
+                        if (ext === '.gif') contentType = 'image/gif';
+
+                        res.setHeader('Content-Type', contentType);
+                        const fileStream = fs.createReadStream(localPath);
+                        fileStream.pipe(res);
+                        return;
+                    }
                 }
 
                 if (req.url === '/api/update-product' && req.method === 'POST') {

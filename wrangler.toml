@@ -8,3 +8,7 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB"
 database_name = "choice-db"
 database_id = "2397509c-1e0a-49b3-bf5e-47a975606734"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "choice-stones-images"
