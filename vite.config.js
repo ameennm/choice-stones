@@ -169,12 +169,25 @@ function LocalAdminApi() {
                     req.on('data', chunk => { body = Buffer.concat([body, chunk]) });
                     req.on('end', () => {
                         try {
-                            const { name, base64Data } = JSON.parse(body.toString());
+                            const { name, base64Data, productId, productName } = JSON.parse(body.toString());
                             const buffer = Buffer.from(base64Data, 'base64');
                             
-                            // Save safely mapping name to prevent overwrites like production
-                            const safeName = name.replace(/[^a-zA-Z0-9.-]/g, '_');
-                            const uniqueFileName = `${Date.now()}-${safeName}`;
+                            // Generate a safe unique filename based on the product name/id
+                            const safeOriginalName = name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                            let baseFilename = safeOriginalName.replace(/\.[0-9a-z]+$/i, ''); // Strip extension temporarily
+                            
+                            if (productName) {
+                                baseFilename = productName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                            } else if (productId) {
+                                baseFilename = productId.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                            }
+
+                            const extensionMatch = safeOriginalName.match(/\.[0-9a-z]+$/i);
+                            const extension = extensionMatch ? extensionMatch[0] : '';
+                            
+                            // Append random string to prevent overwriting
+                            const randomStr = Math.random().toString(36).substring(2, 8);
+                            const uniqueFileName = `${baseFilename}-${randomStr}${extension}`;
                             
                             // Save to a local folder to simulate R2 bucket
                             const targetDir = path.resolve('public/images_simulated_r2');

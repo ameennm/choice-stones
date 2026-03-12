@@ -358,7 +358,12 @@ function AdminProducts() {
                                                                 const res = await fetch('/api/upload-image', {
                                                                     method: 'POST',
                                                                     headers: { 'Content-Type': 'application/json' },
-                                                                    body: JSON.stringify({ name: file.name, base64Data })
+                                                                    body: JSON.stringify({ 
+                                                                        name: file.name, 
+                                                                        base64Data,
+                                                                        productId: editingProduct.id,
+                                                                        productName: editingProduct.name
+                                                                    })
                                                                 });
 
                                                                 const data = await res.json();

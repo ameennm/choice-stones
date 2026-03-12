@@ -15,7 +15,7 @@ export async function onRequest(context) {
 
     try {
         const body = await request.json();
-        const { name, base64Data } = body;
+        const { name, base64Data, productId, productName } = body;
 
         if (!name || !base64Data) {
             return new Response(JSON.stringify({ error: "Missing name or base64Data" }), {
@@ -26,9 +26,21 @@ export async function onRequest(context) {
         // Convert Base64 back to binary data
         const binaryData = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
 
-        // Generate a safe unique filename to prevent overwriting
-        const safeName = name.replace(/[^a-zA-Z0-9.-]/g, '_');
-        const uniqueFileName = `${Date.now()}-${safeName}`;
+        // Generate a safe unique filename based on the product name/id
+        let baseFilename = safeName;
+        if (productName) {
+            baseFilename = productName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        } else if (productId) {
+            baseFilename = productId.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        const safeOriginalName = name.replace(/[^a-zA-Z0-9.-]/g, '_');
+        const extensionMatch = safeOriginalName.match(/\.[0-9a-z]+$/i);
+        const extension = extensionMatch ? extensionMatch[0] : '';
+        
+        // Append random string to prevent overwriting existing product images
+        const randomStr = Math.random().toString(36).substring(2, 8);
+        const uniqueFileName = `${baseFilename}-${randomStr}${extension}`;
 
         // Determine correct Content-Type from extension
         let contentType = 'image/jpeg';
